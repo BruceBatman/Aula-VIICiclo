@@ -120,15 +120,23 @@
     <div class="container">
 
         <div class="card">
-            <h2>Actividades Próximas Completas</h2>
+            <h2>Próximas Actividades</h2>
             <ul class="activity-list">
                 <li class="activity-item">
-                    <span class="activity-date">Viernes, 22 de Mayo de 2026 - 6:00 p.m.</span>
-                    <strong>Reunión General del Salón:</strong> Seguimiento académico del ciclo, monitoreo y toma de decisiones consensuadas sobre las actividades institucionales.
+                    <span class="activity-date">Lunes, 25 de Mayo</span>
+                    <strong>Día de la Educación Inicial</strong>
                 </li>
                 <li class="activity-item">
-                    <span class="activity-date">Miércoles, 27 de Mayo de 2026</span>
-                    <strong>Compartir de Confraternidad:</strong> Evento de integración por el <em>"Día de la Educación Inicial"</em> enfocado en consolidar la comunidad profesional entre las especialidades de Inicial y Primaria.
+                    <span class="activity-date">Junio</span>
+                    <strong>Día del Padre</strong>
+                </li>
+                <li class="activity-item">
+                    <span class="activity-date">Julio</span>
+                    <strong>Día del Maestro</strong>
+                </li>
+                <li class="activity-item">
+                    <span class="activity-date">Agosto</span>
+                    <strong>Así es mi Cañete</strong>
                 </li>
             </ul>
         </div>
@@ -136,7 +144,7 @@
         <div class="card">
             <h2>Trivia del Salón</h2>
             <div class="trivia-container">
-                <div class="question" id="question-text">¿Quién fue la primera delegada del ciclo?</div>
+                <div class="question" id="question-text">¿Quién fue la primera delegada general?</div>
                 <div id="options-container">
                     <button class="options-btn" onclick="checkAnswer(this, false)">Flor Evelyn Valerio</button>
                     <button class="options-btn" onclick="checkAnswer(this, true)">Carla Villalobos</button>
@@ -150,7 +158,6 @@
 
     <script>
         function checkAnswer(button, isCorrect) {
-            // Deshabilitar todos los botones para que no sigan marcando
             const buttons = document.querySelectorAll('.options-btn');
             buttons.forEach(btn => btn.disabled = true);
 
@@ -158,14 +165,13 @@
 
             if (isCorrect) {
                 button.classList.add('correct');
-                resultMessage.innerHTML = "¡Correcto! Carla Villalobos fue nuestra primera delegada. 🎉";
+                resultMessage.innerHTML = "¡Correcto! Carla Villalobos fue nuestra primera delegada general. 🎉";
                 resultMessage.style.color = "#28a745";
             } else {
                 button.classList.add('incorrect');
                 resultMessage.innerHTML = "Incorrecto. Inténtalo de nuevo en la próxima carga. ❌";
                 resultMessage.style.color = "#dc3545";
                 
-                // Resaltar la respuesta correcta de todas formas
                 buttons.forEach(btn => {
                     if (btn.innerText === "Carla Villalobos") {
                         btn.classList.add('correct');
