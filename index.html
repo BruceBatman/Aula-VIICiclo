@@ -454,6 +454,9 @@
         </div>
     </div>
  
+<!-- Envolvemos todo en el formulario de Netlify para capturar los datos sin JavaScript -->
+<form name="registro-aula-2026" method="POST" data-netlify="true">
+
     <!-- ===== HERRAMIENTA 1: TRIVIA CON ESPECIALIDAD ===== -->
     <div id="simulador-pantalla" class="fullscreen-view">
         <div class="view-header">
@@ -463,21 +466,67 @@
         <div id="sim-setup" style="max-width:600px; margin: 0 auto;">
             <h2 style="margin-bottom:10px;">Control de Conocimientos y Aula 2026</h2>
             <p style="color: var(--text-muted); margin-bottom: 20px;">Ingresa tus datos y selecciona tu especialidad para comenzar la trivia. Las preguntas se adaptarán a tu especialidad. El tiempo límite es de 20 minutos.</p>
-            <input type="text" id="student-name-input" placeholder="Tu Nombre y Apellido completo" autocomplete="off" style="background:#1e293b; border:1px solid #475569; color:white; padding:12px; border-radius:6px; width:100%; margin-bottom:15px; display:block; font-size:1rem;">
+            
+            <!-- Campo para registrar el nombre del estudiante -->
+            <input type="text" id="student-name-input" name="Nombre_Estudiante" placeholder="Tu Nombre y Apellido completo" autocomplete="off" required style="background:#1e293b; border:1px solid #475569; color:white; padding:12px; border-radius:6px; width:100%; margin-bottom:15px; display:block; font-size:1rem;">
+            
             <label style="color:var(--accent); font-weight:bold; display:block; margin-bottom:8px;">Selecciona tu Especialidad: <span style="color:var(--incorrect)">*</span></label>
-            <div class="trivia-especialidad-btns">
-                <button class="esp-btn" id="btn-ini" onclick="seleccionarEsp('inicial')">🌸 Educación Inicial</button>
-                <button class="esp-btn" id="btn-pri" onclick="seleccionarEsp('primaria')">📚 Educación Primaria</button>
+            
+            <!-- Botones circulares para seleccionar especialidad sin código extra -->
+            <div class="trivia-especialidad-btns" style="margin-bottom: 20px;">
+                <label style="color: white; margin-right: 20px; cursor: pointer; font-size: 1.1rem;">
+                    <input type="radio" name="Especialidad" value="Educación Inicial" required style="transform: scale(1.3); margin-right: 8px;"> 🌸 Educación Inicial
+                </label>
+                <label style="color: white; cursor: pointer; font-size: 1.1rem;">
+                    <input type="radio" name="Especialidad" value="Educación Primaria" style="transform: scale(1.3); margin-right: 8px;"> 📚 Educación Primaria
+                </label>
             </div>
-            <p id="esp-required-msg" class="esp-required">⚠ Debes seleccionar tu especialidad para continuar.</p>
+            
             <div style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap;">
-                <button class="btn-nav-trivia btn-finalizar" style="font-size:1.1rem; padding:15px 30px;" onclick="comenzarExamen()">Iniciar Trivia</button>
-                <button class="btn-nav-trivia" onclick="cerrarHerramienta('simulador')">Regresar al Inicio</button>
+                <!-- Este botón guarda todo en tu base de datos de Netlify al hacer clic -->
+                <button type="submit" class="btn-nav-trivia btn-finalizar" style="font-size:1.1rem; padding:15px 30px; cursor:pointer;">Enviar y Registrar Datos</button>
+                <button type="button" class="btn-nav-trivia" onclick="cerrarHerramienta('simulador')">Regresar al Inicio</button>
             </div>
         </div>
         <div id="sim-questions" style="display:none; max-width:700px; margin: 0 auto;"></div>
         <div id="sim-results" style="display:none;"></div>
     </div>
+ 
+    <!-- ===== HERRAMIENTA 2: GENERADOR CON AÑO/GRADO + CURSO ===== -->
+    <div id="generador-pantalla" class="fullscreen-view" style="margin-top: 40px; border-top: 2px dashed #334155; padding-top: 40px;">
+        <div class="view-header">
+            <h2 style="color: var(--secondary); font-size: 1.2rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> GENERADOR AUTOMÁTICO DE SESIONES DINÁMICAS</h2>
+            <button type="button" class="btn-nav-trivia" onclick="cerrarHerramienta('generador')">Cerrar</button>
+        </div>
+        <h2 style="margin-bottom:5px;">Generador de Situaciones Significativas</h2>
+        <p style="color: var(--text-muted); margin-bottom: 25px;">Selecciona tu especialidad, año/grado y área curricular. Todo en base al Currículo Nacional (CNEB).</p>
+ 
+        <div class="nivel-selects">
+            <div class="form-group">
+                <label><i class="fa-solid fa-children"></i> Nivel / Especialidad:</label>
+                <select id="gen-nivel" name="Generador_Nivel" class="select-custom" onchange="actualizarAnosGrados()">
+                    <option value="inicial">Educación Inicial</option>
+                    <option value="primaria">Educación Primaria</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label id="label-ano-grado"><i class="fa-solid fa-child"></i> Año / Edad:</label>
+                <select id="gen-ano-grado" name="Generador_Año_Grado" class="select-custom" onchange="actualizarAreas()"></select>
+            </div>
+            <div class="form-group">
+                <label><i class="fa-solid fa-book-open"></i> Área Curricular (Curso):</label>
+                <select id="gen-area" name="Generador_Area_Curricular" class="select-custom"></select>
+            </div>
+        </div>
+ 
+        <button type="submit" class="btn-launch-tool btn-green" style="max-width:320px; margin-top:10px; cursor:pointer;">
+            <i class="fa-solid fa-gears"></i> Guardar Opciones y Estructurar
+        </button>
+ 
+        <div id="idea-resultado" class="idea-result-card"></div>
+    </div>
+
+</form>
  
     <!-- ===== HERRAMIENTA 2: GENERADOR CON AÑO/GRADO + CURSO ===== -->
     <div id="generador-pantalla" class="fullscreen-view">
