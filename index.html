@@ -861,11 +861,30 @@ resBox.innerHTML = `
  
 // ===== BUZÓN =====
 function enviarSugerencia() {
-const texto = document.getElementById('buzon-mensaje').value.trim();
-if (!texto) { alert("Por favor, escribe un mensaje o sugerencia constructiva antes de realizar el envío."); return; }
-alert("¡Sugerencia recibida de manera transparente por la delegatura! Gracias por ayudarnos a mejorar continuamente.");
-document.getElementById('buzon-mensaje').value = "";
-cerrarHerramienta('buzon');
+    const texto = document.getElementById('buzon-mensaje').value.trim();
+    if (!texto) { 
+        alert("Por favor, escribe un mensaje o sugerencia constructiva antes de realizar el envío."); 
+        return; 
+    }
+
+    const formData = new FormData();
+    formData.append('form-name', 'buzon-sugerencias-2026');
+    formData.append('Nombre_Estudiante', typeof nombreEstudiante !== 'undefined' ? nombreEstudiante : "Anónimo");
+    formData.append('Mensaje_Sugerencia', texto);
+
+    fetch('/', {
+        method: 'POST',
+        body: formData
+    })
+    .then(() => {
+        alert("¡Sugerencia recibida de manera transparente por la delegatura! Gracias por ayudarnos a mejorar continuamente.");
+        document.getElementById('buzon-mensaje').value = "";
+        cerrarHerramienta('buzon');
+    })
+    .catch((error) => {
+        console.error('Error al enviar sugerencia:', error);
+        alert("Hubo un problema al enviar el mensaje, inténtalo de nuevo.");
+    });
 }
  function enviarDatosNetlify(nombre, especialidad, puntaje) {
     const formData = new FormData();
@@ -888,6 +907,10 @@ actualizarAnosGrados();
     <input type="text" name="Nombre_Estudiante">
     <input type="text" name="Especialidad">
     <input type="text" name="Puntaje_Final">
+</form>
+<form name="buzon-sugerencias-2026" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none;">
+    <input type="text" name="Nombre_Estudiante">
+    <input type="text" name="Mensaje_Sugerencia">
 </form>
  
 </body>
