@@ -1,233 +1,323 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Estudiantil - VII Ciclo</title>
-    <style>
-        /* --- Estilos Base --- */
-        body { font-family: 'Arial', sans-serif; background-color: #f4f6f9; color: #333; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h2 { color: #1e3a8a; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-top: 0; }
-        
-        /* --- Estilos Trivia --- */
-        .quiz-container { margin-bottom: 40px; }
-        .timer-badge { background-color: #ef4444; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; display: inline-block; margin-bottom: 20px; }
-        .question-card { display: none; margin-bottom: 20px; }
-        .question-card.active { display: block; animation: fadeIn 0.5s; }
-        .options-list { list-style: none; padding: 0; }
-        .options-list li { margin: 12px 0; background: #f8fafc; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0; transition: background 0.2s; }
-        .options-list li:hover { background: #f1f5f9; }
-        .options-list input { margin-right: 10px; cursor: pointer; }
-        .options-list label { cursor: pointer; display: block; width: 100%; }
-        .nav-buttons { display: flex; justify-content: space-between; margin-top: 25px; }
-        button { background-color: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background 0.3s; }
-        button:hover { background-color: #1d4ed8; }
-        button:disabled { background-color: #cbd5e1; cursor: not-allowed; }
-        
-        /* --- Estilos Certificado Simulado --- */
-        #certificate-box { display: none; margin-top: 30px; padding: 40px; border: 10px double #b45309; background: #ffffaf; text-align: center; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-        #certificate-box h3 { font-family: 'Georgia', serif; color: #78350f; font-size: 22px; margin-bottom: 5px; text-transform: uppercase; }
-        #certificate-box h4 { font-family: 'Georgia', serif; color: #92400e; font-size: 18px; margin-top: 0; letter-spacing: 1px; }
-        .cert-body { font-family: 'Courier New', monospace; font-size: 16px; margin: 30px 0; line-height: 1.8; color: #451a03; }
-        .cert-name { font-size: 24px; font-weight: bold; text-decoration: underline; color: #1e3a8a; display: inline-block; margin: 15px 0; }
-        
-        /* --- Estilos Buzón --- */
-        .mailbox-container { margin-top: 50px; background: #f8fafc; padding: 25px; border-left: 5px solid #2563eb; border-radius: 4px; }
-        .mailbox-container textarea { width: 100%; height: 120px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; resize: vertical; box-sizing: border-box; margin-bottom: 15px; font-size: 15px; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
-</head>
-<body>
-
-<div class="container">
-
-    <section class="quiz-container">
-        <h2>Pon a prueba tu conocimientos en esta Trivia</h2>
-        
-        <div class="timer-badge">Tiempo restante: <span id="time-display">20:00</span></div>
-        
-        <div id="quiz-flow">
-            <div class="question-card active" data-index="0">
-                <h3>1. ¿Cuál es el enfoque principal del Currículo Nacional (CNEB)?</h3>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q1" value="A"> Enfoque conductista clásico.</label></li>
-                    <li><label><input type="radio" name="q1" value="B"> Enfoque por competencias bajo una mirada socio-constructivista.</label></li>
-                    <li><label><input type="radio" name="q1" value="C"> Enfoque memorístico tradicional.</label></li>
-                </ul>
-            </div>
-
-            <div class="question-card" data-index="1">
-                <h3>2. En una sesión de aprendizaje, ¿cuál es el propósito de la "evaluación formativa"?</h3>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q2" value="A"> Colocar una nota definitiva al final del bimestre.</label></li>
-                    <li><label><input type="radio" name="q2" value="B"> Brindar retroalimentación oportuna al estudiante para mejorar su proceso de aprendizaje.</label></li>
-                    <li><label><input type="radio" name="q2" value="C"> Clasificar a los alumnos según su rendimiento académico.</label></li>
-                </ul>
-            </div>
-
-            <div class="question-card" data-index="2">
-                <h3>3. ¿Qué elemento define la interacción democrática en el aula?</h3>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q3" value="A"> El establecimiento consensuado de acuerdos de convivencia.</label></li>
-                    <li><label><input type="radio" name="q3" value="B"> El cumplimiento estricto de normas sin participación estudiantil.</label></li>
-                    <li><label><input type="radio" name="q3" value="C"> La ausencia total de reglas en el salón.</label></li>
-                </ul>
-            </div>
-
-            <div class="question-card" data-index="3">
-                <h3>4. ¿Quién fue la primera delegada de nuestro ciclo?</h3>
-                <ul class="options-list">
-                    <li><label><input type="radio" name="q4" value="A"> Flor Evelyn Valerio</label></li>
-                    <li><label><input type="radio" name="q4" value="B"> Nuria Huari</label></li>
-                    <li><label><input type="radio" name="q4" value="C"> Carla Villalobos</label></li>
-                </ul>
-            </div>
-            
-            <div class="nav-buttons">
-                <button id="btn-prev" onclick="changeQuestion(-1)" disabled>Regresar</button>
-                <button id="btn-next" onclick="changeQuestion(1)">Siguiente</button>
-                <button id="btn-submit" onclick="finishQuiz()" style="display: none; background-color: #10b981;">Finalizar Trivia</button>
-            </div>
-        </div>
-
-        <div id="certificate-box">
-            <h3>INSTITUTO DE EDUCACIÓN SUPERIOR PEDAGÓGICO PRIVADO</h3>
-            <h4>«JESÚS DE NAZARETH»</h4>
-            <div class="cert-body">
-                Otorga la presente constancia de participación a:<br>
-                <span class="cert-name" id="student-name">Estudiante del VII Ciclo</span><br>
-                Por haber completado con éxito la evaluación interactiva de conocimientos.<br><br>
-                <strong>Puntaje obtenido: <span id="final-score">0</span>% de efectividad</strong>
-            </div>
-            <p style="font-size: 12px; color: #92400e; margin-top: 30px; font-style: italic;">Documento simulado con fines pedagógicos internos.</p>
-        </div>
-    </section>
-
-    <hr style="border: 0; height: 1px; background: #e2e8f0; margin: 40px 0;">
-
-    <section class="mailbox-container">
-        <h2>Buzón de Sugerencia Hacia los Delegados del Ciclo</h2>
-        <p style="color: #64748b; font-size: 14px; margin-bottom: 20px; line-height: 1.5;">
-            Este es un espacio transparente diseñado para escuchar a todo el salón. Utiliza este medio para proponer sugerencias para mejorar como delegados, dejar críticas constructivas o presentar sus inquietudes de manera transparente.
-        </p>
-        
-        <form id="mailbox-form" onsubmit="submitForm(event)">
-            <label style="display: block; font-weight: bold; margin-bottom: 8px;" for="feedback-text">Escribe tu inquietud o sugerencia aquí:</label>
-            <textarea id="feedback-text" placeholder="Escribe tus sugerencias o inquietudes de manera transparente y constructiva..." required></textarea>
-            <button type="submit" style="background-color: #0f172a;">Enviar de forma transparente</button>
-        </form>
-        <div id="form-response" style="margin-top: 15px; color: #16a34a; font-weight: bold; display: none;">
-            ¡Tu sugerencia ha sido enviada con éxito a la delegación! Gracias por ayudarnos a mejorar.
-        </div>
-    </section>
-
-</div>
-
 <script>
-    // --- Configuración de la Trivia ---
-    let currentStep = 0;
-    const questions = document.querySelectorAll('.question-card');
-    const totalQuestions = questions.length; // Cuenta automáticamente las 4 preguntas
-    
-    // --- Lógica del Temporizador Global (20 Minutos) ---
-    let totalTime = 20 * 60; // 20 minutos en segundos
-    const timerDisplay = document.getElementById('time-display');
-    
-    const countdown = setInterval(() => {
-        let minutes = Math.floor(totalTime / 60);
-        let seconds = totalTime % 60;
-        
-        // Formato con ceros a la izquierda
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-        
-        timerDisplay.textContent = `${minutes}:${seconds}`;
-        
-        if (totalTime <= 0) {
-            clearInterval(countdown);
-            alert("¡El tiempo límite de 20 minutos ha terminado! Tus respuestas se enviarán automáticamente.");
-            finishQuiz(); // Corta el juego inmediatamente y genera los resultados
-        }
-        totalTime--;
-    }, 1000);
+    // ==========================================
+    // MANEJADOR CENTRALIZADO DE ENRUTAMIENTO
+    // ==========================================
+    function abrirHerramienta(tipo) {
+        const currentUrl = window.location.href.split('?')[0];
+        window.open(currentUrl + '?mode=' + tipo, '_blank');
+    }
 
-    // --- Navegación de Preguntas (Uno por Uno) ---
-    function showQuestion(index) {
-        questions.forEach((card, idx) => {
-            card.classList.toggle('active', idx === index);
+    // Leer los parámetros URL al cargar la pestaña independiente
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+        
+        if (mode) {
+            // Ocultar layout principal si se detecta un modo alternativo
+            if (document.getElementById('main-content')) document.getElementById('main-content').style.display = 'none';
+            if (document.getElementById('main-header')) document.getElementById('main-header').style.display = 'none';
+            if (document.querySelector('footer')) document.querySelector('footer').style.display = 'none';
+            
+            // Mostrar la vista independiente correspondiente
+            const pantallas = ['simulador', 'generador', 'buzon'];
+            pantallas.forEach(p => {
+                const el = document.getElementById(`${p}-pantalla`);
+                if (el) el.style.display = p === mode ? 'block' : 'none';
+            });
+        }
+    };
+
+    // ==========================================
+    // LÓGICA 2: GENERADOR DE SESIONES PEDAGÓGICAS
+    // ==========================================
+    function generarIdeaPedagogica() {
+        const nivel = document.getElementById('gen-nivel').value;
+        const resBox = document.getElementById('idea-resultado');
+        if (!resBox) return;
+        
+        resBox.style.display = "block";
+        
+        if (nivel === 'inicial') {
+            resBox.innerHTML = `
+                <h4 style="color:var(--secondary); margin-bottom:10px;"><i class="fa-solid fa-lightbulb"></i> Enfoque: Juego Libre e Interacción (Socio-constructivismo)</h4>
+                <p><strong>Situación Significativa:</strong> Los niños de 5 años muestran curiosidad constante por los insectos que aparecen en el jardín del instituto durante los recreos.</p>
+                <p style="margin-top:10px;"><strong>Estrategia de Mediación:</strong> Organizar una salida de observación guiada provistos de lupas caseras. La docente no da respuestas absolutas; plantea preguntas reflexivas ("¿Por qué creen que se mueven así?", "¿Dónde vivirán?") promoviendo el lenguaje expresivo e hipótesis colectivas en asamblea.</p>
+                <p style="margin-top:10px; font-size:0.85rem; color:var(--text-muted);"><em>Sugerencia: Conectar con el Principio de Corporeidad mediante juegos motrices que imiten los movimientos de la naturaleza observada.</em></p>
+            `;
+        } else {
+            resBox.innerHTML = `
+                <h4 style="color:var(--secondary); margin-bottom:10px;"><i class="fa-solid fa-shapes"></i> Enfoque: Área de Matemática - Geometría Dinámica (3er Grado)</h4>
+                <p><strong>Situación Significativa:</strong> Los estudiantes confunden continuamente los perímetros con las áreas al medir superficies dentro de sus aulas.</p>
+                <p style="margin-top:10px;"><strong>Secuencia Metodológica Concreta:</strong> 
+                    <br>• <strong>Fase Concreta:</strong> Usar lana de colores para bordear las carpetas (Perímetro) y cubrirlas totalmente con hojas cuadrículas (Área).
+                    <br>• <strong>Fase Gráfica:</strong> Dibujar en papelógrafos las figuras matemáticas construidas en el aula.
+                    <br>• <strong>Fase Simbólica:</strong> Traducir las cuadrículas y bordes contados en fórmulas aritméticas de suma y multiplicación ($P = L+L+L+L$).
+                </p>
+            `;
+        }
+    }
+
+    // ==========================================
+    // LÓGICA 3: BUZÓN DE SUGERENCIAS
+    // ==========================================
+    function enviarMensajeBuzon() {
+        const buzonInput = document.getElementById('buzon-mensaje');
+        if (!buzonInput) return;
+        
+        const msg = buzonInput.value.trim();
+        if(msg === "") {
+            alert("Por favor, introduce un texto o propuesta antes de proceder con el envío.");
+            return;
+        }
+        alert("¡Mensaje enviado con éxito a la base de datos de la delegatura! Bruce procesará tu propuesta a la brevedad.");
+        buzonInput.value = "";
+    }
+
+    // ==========================================
+    // LÓGICA 1: BANCO DE PREGUNTAS DEL SIMULADOR
+    // ==========================================
+    const bancoPreguntas = [
+        {
+            q: "1. ¿Qué día se celebra el cumpleaños de nuestro Delegado General, Bruce Junior Simón Vivanco?",
+            options: ["A) El 15 de Mayo", "B) El 30 de Abril", "C) El 12 de Junio", "D) El 05 de Julio"],
+            correct: 1,
+            exp: "¡Correcto! El cumpleaños del delegado Bruce es el 30 de Abril."
+        },
+        {
+            q: "2. ¿Cuándo se celebra el cumpleaños de la delegada de Educación Inicial, Flor Evelyn Valerio Mayta?",
+            options: ["A) El 10 de Agosto", "B) El 24 de Mayo", "C) El 18 de Setiembre", "D) El 02 de Enero"],
+            correct: 0,
+            exp: "¡Correcto! Flor Valerio festeja su onomástico el 10 de Agosto."
+        },
+        {
+            q: "3. ¿Quién fue la primera delegada elegida del ciclo al inicio de nuestra trayectoria académica?",
+            options: ["A) Triana Serrano", "B) Geraldine Sanchez", "C) Carla Quispe Sueng", "D) Maricarmen Aburto"],
+            correct: 2,
+            exp: "¡Dato histórico del salón! La primera delegada del ciclo fue Carla."
+        },
+        {
+            q: "4. ¿Qué día corresponde al cumpleaños de nuestro Vicepresidente del comité, Ederson Jampier Lozano Pérez?",
+            options: ["A) El 28 de Junio", "B) El 07 de Junio", "C) El 15 de Mayo", "D) El 05 de Junio"],
+            correct: 3,
+            exp: "¡Exacto! El cumpleaños de Ederson es abriendo el mes, el 05 de Junio."
+        },
+        {
+            q: "5. ¿Cuándo es el cumpleaños de nuestra Tesorera del Comité, Nuria Melissa Huari Villalobos?",
+            options: ["A) El 10 de Junio", "B) El 01 de Mayo", "C) El 20 de Julio", "D) El 17 de Junio"],
+            correct: 0,
+            exp: "¡Correcto! El cumpleaños de Nuria es el 10 de Junio."
+        },
+        {
+            q: "6. ¿Cuál es el enfoque fundamental del Socioconstructivismo aplicado en las aulas escolares?",
+            options: ["A) El aprendizaje estructurado mecánicamente por repetición de conductas.", "B) La construcción del saber mediante la interacción colectiva y el andamiaje del docente.", "C) El trabajo individual hermético sin contacto con compañeros de clase.", "D) La asignación de calificaciones memorísticas instantáneas."],
+            correct: 1,
+            exp: "Vygotsky nos indica que la interacción sociocultural y el lenguaje estructuran el desarrollo cognitivo superior."
+        },
+        {
+            q: "7. En el nivel de Educación Inicial, al ejecutar el 'Juego Libre en los Sectores', ¿qué labor cumple la docente?",
+            options: ["A) Sentarse a avanzar registros administrativos ignorando las acciones lúdicas.", "B) Determinar de forma autoritaria qué sector usará cada niño.", "C) Calificar con escala vigesimal la creatividad estructural del juego.", "D) Observar de manera sistemática, mapear el progreso y mediar pedagógicamente de ser necesario."],
+            correct: 3,
+            exp: "El docente es observador y mediador estratégico, respetando fielmente la autonomía e iniciativa innata infantil."
+        },
+        {
+            q: "8. Para el área de Matemática en Primaria (Resolución de Problemas), ¿cuál es la secuencia concreta de aprendizaje?",
+            options: ["A) Nivel Concreto (manipulación), Nivel Gráfico (representación gráfica) y Nivel Simbólico (operación formal).", "B) Nivel Simbólico directo, priorizando la memorización de fórmulas complejas.", "C) Transcripción textual de la pizarra al cuaderno sin usar material didáctico.", "D) Resolución masiva de guías teóricas sin contextualización empírica."],
+            correct: 0,
+            exp: "La progresión didáctica matemática requiere pasar de la acción real con objetos a representaciones gráficas y finalmente al lenguaje simbólico abstracto."
+        },
+        {
+            q: "9. ¿A qué definición responde el concepto de 'Conflicto Cognitivo' acuñado por Jean Piaget?",
+            options: ["A) A disturbios conductuales graves dentro de la sesión de clase.", "B) Al desajuste mental que surge cuando los nuevos datos desafían los esquemas de saberes previos.", "C) Al desinterés apático generalizado por las explicaciones de la sesión.", "D) Al proceso de memorización automática a largo plazo."],
+            correct: 1,
+            exp: "El conflicto cognitivo genera una desestabilización mental positiva que impulsa al cerebro a asimilar y acomodar nuevos saberes."
+        },
+        {
+            q: "10. ¿Cuál es el significado real del principio de Corporeidad en la Educación Inicial?",
+            options: ["A) Someter a los infantes a rutinas físicas atléticas de alta competencia.", "B) Confinar al alumnado en carpetas sin opción de movimiento libre.", "C) Reconocer que el niño percibe, razona y expresa sus emociones con su cuerpo completo en movimiento.", "D) Analizar únicamente los datos de crecimiento de talla y peso de los estudiantes."],
+            correct: 2,
+            exp: "La corporeidad concibe al ser humano integral; los niños piensan y aprenden interactuando activamente con su entorno físico."
+        },
+        {
+            q: "11. Dentro de los procesos pedagógicos, la estrategia ideal para activar los saberes previos consiste en:",
+            options: ["A) Tomar una prueba escrita sorpresa calificada.", "B) Plantear preguntas retadoras, lluvias de ideas o diálogos abiertos basados en la experiencia vivencial del alumno.", "C) Dictar un marco conceptual amplio durante toda la primera hora de clase.", "D) Proyectar un documental extenso sin realizar interrupciones ni comentarios."],
+            correct: 1,
+            exp: "Los saberes previos emergen mejor mediante preguntas abiertas conectadas con las vivencias del contexto diario del estudiante."
+        },
+        {
+            q: "12. En Comprensión Lectora para Primaria, ¿qué acción evalúa de manera fidedigna el nivel crítico-valorativo?",
+            options: ["A) Localizar la fecha exacta mencionada en el segundo párrafo.", "B) Transcribir los nombres de todos los personajes del texto.", "C) Formular juicios sustentados sobre las intenciones del autor y la conducta moral de los personajes.", "D) Contar el número exacto de palabras leídas en un minuto."],
+            correct: 2,
+            exp: "El nivel crítico va más allá de lo literal e inferencial; demanda emitir opiniones sólidas fundamentando argumentos lógicos."
+        },
+        {
+            q: "13. ¿Cuál es el fin prioritario de la retroalimentación oportuna en el modelo de Evaluación Formativa?",
+            options: ["A) Clasificar a los estudiantes con etiquetas de rendimiento alto y bajo.", "B) Brindar orientación descriptiva que ayude al alumno a acortar la brecha entre su nivel actual y el estándar esperado de forma reflexiva.", "C) Justificar de manera legal la reprobación del periodo escolar.", "D) Publicar los errores de forma masiva en el aula para escarmiento grupal."],
+            correct: 1,
+            exp: "Retroalimentar formativamente ayuda al estudiante a autorregularse, identificando fallas y descubriendo caminos para solucionarlas."
+        },
+        {
+            q: "14. ¿Qué teórico postuló el Aprendizaje Significativo, fundamentando que la nueva información se ancla con solidez en ideas anclas preexistentes?",
+            options: ["A) B.F. Skinner", "B) Lev Vygotsky", "C) Jean Piaget", "D) David Ausubel"],
+            correct: 3,
+            exp: "David Ausubel propuso que el aprendizaje real ocurre cuando la nueva estructura cognitiva se conecta con los conocimientos previos de relevancia."
+        },
+        {
+            q: "15. ¿Qué meta se busca concretar cuando implementamos procesos de Metacognición en la sesión de aprendizaje?",
+            options: ["A) Lograr la retención de datos históricos textuales para un examen rígido.", "B) Conseguir que el estudiante examine y comprenda su propia forma de aprender, evaluando sus estrategias y dificultades.", "C) Aumentar la velocidad caligráfica en los cuadernos de trabajo.", "D) Automatizar respuestas operativas mecánicas en operaciones aritméticas."],
+            correct: 1,
+            exp: "La metacognición es tomar conciencia de las estrategias que nos sirven para aprender, permitiendo regular el estudio de forma autónoma."
+        }
+    ];
+
+    let tiempoRestante = 1200; 
+    let intervaloCronometro;
+    let nombreEstudiante = "";
+
+    function comenzarExamen() {
+        const inputName = document.getElementById('student-name-input').value.trim();
+        if(inputName === "") {
+            alert("Por favor, ingresa tu nombre completo para iniciar.");
+            return;
+        }
+        nombreEstudiante = inputName;
+        document.getElementById('sim-setup').style.display = 'none';
+        
+        const containerPreguntas = document.getElementById('sim-questions');
+        containerPreguntas.innerHTML = "";
+        
+        bancoPreguntas.forEach((item, index) => {
+            let opcionesHTML = "";
+            item.options.forEach((opt, optIndex) => {
+                opcionesHTML += `
+                    <label class="sim-option-label">
+                        <input type="radio" name="p-${index}" value="${optIndex}">
+                        <span>${opt}</span>
+                    </label>
+                `;
+            });
+            
+            containerPreguntas.innerHTML += `
+                <div class="sim-question-card">
+                    <div class="sim-question-text">${item.q}</div>
+                    <div class="sim-options-list">
+                        ${opcionesHTML}
+                    </div>
+                </div>
+            `;
         });
         
-        // Control del botón Regresar
-        document.getElementById('btn-prev').disabled = (index === 0);
+        containerPreguntas.innerHTML += `<button class="btn-submit-sim" onclick="finalizarExamen()">Enviar Respuestas Oficiales</button>`;
+        containerPreguntas.style.display = 'block';
         
-        // Control del botón Siguiente / Finalizar
-        if (index === totalQuestions - 1) {
-            document.getElementById('btn-next').style.display = 'none';
-            document.getElementById('btn-submit').style.display = 'inline-block';
+        // Inicialización y ejecución del cronómetro
+        intervaloCronometro = setInterval(function() {
+            tiempoRestante--;
+            let minutos = Math.floor(tiempoRestante / 60);
+            let segundos = tiempoRestante % 60;
+            
+            // Solución al error de sintaxis anterior (uso correcto de variables locales)
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
+            
+            const cronoEl = document.getElementById('cronometro');
+            if (cronoEl) {
+                cronoEl.innerHTML = `<i class="fa-solid fa-clock"></i> ${minutos}:${segundos}`;
+            }
+            
+            if (tiempoRestante <= 0) {
+                clearInterval(intervaloCronometro);
+                alert("Tiempo culminado. Se procesarán las alternativas marcadas.");
+                finalizarExamen();
+            }
+        }, 1000);
+    }
+
+    function finalizarExamen() {
+        clearInterval(intervaloCronometro);
+        
+        if(document.getElementById('sim-questions')) document.getElementById('sim-questions').style.display = 'none';
+        if(document.getElementById('cronometro')) document.getElementById('cronometro').style.display = 'none';
+        
+        let correctas = 0;
+        let respuestasUsuario = [];
+        
+        bancoPreguntas.forEach((item, index) => {
+            const seleccionada = document.querySelector(`input[name="p-${index}"]:checked`);
+            const valorRespuesta = seleccionada ? parseInt(seleccionada.value) : -1;
+            respuestasUsuario.push(valorRespuesta);
+            if(valorRespuesta === item.correct) {
+                correctas++;
+            }
+        });
+        
+        const porcentajePrecision = Math.round((correctas / bancoPreguntas.length) * 100);
+        const aprobado = porcentajePrecision >= 90; 
+        
+        const divResultados = document.getElementById('sim-results');
+        if (!divResultados) return;
+        divResultados.innerHTML = "";
+        
+        let bannerHTML = "";
+        if(aprobado) {
+            bannerHTML = `
+                <div class="approved-banner">
+                    <h2>¡RETO SUPREMO SUPERADO! 🏆</h2>
+                    <p>Brillante desempeño, <strong>${nombreEstudiante}</strong>. Has superado el reto del aula con un puntaje de ${correctas} de ${bancoPreguntas.length}.</p>
+                    <div class="score-pct">${porcentajePrecision}% de Precisión</div>
+                </div>
+                
+                <button class="btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir Certificado de Honor</button>
+                <div class="certificate-box">
+                    <h3>OFICINA DE LOGROS ACADÉMICOS VII CICLO</h3>
+                    <p style="font-size:0.75rem; color:#64748b; margin-top:-5px">IESPP JESÚS DE NAZARETH</p>
+                    <h4>CERTIFICADO DE EXCELENCIA</h4>
+                    <p>Otorgado con honor a favor de:</p>
+                    <div class="certificate-name">${nombreEstudiante}</div>
+                    <p class="certificate-text">Por haber demostrado un conocimiento sobresaliente de la estructura del aula y del marco de la Formación Inicial Docente, alcanzando una métrica impecable de <strong>${porcentajePrecision}% de respuestas correctas</strong> en el Simulador Oficial.</p>
+                    <div class="certificate-footer">
+                        <strong>Comité Evaluador 2026</strong><br>VII Ciclo Académico
+                    </div>
+                </div>
+            `;
         } else {
-            document.getElementById('btn-next').style.display = 'inline-block';
-            document.getElementById('btn-submit').style.display = 'none';
-        }
-    }
-
-    function changeQuestion(direction) {
-        currentStep += direction;
-        if (currentStep < 0) currentStep = 0;
-        if (currentStep >= totalQuestions) currentStep = totalQuestions - 1;
-        showQuestion(currentStep);
-    }
-
-    // --- Finalización y Certificado ---
-    function finishQuiz() {
-        clearInterval(countdown); // Detiene el cronómetro
-        
-        // Ocultar la sección de preguntas y el temporizador
-        document.getElementById('quiz-flow').style.display = 'none';
-        document.querySelector('.timer-badge').style.display = 'none';
-        
-        // Validación estricta de las respuestas correctas
-        let correctAnswersCount = 0;
-        
-        if(document.querySelector('input[name="q1"]:checked')?.value === 'B') correctAnswersCount++; // Enfoque por competencias
-        if(document.querySelector('input[name="q2"]:checked')?.value === 'B') correctAnswersCount++; // Retroalimentación
-        if(document.querySelector('input[name="q3"]:checked')?.value === 'A') correctAnswersCount++; // Acuerdos de convivencia
-        if(document.querySelector('input[name="q4"]:checked')?.value === 'C') correctAnswersCount++; // Carla Villalobos
-        
-        // Cálculo de porcentaje basado en las 4 preguntas
-        let finalPercentage = Math.round((correctAnswersCount / totalQuestions) * 100);
-        
-        // Solicitar el nombre para estamparlo en el certificado corporativo
-        let userName = prompt("¡Trivia finalizada! Ingresa tu nombre completo para el certificado:");
-        if (userName && userName.trim() !== "") {
-            document.getElementById('student-name').textContent = userName;
+            bannerHTML = `
+                <div class="approved-banner" style="background-color: #7f1d1d; border-color: var(--incorrect);">
+                    <h2>RETOS NO COMPLETADOS</h2>
+                    <p>Estimado(a) <strong>${nombreEstudiante}</strong>, alcanzaste un ${porcentajePrecision}%. Recuerda que la meta propuesta para este desafío es lograr el <strong>90% o más</strong> para certificar.</p>
+                    <div class="score-pct" style="color:white">${porcentajePrecision}%</div>
+                    <button class="btn-submit-sim" style="background-color:var(--accent); margin-top:15px; color:#000;" onclick="location.reload()">Volver a intentar el Reto</button>
+                </div>
+            `;
         }
         
-        // Asignar puntaje final obtenido
-        document.getElementById('final-score').textContent = finalPercentage;
+        divResultados.innerHTML += bannerHTML;
         
-        // Mostrar el Certificado Oficial simulado
-        document.getElementById('certificate-box').style.display = 'block';
-    }
-
-    // --- Lógica del Buzón de Sugerencias ---
-    function submitForm(event) {
-        event.preventDefault();
-        const text = document.getElementById('feedback-text').value;
+        let revisionHTML = `<h3 class="review-section-title"><i class="fa-solid fa-list-check"></i> HOJA DE CALIFICACIÓN DETALLADA</h3>`;
         
-        // Registro en consola (aquí se vincula con Netlify Forms, Formspree o Sheets si lo requieres)
-        console.log("Nueva sugerencia enviada hacia los delegados:", text);
+        bancoPreguntas.forEach((item, index) => {
+            const rUser = respuestasUsuario[index];
+            const esCorrecta = rUser === item.correct;
+            let respuestaTexto = rUser !== -1 ? item.options[rUser] : "Sin respuesta registrada";
+            let correctaTexto = item.options[item.correct];
+            
+            revisionHTML += `
+                <div class="review-card">
+                    <span class="review-status ${esCorrecta ? 'status-correct' : 'status-incorrect'}">${esCorrecta ? 'ACIERTO' : 'FALLO'}</span>
+                    <div style="font-weight: bold; margin-bottom: 8px;">${item.q}</div>
+                    <div style="font-size: 0.95rem; color: ${esCorrecta ? 'var(--correct)' : 'var(--incorrect)'}">
+                        <strong>Tu respuesta:</strong> ${respuestaTexto}
+                    </div>
+                    ${!esCorrecta ? `<div style="font-size: 0.95rem; color: var(--correct); margin-top:2px;"><strong>Respuesta correcta:</strong> ${correctaTexto}</div>` : ''}
+                    <div class="review-explanation">
+                        <strong>Retroalimentación:</strong> ${item.exp}
+                    </div>
+                </div>
+            `;
+        });
         
-        document.getElementById('feedback-text').value = '';
-        document.getElementById('form-response').style.display = 'block';
-        
-        // Ocultar mensaje de éxito después de 5 segundos
-        setTimeout(() => {
-            document.getElementById('form-response').style.display = 'none';
-        }, 5000);
+        divResultados.innerHTML += revisionHTML;
+        divResultados.style.display = 'block';
     }
 </script>
-
 </body>
 </html>
