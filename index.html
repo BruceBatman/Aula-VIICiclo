@@ -6,324 +6,313 @@
     <title>Aula Virtual - VII Ciclo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #4a148c;
-            --primary-light: #7c43bd;
-            --primary-dark: #12005e;
-            --secondary-color: #ff6f00;
-            --text-color: #333333;
-            --bg-color: #f5f5f7;
-            --card-bg: #ffffff;
-        }
-
-        * {
+        /* Estilos Base idénticos a tu versión 1.0 */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f6f9;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            color: #333;
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            background-color: #4A154B; /* Tu color morado original */
             color: white;
-            padding: 2rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            position: relative;
+            padding: 25px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .header-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 600;
         }
 
-        .header-content p {
+        header p {
+            margin: 5px 0 0 0;
             font-size: 1.1rem;
             opacity: 0.9;
         }
 
+        /* Menú de Navegación Original con la nueva opción */
         nav {
-            background-color: white;
-            padding: 0.75rem;
+            background-color: #3F0E40;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         nav a {
-            color: var(--text-color);
+            color: #e0e0e0;
             text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1rem;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
             cursor: pointer;
         }
 
         nav a:hover, nav a.active {
-            background-color: var(--primary-color);
+            background-color: #4A154B;
             color: white;
         }
 
+        /* Contenedor Principal */
         .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 0 20px;
         }
 
+        /* Sistema de Pestañas Original */
         .tab-content {
             display: none;
         }
 
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .grid-layout {
+        /* Columnas de la Pestaña Inicio */
+        .main-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 2rem;
+            gap: 25px;
         }
 
-        @media (max-width: 768px) {
-            .grid-layout {
+        @media (max-width: 850px) {
+            .main-grid {
                 grid-template-columns: 1fr;
             }
-            .header-content h1 {
-                font-size: 2rem;
-            }
         }
 
+        /* Recuadros / Tarjetas Estilo Versión 1.0 */
         .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid #e1e4e8;
         }
 
-        .card-title {
+        .card h2 {
+            margin-top: 0;
+            color: #4A154B;
+            border-bottom: 2px solid #f4f6f9;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            border-bottom: 2px solid #f0f0f5;
-            padding-bottom: 0.75rem;
+            gap: 10px;
         }
 
-        /* DISEÑO Y MEDIDA CONTROLADA PARA MULTIMEDIA (DÍA DEL PADRE) */
-        .mural-container {
+        /* AJUSTE A MEDIDA PARA SECCIÓN MULTIMEDIA DÍA DEL PADRE */
+        .mural-flex {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
-            width: 100%;
+            gap: 20px;
         }
 
-        .mural-grid {
+        .mural-imagenes {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             width: 100%;
-            max-width: 850px;
+            max-width: 800px;
         }
 
-        .mural-img {
+        .mural-imagenes img {
             width: 100%;
             height: auto;
-            max-height: 280px;
+            max-height: 250px;
             object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
 
-        .mural-img:hover {
-            transform: scale(1.03);
-        }
-
-        .video-wrapper {
+        .mural-video-box {
             width: 100%;
-            max-width: 550px;
-            margin: 0 auto;
-            border-radius: 12px;
+            max-width: 500px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             background-color: #000;
         }
 
-        video {
+        .mural-video-box video {
             width: 100%;
             display: block;
-            max-height: 320px;
+            max-height: 300px;
         }
 
-        /* ELEMENTOS DE LISTA Y CALENDARIO */
-        .activity-list, .birthday-list {
+        /* Listas de Actividades y Cumpleaños */
+        .list-items {
             list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .activity-item {
-            position: relative;
-            padding-left: 2rem;
-            margin-bottom: 1.5rem;
-            border-left: 2px solid var(--primary-light);
-            padding-bottom: 0.5rem;
+        .list-items li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f2f5;
         }
 
-        .activity-item::before {
-            content: '\f073';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            left: -10px;
-            top: 0;
-            background: var(--bg-color);
-            color: var(--primary-color);
-            padding: 2px;
+        .list-items li:last-child {
+            border-bottom: none;
         }
 
-        .activity-date {
-            font-weight: 700;
-            color: var(--secondary-color);
+        .date-badge {
+            color: #e65100;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .month-title {
+            font-weight: bold;
+            color: #4A154B;
+            background-color: #f4e8f4;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin: 15px 0 8px 0;
             font-size: 0.95rem;
         }
 
-        .birthday-month {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 1rem 0 0.5rem 0;
-            font-size: 1.1rem;
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 2px;
+        /* Estilos de las Tablas e Información de tu Versión 1.0 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: white;
         }
 
-        .birthday-item {
+        table th, table td {
+            border: 1px solid #e1e4e8;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #4A154B;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4A154B;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #3F0E40;
+        }
+
+        /* NUEVA SECCIÓN ESTILO RECUADROS INFORMATIVOS (NOSOTROS) */
+        .info-recuadro {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .info-recuadro-header {
+            background-color: #f7f7f9;
+            padding: 12px 15px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            color: #4A154B;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 0;
+            gap: 8px;
+        }
+
+        .info-recuadro-body {
+            padding: 15px;
             font-size: 0.95rem;
-        }
-
-        /* SECCIÓN INSTITUCIONAL (NOSOTROS) COMPLETA */
-        .info-box {
-            background-color: #fafafa;
-            border-left: 4px solid var(--primary-color);
-            padding: 1.25rem;
-            border-radius: 0 12px 12px 0;
-            margin-bottom: 1.5rem;
-        }
-
-        .info-box h3 {
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.15rem;
-        }
-
-        .info-box p, .info-box ul {
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        .info-box ul {
-            padding-left: 1.25rem;
-            margin-top: 0.5rem;
-        }
-
-        .info-box ul li {
-            margin-bottom: 0.25rem;
+            color: #444;
+            line-height: 1.5;
         }
 
         footer {
-            background-color: var(--primary-dark);
+            background-color: #3F0E40;
             color: white;
             text-align: center;
-            padding: 1.5rem;
-            margin-top: 4rem;
+            padding: 20px;
+            margin-top: 40px;
             font-size: 0.9rem;
-        }
-
-        footer p {
-            opacity: 0.7;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-content">
-            <h1>Aula Virtual</h1>
-            <p>VII Ciclo — Especialidades Integradas</p>
-        </div>
+        <h1>Aula Virtual</h1>
+        <p>VII Ciclo — Especialidades Integradas</p>
     </header>
 
     <nav>
-        <a onclick="switchTab('inicio')" id="nav-inicio" class="active"><i class="fas fa-home"></i> Inicio</a>
-        <a onclick="switchTab('comunidad')" id="nav-comunidad"><i class="fas fa-users"></i> Comunidad</a>
-        <a onclick="switchTab('herramientas')" id="nav-herramientas"><i class="fas fa-tools"></i> Herramientas</a>
-        <a onclick="switchTab('nosotros')" id="nav-nosotros"><i class="fas fa-info-circle"></i> Nosotros</a>
+        <a onclick="verPestana('inicio')" id="btn-inicio" class="active"><i class="fas fa-home"></i> Inicio</a>
+        <a onclick="verPestana('comunidad')" id="btn-comunidad"><i class="fas fa-users"></i> Comunidad</a>
+        <a onclick="verPestana('herramientas')" id="btn-herramientas"><i class="fas fa-tools"></i> Herramientas</a>
+        <a onclick="verPestana('nosotros')" id="btn-nosotros"><i class="fas fa-info-circle"></i> Nosotros</a>
     </nav>
 
     <div class="container">
         
         <div id="inicio" class="tab-content active">
-            <div class="grid-layout">
-                <div class="main-content">
+            <div class="main-grid">
+                
+                <div class="left-column">
                     
                     <div class="card">
-                        <h2 class="card-title"><i class="fas fa-heart" style="color: #e53935;"></i> Mural — Día del Padre</h2>
-                        <div class="mural-container">
-                            <div class="mural-grid">
-                                <img src="imagenpadre1.jpeg" alt="Mural Día del Padre 1" class="mural-img">
-                                <img src="imagenpadre2.png" alt="Mural Día del Padre 2" class="mural-img">
-                                <img src="imagenpadre3.jpeg" alt="Mural Día del Padre 3" class="mural-img">
+                        <h2><i class="fas fa-square-poll-horizontal"></i> 🌸 Mural — Día del Padre</h2>
+                        <div class="mural-flex">
+                            <div class="mural-imagenes">
+                                <img src="imagenpadre1.jpeg" alt="Mural Padre 1">
+                                <img src="imagenpadre2.png" alt="Mural Padre 2">
+                                <img src="imagenpadre3.jpeg" alt="Mural Padre 3">
                             </div>
-                            <div class="video-wrapper">
+                            <div class="mural-video-box">
                                 <video controls>
                                     <source src="videopadre.mp4" type="video/mp4">
-                                    Tu navegador no soporta la reproducción de videos.
+                                    Tu navegador no soporta video.
                                 </video>
                             </div>
                         </div>
                     </div>
 
                     <div class="card">
-                        <h2 class="card-title"><i class="fas fa-calendar-alt"></i> Próximas Actividades del Ciclo</h2>
-                        <ul class="activity-list">
-                            <li class="activity-item">
-                                <span class="activity-date">Junio</span>
+                        <h2><i class="fas fa-calendar-days"></i> Próximas Actividades del Ciclo</h2>
+                        <ul class="list-items">
+                            <li>
+                                <span class="date-badge">Junio</span>
                                 <p>Planificación académica correspondiente a las sesiones del presente mes y coordinación interna de delegados.</p>
                             </li>
-                            <li class="activity-item">
-                                <span class="activity-date">Próximamente</span>
+                            <li>
+                                <span class="date-badge">Próximamente</span>
                                 <p>Actualizaciones regulares sobre talleres pedagógicos, portafolios y evaluaciones continuas del VII ciclo.</p>
                             </li>
                         </ul>
@@ -331,64 +320,105 @@
 
                 </div>
 
-                <div class="sidebar">
+                <div class="right-column">
                     <div class="card">
-                        <h2 class="card-title"><i class="fas fa-cake-candles" style="color: var(--secondary-color);"></i> Cumpleaños del Aula</h2>
-                        <p style="font-size: 0.85rem; color:#666; margin-bottom: 1rem;">¡Celebremos juntos cada fecha especial de nuestros compañeros! 🎁</p>
+                        <h2><i class="fas fa-cake-candles"></i> 🎂 Próximos Cumpleaños </h2>
+                        <p style="font-size:0.9rem; color:#666;">¡Celebremos juntos cada fecha especial de nuestros compañeros! 🎁</p>
                         
-                        <div class="birthday-list">
-                            <div class="birthday-month"><i class="fas fa-calendar-day"></i> Junio</div>
-                            <div class="birthday-item">🎂 05/06: Ederson Jampier Lozano Perez</div>
-                            <div class="birthday-item">🎂 07/06: Ana Cecilia Huaman Herrera</div>
-                            <div class="birthday-item">🎂 10/06: Huari Villalobos Nuria Melissa</div>
-                            <div class="birthday-item">🎂 17/06: Rosales Luyo Janeth Milagros</div>
-                            <div class="birthday-item">🎂 28/06: Aburto Enciso Maricarmen Judith</div>
+                        <div class="month-title">Junio</div>
+                        <ul class="list-items" style="font-size: 0.9rem;">
+                            <li>🎂 05/06: Ederson Jampier Lozano Perez</li>
+                            <li>🎂 07/06: Ana Cecilia Huaman Herrera</li>
+                            <li>🎂 10/06: Huari Villalobos Nuria Melissa</li>
+                            <li>🎂 17/06: Rosales Luyo Janeth Milagros</li>
+                            <li>🎂 28/06: Aburto Enciso Maricarmen Judith</li>
+                        </ul>
 
-                            <div class="birthday-month"><i class="fas fa-calendar-day"></i> Julio</div>
-                            <div class="birthday-item">🎂 12/07: Herrera Capcha Maggi Lina</div>
-                            <div class="birthday-item">🎂 19/07: Juan Manuel Sanchez Luyo</div>
-                            <div class="birthday-item">🎂 22/07: Serrano Arias Triana Milagros</div>
-                            <div class="birthday-item">🎂 24/07: Huamani Quito Angelica Milagros</div>
-                            <div class="birthday-item">🎂 28/07: Villalobos Luciani Betsabe Noemi</div>
-                            <div class="birthday-item">🎂 28/07: Camasi Bellido Tania Maricruz</div>
-                        </div>
+                        <div class="month-title">Julio</div>
+                        <ul class="list-items" style="font-size: 0.9rem;">
+                            <li>🎂 12/07: Herrera Capcha Maggi Lina</li>
+                            <li>🎂 19/07: Juan Manuel Sanchez Luyo</li>
+                            <li>🎂 22/07: Serrano Arias Triana Milagros</li>
+                            <li>🎂 24/07: Huamani Quito Angelica Milagros</li>
+                            <li>🎂 28/07: Villalobos Luciani Betsabe Noemi</li>
+                            <li>🎂 28/07: Camasi Bellido Tania Maricruz</li>
+                        </ul>
                     </div>
                 </div>
+
             </div>
         </div>
 
         <div id="comunidad" class="tab-content">
             <div class="card">
-                <h2 class="card-title"><i class="fas fa-users"></i> Espacio de Comunidad</h2>
-                <p>Bienvenido al espacio interactivo del VII Ciclo. Aquí se organizarán los paneles de debate, anuncios institucionales conjuntos y galerías compartidas orientadas a la Educación Inicial y Primaria.</p>
+                <h2><i class="fas fa-users"></i> Espacio de Comunidad</h2>
+                <p>Información del aula y listado de coordinadores de los equipos de trabajo del VII Ciclo:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Especialidad</th>
+                            <th>Coordinador(a) General</th>
+                            <th>Contacto Interno</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Educación Inicial</td>
+                            <td>Flor Evelyn Valerio Mayta</td>
+                            <td>Delegatura de Especialidad</td>
+                        </tr>
+                        <tr>
+                            <td>Educación Primaria</td>
+                            <td>Bruce Junior Simón Vivanco</td>
+                            <td>Delegatura General</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <div id="herramientas" class="tab-content">
             <div class="card">
-                <h2 class="card-title"><i class="fas fa-tools"></i> Herramientas Académicas</h2>
-                <p>Sección dedicada al acceso de enlaces rápidos, simuladores didácticos, plantillas de registro de asistencia y recursos pedagógicos de utilidad directa para los estudiantes de la delegación.</p>
+                <h2><i class="fas fa-tools"></i> Herramientas Académicas</h2>
+                <p>Accede directamente a los recursos interactivos y hojas de registro del aula:</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="#" class="btn"><i class="fas fa-table"></i> Registro de Asistencia Excel</a>
+                    <a href="#" class="btn"><i class="fas fa-gamepad"></i> Simulador de Trivia</a>
+                </div>
             </div>
         </div>
 
         <div id="nosotros" class="tab-content">
             <div class="card">
-                <h2 class="card-title"><i class="fas fa-info-circle"></i> Información de la Delegatura General</h2>
+                <h2><i class="fas fa-info-circle"></i> Información de la Delegatura General</h2>
                 
-                <div class="info-box">
-                    <h3><i class="fas fa-handshake"></i> Compromiso con la Transparencia</h3>
-                    <p>Ambos delegados trabajamos de manera conjunta con total imparcialidad, dedicación y respeto por el bienestar del aula general, buscando siempre optimizar los canales de comunicación, el soporte académico y la óptima convivencia entre todas las especialidades integrantes.</p>
+                <div class="info-recuadro">
+                    <div class="info-recuadro-header">
+                        <i class="fas fa-handshake"></i> Compromiso con la Transparencia
+                    </div>
+                    <div class="info-recuadro-body">
+                        Ambos delegados trabajamos con total imparcialidad por el bienestar del aula general, asegurando una gestión honesta, comunicativa y orientada al apoyo constante de cada uno de los estudiantes de las especialidades del VII Ciclo.
+                    </div>
                 </div>
 
-                <div class="info-box">
-                    <h3><i class="fas fa-shield-halved"></i> Privacidad y Seguridad</h3>
-                    <p>Esta plataforma ha sido desarrollada con fines meramente pedagógicos e informativos internos. Los datos personales, registros, actividades y cumpleaños compartidos en este entorno digital son de uso exclusivo para la organización interna de los alumnos pertenecientes al VII Ciclo.</p>
+                <div class="info-recuadro">
+                    <div class="info-recuadro-header">
+                        <i class="fas fa-shield-halved"></i> Privacidad y Seguridad
+                    </div>
+                    <div class="info-recuadro-body">
+                        Los datos, listas de cumpleaños y materiales aquí publicados son de carácter estrictamente informativo y pedagógico para el uso del entorno de nuestra aula. Nos aseguramos de mantener un espacio seguro para toda la comunidad del ciclo.
+                    </div>
                 </div>
 
-                <div class="info-box">
-                    <h3><i class="fas fa-gavel"></i> Términos y Condiciones</h3>
-                    <p><strong>Aclaración Importante:</strong> Esta página web no constituye un portal oficial del IESPP «Jesús de Nazareth». Se trata de una iniciativa estudiantil de soporte académico independiente, completamente sin fines de lucro, administrada y moderada por la Delegatura General del ciclo para el beneficio exclusivo de sus compañeros de aula.</p>
+                <div class="info-recuadro">
+                    <div class="info-recuadro-header">
+                        <i class="fas fa-gavel"></i> Términos y Condiciones
+                    </div>
+                    <div class="info-recuadro-body">
+                        Esta página **no es oficial del instituto, es una página especial para nuestro ciclo, sin fines de lucro**, creada y administrada con el único objetivo de centralizar los recursos educativos, las efemérides y las actividades de nuestra delegatura estudiantil.
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -399,20 +429,17 @@
     </footer>
 
     <script>
-        function switchTab(tabId) {
-            // Ocultar todos los contenidos de pestañas
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
+        // Función de navegación exacta de tu versión original
+        function verPestana(pestanaId) {
+            const contenidos = document.querySelectorAll('.tab-content');
+            contenidos.forEach(c => c.classList.remove('active'));
             
-            // Quitar clase activa a todos los enlaces del menú
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => link.classList.remove('active'));
+            const botones = document.querySelectorAll('nav a');
+            botones.forEach(b => b.classList.remove('active'));
             
-            // Activar la pestaña seleccionada
-            document.getElementById(tabId).classList.add('active');
-            document.getElementById('nav-' + tabId).classList.add('active');
+            document.getElementById(pestanaId).classList.add('active');
+            document.getElementById('btn-' + pestanaId).classList.add('active');
             
-            // Subir automáticamente al inicio de página al cambiar de pestaña
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
