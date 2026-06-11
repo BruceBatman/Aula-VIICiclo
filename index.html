@@ -40,14 +40,15 @@ nav a.nav-transp:hover { background: #1d4ed840; color: #93c5fd; }
 .mural-title { text-align: center; margin-bottom: 22px; }
 .mural-title h3 { font-size: 1.6rem; color: #93c5fd; font-weight: 800; letter-spacing: 1px; }
 .mural-title p { color: #60a5fa; font-size: 0.95rem; margin-top: 5px; }
+/* IMÁGENES: grid de 3 columnas, altura automática para mostrar la imagen completa */
 .mural-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
 @media (max-width: 700px) { .mural-grid-3 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .mural-grid-3 { grid-template-columns: 1fr; } }
-.mural-img-box { border-radius: 10px; overflow: hidden; border: 2px solid #3b82f6; background: #1e1a3a; height: 180px; display: flex; align-items: center; justify-content: center; }
-.mural-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mural-img-box { border-radius: 10px; overflow: hidden; border: 2px solid #3b82f6; background: #1e1a3a; }
+.mural-img-box img { width: 100%; height: auto; display: block; object-fit: contain; }
 .mural-video-wrap { display: flex; justify-content: center; margin-bottom: 14px; }
 .mural-video-box { border-radius: 12px; overflow: hidden; border: 2px solid #3b82f6; background: #1e1a3a; width: 100%; max-width: 540px; }
-.mural-video-box video { width: 100%; height: auto; max-height: 280px; object-fit: contain; display: block; }
+.mural-video-box video { width: 100%; height: auto; max-height: 300px; object-fit: contain; display: block; }
 .mural-reactions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
 .reaction-btn { background: rgba(255,255,255,0.07); border: 1px solid #334155; color: white; padding: 9px 18px; border-radius: 30px; cursor: pointer; font-size: 1.2rem; transition: all 0.2s; display: flex; align-items: center; gap: 7px; }
 .reaction-btn:hover { background: rgba(59,130,246,0.2); border-color: #3b82f6; transform: scale(1.08); }
@@ -84,6 +85,20 @@ nav a.nav-transp:hover { background: #1d4ed840; color: #93c5fd; }
 .org-role { font-size: 0.8rem; text-transform: uppercase; color: var(--primary); font-weight: bold; letter-spacing: 1px; }
 .org-name { font-size: 1.05rem; font-weight: bold; margin-top: 2px; }
 .org-birthday { font-size: 0.85rem; color: var(--accent); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
+
+/* FACEBOOK CARD */
+.fb-card { background: linear-gradient(135deg, #111827, #1a2744); border: 2px solid #1877f2; border-radius: 12px; padding: 20px; margin-bottom: 12px; text-align: center; }
+.fb-card-title { color: #60a5fa; font-size: 1rem; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.fb-preview { background: #1e293b; border-radius: 10px; border: 1px solid #1877f240; padding: 16px; margin-bottom: 14px; text-align: left; }
+.fb-preview-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.fb-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg,#1877f2,#0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.fb-page-name { font-weight: bold; font-size: 0.95rem; color: #e2e8f0; }
+.fb-page-sub { font-size: 0.75rem; color: #64748b; }
+.fb-post-text { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; margin-bottom: 10px; }
+.fb-post-img { width: 100%; border-radius: 8px; background: linear-gradient(135deg, #1e3a8a22, #0ea5e922); height: 100px; display: flex; align-items: center; justify-content: center; color: #60a5fa; font-size: 2rem; margin-bottom: 10px; border: 1px dashed #334155; }
+.fb-stats { font-size: 0.78rem; color: #64748b; border-top: 1px solid #334155; padding-top: 8px; display: flex; gap: 14px; }
+.fb-btn { display: inline-flex; align-items: center; gap: 8px; background: #1877f2; color: #fff; text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; transition: all 0.3s; width: 100%; justify-content: center; }
+.fb-btn:hover { background: #1557b0; transform: scale(1.02); }
 
 .btn-launch-tool { color: white; border: none; padding: 15px 25px; font-size: 1.05rem; font-weight: bold; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 12px; transition: all 0.3s ease; text-transform: uppercase; }
 .btn-orange { background: linear-gradient(135deg, #b91c1c 0%, #ea580c 100%); box-shadow: 0 4px 15px rgba(234,88,12,0.3); }
@@ -154,7 +169,7 @@ nav a.nav-transp:hover { background: #1d4ed840; color: #93c5fd; }
 
 footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #334155; margin-top: 5px; }
 
-/* ===== TRANSPARENCIA ===== */
+/* TRANSPARENCIA */
 #transparencia-pantalla { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0b0f19; z-index: 9999; overflow-y: auto; color: #e2e8f0; }
 .transp-header { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 18px 30px; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
 .transp-header h2 { color: var(--primary); font-size: 1.15rem; display: flex; align-items: center; gap: 10px; }
@@ -165,13 +180,11 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
 .transp-divider { height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); margin: 38px 0; border: none; }
 .transp-sec-title { font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
 .transp-sec-sub { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 22px; }
-
 .transp-claridad { background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 25px; margin-bottom: 28px; }
 .badge-no-oficial { display: inline-flex; align-items: center; gap: 8px; background: #0ea5e920; border: 1px solid #0ea5e9; color: #7dd3fc; padding: 5px 15px; border-radius: 20px; font-size: 0.82rem; font-weight: bold; margin-bottom: 14px; }
 .transp-claridad p { color: #cbd5e1; font-size: 0.93rem; line-height: 1.75; margin-bottom: 10px; }
 .transp-claridad strong { color: #7dd3fc; }
 .transp-claridad em { color: var(--text-muted); font-size: 0.82rem; display: block; margin-top: 10px; border-top: 1px dashed #334155; padding-top: 10px; font-style: italic; }
-
 .compromisos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
 @media (max-width: 600px) { .compromisos-grid { grid-template-columns: 1fr; } }
 .comp-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: border-color 0.3s; }
@@ -179,14 +192,12 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
 .comp-icon { font-size: 1.7rem; margin-bottom: 9px; }
 .comp-title { color: var(--primary); font-weight: bold; font-size: 0.9rem; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.5px; }
 .comp-text { color: #94a3b8; font-size: 0.85rem; line-height: 1.6; }
-
 .uso-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
 @media (max-width: 600px) { .uso-grid { grid-template-columns: 1fr; } }
 .uso-card { background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 18px; }
 .uso-icon { font-size: 1.4rem; margin-bottom: 7px; }
 .uso-title { font-size: 0.88rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; }
 .uso-text { font-size: 0.82rem; color: #64748b; line-height: 1.6; }
-
 .priv-box { background: linear-gradient(135deg, #0f172a, #1a1035); border: 1px solid #334155; border-radius: 14px; padding: 28px; margin-bottom: 28px; }
 .priv-box h3 { font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
 .priv-box p.sub { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px; }
@@ -252,7 +263,7 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
         <div class="timeline">
           <div class="timeline-item">
             <div>
-              <span class="timeline-date">Junio (Próximamente)</span>
+              <span class="timeline-date">Viernes 19 de Junio</span>
               <h4 style="margin-top:2px">Día del Padre 👨‍👦</h4>
               <p style="color:var(--text-muted);font-size:0.9rem">Espacio de reconocimiento y celebración a los padres de familia de nuestra comunidad.</p>
             </div>
@@ -390,6 +401,32 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
           <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 03 de Julio</div>
         </div>
       </div>
+
+      <!-- FACEBOOK -->
+      <div class="fb-card">
+        <div class="fb-card-title"><i class="fa-brands fa-facebook" style="color:#1877f2;font-size:1.3rem;"></i> Nuestra Página de Facebook</div>
+        <div class="fb-preview">
+          <div class="fb-preview-header">
+            <div class="fb-avatar">📘</div>
+            <div>
+              <div class="fb-page-name">VII Ciclo — IESPP Jesús de Nazareth</div>
+              <div class="fb-page-sub"><i class="fa-solid fa-earth-americas" style="font-size:0.7rem;"></i> Página del Aula · Pública</div>
+            </div>
+          </div>
+          <div class="fb-post-text">
+            📚 Espacio oficial del VII Ciclo de Educación Inicial y Primaria del IESPP «Jesús de Nazareth». Aquí compartimos actividades, fotos, novedades y momentos especiales de nuestra comunidad de futuros docentes. ¡Únete y sigue nuestra historia! 🎓💙
+          </div>
+          <div class="fb-post-img">📘</div>
+          <div class="fb-stats">
+            <span>👍 Me gusta la página</span>
+            <span>📢 Seguir</span>
+          </div>
+        </div>
+        <a href="https://www.facebook.com/share/1BLAhnjoUq/" target="_blank" rel="noopener noreferrer" class="fb-btn">
+          <i class="fa-brands fa-facebook"></i> Ver nuestra página en Facebook
+        </a>
+      </div>
+
     </aside>
   </div>
 </div>
@@ -472,14 +509,11 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
     <button class="btn-nav-trivia" onclick="cerrarTransparencia()"><i class="fa-solid fa-xmark"></i> Cerrar</button>
   </div>
   <div class="transp-body">
-
     <div class="transp-hero">
       <h1><i class="fa-solid fa-scale-balanced"></i> Compromiso con la Transparencia</h1>
       <p>Ambos delegados trabajamos con total imparcialidad, responsabilidad y vocación de servicio por el bienestar de todo el aula general del VII Ciclo. Aquí encontrarás todo lo que necesitas saber sobre nuestra gestión y el propósito de esta página.</p>
     </div>
-
     <hr class="transp-divider">
-
     <div class="transp-sec-title">Claridad Institucional</div>
     <div class="transp-sec-sub">Información importante sobre la naturaleza de esta página.</div>
     <div class="transp-claridad">
@@ -489,120 +523,110 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
       <p>Esta página es <strong>sin fines de lucro</strong>, de uso libre para todos los compañeros del ciclo y no reemplaza ni compite con ningún sistema oficial del instituto.</p>
       <em>* No reemplaza de ningún modo los canales oficiales, comunicados ni sistemas autorizados por la dirección del IESPP.</em>
     </div>
-
     <hr class="transp-divider">
-
     <div class="transp-sec-title">Compromisos de la Delegatura</div>
     <div class="transp-sec-sub">Los valores que guían nuestra gestión como representantes del VII Ciclo.</div>
     <div class="compromisos-grid">
-      <div class="comp-card">
-        <div class="comp-icon">⚖️</div>
-        <div class="comp-title">Imparcialidad Total</div>
-        <div class="comp-text">Representamos a todas y todos los compañeros del ciclo por igual, sin preferencias ni discriminación entre especialidades o personas.</div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">🤝</div>
-        <div class="comp-title">Gestión Colaborativa</div>
-        <div class="comp-text">Trabajamos en equipo con el Comité General tomando decisiones de forma consensuada, escuchando siempre la voz del aula.</div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">📢</div>
-        <div class="comp-title">Comunicación Abierta</div>
-        <div class="comp-text">Mantenemos informados a todos los compañeros sobre actividades, acuerdos y novedades del ciclo de manera oportuna y clara.</div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">💰</div>
-        <div class="comp-title">Transparencia Económica</div>
-        <div class="comp-text">Todo ingreso y gasto de las actividades del aula es informado al ciclo. No se maneja dinero sin el conocimiento y aprobación del comité.</div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">🎓</div>
-        <div class="comp-title">Apoyo Académico</div>
-        <div class="comp-text">Facilitamos recursos, herramientas y espacios que contribuyan al crecimiento académico de todos los futuros docentes del VII Ciclo.</div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">🌱</div>
-        <div class="comp-title">Bienestar del Aula</div>
-        <div class="comp-text">Velamos por un ambiente de convivencia sana, respetuosa e inclusiva donde cada compañero se sienta valorado y escuchado.</div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">📋</div>
-        <div class="comp-title">Rendición de Cuentas</div>
-        <div class="comp-text">Estamos disponibles para responder cualquier consulta, duda o inquietud que el aula tenga sobre nuestra gestión en cualquier momento.</div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">🚫</div>
-        <div class="comp-title">Sin Intereses Personales</div>
-        <div class="comp-text">Nuestra función es servir al aula, no beneficiarnos de ella. Ejercemos la delegatura con ética, honestidad y dedicación genuina.</div>
-      </div>
+      <div class="comp-card"><div class="comp-icon">⚖️</div><div class="comp-title">Imparcialidad Total</div><div class="comp-text">Representamos a todas y todos los compañeros del ciclo por igual, sin preferencias ni discriminación entre especialidades o personas.</div></div>
+      <div class="comp-card"><div class="comp-icon">🤝</div><div class="comp-title">Gestión Colaborativa</div><div class="comp-text">Trabajamos en equipo con el Comité General tomando decisiones de forma consensuada, escuchando siempre la voz del aula.</div></div>
+      <div class="comp-card"><div class="comp-icon">📢</div><div class="comp-title">Comunicación Abierta</div><div class="comp-text">Mantenemos informados a todos los compañeros sobre actividades, acuerdos y novedades del ciclo de manera oportuna y clara.</div></div>
+      <div class="comp-card"><div class="comp-icon">💰</div><div class="comp-title">Transparencia Económica</div><div class="comp-text">Todo ingreso y gasto de las actividades del aula es informado al ciclo. No se maneja dinero sin el conocimiento y aprobación del comité.</div></div>
+      <div class="comp-card"><div class="comp-icon">🎓</div><div class="comp-title">Apoyo Académico</div><div class="comp-text">Facilitamos recursos, herramientas y espacios que contribuyan al crecimiento académico de todos los futuros docentes del VII Ciclo.</div></div>
+      <div class="comp-card"><div class="comp-icon">🌱</div><div class="comp-title">Bienestar del Aula</div><div class="comp-text">Velamos por un ambiente de convivencia sana, respetuosa e inclusiva donde cada compañero se sienta valorado y escuchado.</div></div>
+      <div class="comp-card"><div class="comp-icon">📋</div><div class="comp-title">Rendición de Cuentas</div><div class="comp-text">Estamos disponibles para responder cualquier consulta, duda o inquietud que el aula tenga sobre nuestra gestión en cualquier momento.</div></div>
+      <div class="comp-card"><div class="comp-icon">🚫</div><div class="comp-title">Sin Intereses Personales</div><div class="comp-text">Nuestra función es servir al aula, no beneficiarnos de ella. Ejercemos la delegatura con ética, honestidad y dedicación genuina.</div></div>
     </div>
-
     <hr class="transp-divider">
-
     <div class="transp-sec-title">Uso Responsable de esta Página</div>
     <div class="transp-sec-sub">Garantías de privacidad y uso ético de la plataforma.</div>
     <div class="uso-grid">
-      <div class="uso-card">
-        <div class="uso-icon">🔒</div>
-        <div class="uso-title">Sin Datos Personales Sensibles</div>
-        <div class="uso-text">No solicitamos contraseñas, tokens ni credenciales institucionales. La información ingresada en la Trivia y el Buzón es de uso interno del aula.</div>
-      </div>
-      <div class="uso-card">
-        <div class="uso-icon">💾</div>
-        <div class="uso-title">Sin Almacenamiento Externo</div>
-        <div class="uso-text">Esta página no recopila ni vende datos personales a terceros. Todo procesamiento es con fines exclusivamente educativos.</div>
-      </div>
-      <div class="uso-card">
-        <div class="uso-icon">📚</div>
-        <div class="uso-title">Fines Educativos</div>
-        <div class="uso-text">Las herramientas (Trivia, Generador de Sesiones, Buzón) fueron desarrolladas para apoyar la formación pedagógica del VII Ciclo.</div>
-      </div>
-      <div class="uso-card">
-        <div class="uso-icon">👥</div>
-        <div class="uso-title">Comunidad del Ciclo</div>
-        <div class="uso-text">Desarrollada con dedicación para el crecimiento colectivo de las futuras maestras y maestros del VII Ciclo de Inicial y Primaria.</div>
-      </div>
+      <div class="uso-card"><div class="uso-icon">🔒</div><div class="uso-title">Sin Datos Personales Sensibles</div><div class="uso-text">No solicitamos contraseñas, tokens ni credenciales institucionales. La información ingresada en la Trivia y el Buzón es de uso interno del aula.</div></div>
+      <div class="uso-card"><div class="uso-icon">💾</div><div class="uso-title">Sin Almacenamiento Externo</div><div class="uso-text">Esta página no recopila ni vende datos personales a terceros. Todo procesamiento es con fines exclusivamente educativos.</div></div>
+      <div class="uso-card"><div class="uso-icon">📚</div><div class="uso-title">Fines Educativos</div><div class="uso-text">Las herramientas (Trivia, Generador de Sesiones, Buzón) fueron desarrolladas para apoyar la formación pedagógica del VII Ciclo.</div></div>
+      <div class="uso-card"><div class="uso-icon">👥</div><div class="uso-title">Comunidad del Ciclo</div><div class="uso-text">Desarrollada con dedicación para el crecimiento colectivo de las futuras maestras y maestros del VII Ciclo de Inicial y Primaria.</div></div>
     </div>
-
     <hr class="transp-divider">
-
     <div class="priv-box">
       <h3>Privacidad y Seguridad</h3>
       <p class="sub">Nuestro compromiso permanente con la comunidad del VII Ciclo.</p>
       <div class="priv-grid">
-        <div class="priv-item">
-          <span class="priv-icon">🗄️</span>
-          <div class="priv-title">Protección de Datos</div>
-          <div class="priv-text">Ninguna información personal es enviada a servidores externos sin tu conocimiento.</div>
-        </div>
-        <div class="priv-item">
-          <span class="priv-icon">🔐</span>
-          <div class="priv-title">Navegación Segura</div>
-          <div class="priv-text">El sitio no utiliza scripts invasivos de rastreo ni cookies de terceros.</div>
-        </div>
-        <div class="priv-item">
-          <span class="priv-icon">✅</span>
-          <div class="priv-title">Uso Responsable</div>
-          <div class="priv-text">Todo el contenido está basado en información pública y pedagógica del CNEB.</div>
-        </div>
-        <div class="priv-item">
-          <span class="priv-icon">🤲</span>
-          <div class="priv-title">Sin Fines de Lucro</div>
-          <div class="priv-text">Esta página no genera ingresos. Es un proyecto voluntario de la delegatura para el aula.</div>
-        </div>
+        <div class="priv-item"><span class="priv-icon">🗄️</span><div class="priv-title">Protección de Datos</div><div class="priv-text">Ninguna información personal es enviada a servidores externos sin tu conocimiento.</div></div>
+        <div class="priv-item"><span class="priv-icon">🔐</span><div class="priv-title">Navegación Segura</div><div class="priv-text">El sitio no utiliza scripts invasivos de rastreo ni cookies de terceros.</div></div>
+        <div class="priv-item"><span class="priv-icon">✅</span><div class="priv-title">Uso Responsable</div><div class="priv-text">Todo el contenido está basado en información pública y pedagógica del CNEB.</div></div>
+        <div class="priv-item"><span class="priv-icon">🤲</span><div class="priv-title">Sin Fines de Lucro</div><div class="priv-text">Esta página no genera ingresos. Es un proyecto voluntario de la delegatura para el aula.</div></div>
       </div>
     </div>
-
     <div style="text-align:center;margin-top:18px;color:var(--text-muted);font-size:0.82rem;">
       <p>© 2026 VII Ciclo — IESPP «Jesús de Nazareth» · Delegatura General · <em>Página no oficial del instituto</em> · v1.2</p>
     </div>
-
   </div>
 </div>
 
 <footer><p>&copy; 2026 VII Ciclo - IESPP «JESÚS DE NAZARETH». Desarrollado por la Delegatura General. · v1.2</p></footer>
 
 <script>
+// ======= CLAVE DE STORAGE PARA REACCIONES =======
+const STORAGE_KEY = 'vii-ciclo-reacciones-padre-2026';
+
+// Cargar reacciones guardadas o iniciar en 0
+function cargarReacciones() {
+  try {
+    const guardado = localStorage.getItem(STORAGE_KEY);
+    if (guardado) return JSON.parse(guardado);
+  } catch(e) {}
+  return { heart: 0, star: 0, party: 0, padre: 0, fiesta: 0 };
+}
+
+function guardarReacciones(counts) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(counts)); } catch(e) {}
+}
+
+// Estado global de reacciones (persistente)
+let reactionCounts = cargarReacciones();
+
+// Renderizar contadores al cargar la página
+function renderizarContadores() {
+  const ids = { heart: 'cnt-heart', star: 'cnt-star', party: 'cnt-party', padre: 'cnt-padre', fiesta: 'cnt-fiesta' };
+  for (const [key, elemId] of Object.entries(ids)) {
+    const el = document.getElementById(elemId);
+    if (el) el.textContent = reactionCounts[key] || 0;
+  }
+}
+
+const reactionIds = { '❤️': 'heart', '⭐': 'star', '🎉': 'party', '👨‍👧': 'padre', '🥳': 'fiesta' };
+const burst_emojis = {
+  '❤️': ['❤️','💕','💖','💗'],
+  '⭐': ['⭐','✨','🌟','💫'],
+  '🎉': ['🎉','🎊','🥳','🎈'],
+  '👨‍👧': ['👨‍👧','💙','👔','🎁'],
+  '🥳': ['🥳','🎊','🎁','🎈']
+};
+
+function reaccionar(btn, emoji) {
+  const key = reactionIds[emoji];
+  reactionCounts[key]++;
+  guardarReacciones(reactionCounts);
+  document.getElementById('cnt-' + key).textContent = reactionCounts[key];
+  const rect = btn.getBoundingClientRect();
+  for (let i = 0; i < 6; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'reaction-burst';
+      const emojis = burst_emojis[emoji];
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = (rect.left + rect.width / 2 + (Math.random() - 0.5) * 80) + 'px';
+      el.style.top = rect.top + 'px';
+      el.style.animationDuration = (0.8 + Math.random() * 0.7) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1500);
+    }, i * 80);
+  }
+}
+
+// Inicializar contadores al cargar
+renderizarContadores();
+
+// ======= NAVEGACIÓN =======
 function switchTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -610,56 +634,32 @@ function switchTab(tabId) {
   event.currentTarget.classList.add('active');
 }
 function abrirHerramienta(tipo) {
-  document.getElementById(tipo+'-pantalla').style.display='block';
-  document.body.style.overflow='hidden';
-  if(tipo==='generador') actualizarAnosGrados();
+  document.getElementById(tipo + '-pantalla').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  if (tipo === 'generador') actualizarAnosGrados();
 }
 function cerrarHerramienta(tipo) {
-  document.getElementById(tipo+'-pantalla').style.display='none';
-  document.body.style.overflow='auto';
+  document.getElementById(tipo + '-pantalla').style.display = 'none';
+  document.body.style.overflow = 'auto';
 }
 function abrirTransparencia() {
-  document.getElementById('transparencia-pantalla').style.display='block';
-  document.body.style.overflow='hidden';
+  document.getElementById('transparencia-pantalla').style.display = 'block';
+  document.body.style.overflow = 'hidden';
 }
 function cerrarTransparencia() {
-  document.getElementById('transparencia-pantalla').style.display='none';
-  document.body.style.overflow='auto';
+  document.getElementById('transparencia-pantalla').style.display = 'none';
+  document.body.style.overflow = 'auto';
 }
 
-// REACCIONES
-const reactionCounts={heart:0,star:0,party:0,padre:0,fiesta:0};
-const reactionIds={'❤️':'heart','⭐':'star','🎉':'party','👨‍👧':'padre','🥳':'fiesta'};
-const burst_emojis={'❤️':['❤️','💕','💖','💗'],'⭐':['⭐','✨','🌟','💫'],'🎉':['🎉','🎊','🥳','🎈'],'👨‍👧':['👨‍👧','💙','👔','🎁'],'🥳':['🥳','🎊','🎁','🎈']};
-function reaccionar(btn,emoji) {
-  const key=reactionIds[emoji];
-  reactionCounts[key]++;
-  document.getElementById('cnt-'+key).textContent=reactionCounts[key];
-  const rect=btn.getBoundingClientRect();
-  for(let i=0;i<6;i++){
-    setTimeout(()=>{
-      const el=document.createElement('div');
-      el.className='reaction-burst';
-      const emojis=burst_emojis[emoji];
-      el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-      el.style.left=(rect.left+rect.width/2+(Math.random()-0.5)*80)+'px';
-      el.style.top=rect.top+'px';
-      el.style.animationDuration=(0.8+Math.random()*0.7)+'s';
-      document.body.appendChild(el);
-      setTimeout(()=>el.remove(),1500);
-    },i*80);
-  }
+// ======= TRIVIA =======
+let especialidadSeleccionada = "";
+function seleccionarEsp(esp) {
+  especialidadSeleccionada = esp;
+  document.getElementById('btn-ini').className = 'esp-btn' + (esp === 'inicial' ? ' selected-ini' : '');
+  document.getElementById('btn-pri').className = 'esp-btn' + (esp === 'primaria' ? ' selected-pri' : '');
+  document.getElementById('esp-required-msg').style.display = 'none';
 }
-
-// TRIVIA
-let especialidadSeleccionada="";
-function seleccionarEsp(esp){
-  especialidadSeleccionada=esp;
-  document.getElementById('btn-ini').className='esp-btn'+(esp==='inicial'?' selected-ini':'');
-  document.getElementById('btn-pri').className='esp-btn'+(esp==='primaria'?' selected-pri':'');
-  document.getElementById('esp-required-msg').style.display='none';
-}
-const preguntasIni=[
+const preguntasIni = [
   {q:"¿Quién ocupa el cargo de Delegado General del VII Ciclo en el año institucional 2026?",options:["Ederson Lozano Perez","Bruce Junior Simón Vivanco","Flor Evelyn Valerio Mayta","Juan Manuel Sánchez Luyo"],correct:1},
   {q:"¿Quién es la Delegada de Educación Inicial del VII Ciclo 2026?",options:["Nuria Huari Villalobos","Triana Serrano Arias","Flor Valerio Mayta","Geraldine Sánchez Yauri"],correct:2},
   {q:"¿Qué fecha central se estableció para el Gran Compartir por el Día de la Educación Inicial?",options:["Lunes 25 de Mayo","Viernes 22 de Mayo","Miércoles 27 de Mayo","Sábado 30 de Mayo"],correct:2},
@@ -681,7 +681,7 @@ const preguntasIni=[
   {q:"¿Qué cargo tiene Geraldie Sánchez Yauri en el Comité General?",options:["Tesorera","Secretaria","Coordinadora de Actividades Artísticas","Vocal 1"],correct:2},
   {q:"¿Cuál es el mes de cumpleaños de la Presidenta Flor Valerio Mayta?",options:["Junio","Julio","Agosto","Septiembre"],correct:2}
 ];
-const preguntasPri=[
+const preguntasPri = [
   {q:"¿Quién ocupa el cargo de Delegado General del VII Ciclo en el año institucional 2026?",options:["Ederson Lozano Perez","Bruce Junior Simón Vivanco","Flor Evelyn Valerio Mayta","Juan Manuel Sánchez Luyo"],correct:1},
   {q:"¿Qué fecha central se estableció para el Gran Compartir por el Día de la Educación Inicial?",options:["Lunes 25 de Mayo","Viernes 22 de Mayo","Miércoles 27 de Mayo","Sábado 30 de Mayo"],correct:2},
   {q:"¿Quién se desempeña como Tesorera del Comité General del aula?",options:["Nuria Huari Villalobos","Triana Serrano Arias","Geraldine Sanchez","Juana Medina Guerra"],correct:0},
@@ -817,15 +817,15 @@ const sesionesIni={
   "Psicomotriz":{titulo:"Me muevo, salto y me expreso con mi cuerpo",situacion:"Los niños participan en una sesión de exploración motriz en el patio con circuito de movimientos, desarrollando el esquema corporal, equilibrio y coordinación.",proposito:"Controla su cuerpo en distintas situaciones motrices y expresa emociones a través del movimiento.",competencia:"Se desenvuelve de manera autónoma a través de su motricidad",capacidades:["Comprende su cuerpo","Se expresa corporalmente"],desempeño:"Realiza movimientos de equilibrio, salto y coordinación mostrando control de su cuerpo.",enfoque:"Búsqueda de la excelencia / Enfoque de derechos",momentos:[{nombre:"Inicio (10 min)",detalle:"Calentamiento grupal con la canción 'Mi cuerpo se mueve'. Reconocimiento de partes en movimiento."},{nombre:"Desarrollo (30 min)",detalle:"Circuito: equilibrio en vigas, salto en aros, arrastre en túnel y lanzamiento a diana."},{nombre:"Cierre (10 min)",detalle:"Relajación con música suave. ¿Qué parte de tu cuerpo usaste más hoy?"}],recursos:["Aros de colores","Vigas de equilibrio","Túnel plegable","Pelota blanda","Música grabada"],evaluacion:"Realiza el circuito completo. Expresa con el cuerpo al menos 2 emociones diferentes."}
 };
 const sesionesPri={
-  "Matemática":{titulo:"Resolvemos problemas de la feria escolar",situacion:"Los estudiantes organizan una feria de productos reciclados. Calculan costos, precios y vueltos usando adición y sustracción con números hasta 999 en contexto real.",proposito:"Resuelve problemas de cantidad usando adición y sustracción con estrategias concretas, pictóricas y simbólicas.",competencia:"Resuelve problemas de cantidad",capacidades:["Traduce cantidades a expresiones numéricas","Usa estrategias de estimación y cálculo","Argumenta afirmaciones sobre relaciones numéricas"],desempeño:"Resuelve problemas aditivos de 2 etapas con números hasta 999 usando material concreto y representación pictórica.",enfoque:"Orientación al bien común / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Situación retadora: 'Tenemos S/.500 para comprar materiales. ¿Alcanza para todo?' Saberes previos."},{nombre:"Desarrollo (65 min)",detalle:"Trabajo en grupos: modelado con Base Diez, representación pictórica y resolución simbólica."},{nombre:"Cierre (15 min)",detalle:"Metacognición: ¿Qué estrategia usé? ¿Por qué me funcionó?"}],recursos:["Material Base Diez","Tarjetas de precio","Pizarra y plumones","Hojas de trabajo"],evaluacion:"Resuelve 3 de 4 problemas, explica su procedimiento y verifica su resultado."},
-  "Comunicación":{titulo:"Leemos y comprendemos textos de nuestra comunidad",situacion:"Los estudiantes reciben cartas reales de autoridades locales, las leen, analizan la intención comunicativa y producen una respuesta escrita argumentativa.",proposito:"Lee textos escritos comprensivamente e identifica la intención del autor para producir una respuesta argumentada.",competencia:"Lee y escribe diversos tipos de textos",capacidades:["Obtiene información del texto","Infiere e interpreta","Reflexiona y evalúa"],desempeño:"Identifica la idea principal, intención del autor y escribe una carta de respuesta con argumentos coherentes.",enfoque:"Enfoque de derechos / Intercultural",momentos:[{nombre:"Inicio (10 min)",detalle:"Presentación de la carta real. ¿Quién la escribió? ¿Para qué? ¿Qué pide o informa?"},{nombre:"Desarrollo (60 min)",detalle:"Lectura individual y grupal. Subrayado de ideas clave. Planificación y escritura en borradores."},{nombre:"Cierre (20 min)",detalle:"Revisión entre pares con lista de cotejo. Presentación de cartas al grupo."}],recursos:["Cartas modelo de autoridades","Fichas de comprensión","Papel bond","Lista de cotejo"],evaluacion:"Identifica idea principal (✓), intención del autor (✓), escribe carta con saludo, cuerpo y despedida (✓)."},
-  "Personal Social":{titulo:"Somos ciudadanos que cuidan nuestro ambiente",situacion:"Los estudiantes analizan la situación ambiental de su barrio y proponen una campaña de sensibilización escolar, ejerciendo su ciudadanía activa.",proposito:"Analiza problemáticas ambientales locales y propone acciones de ciudadanía activa.",competencia:"Gestiona el ambiente / Convive democráticamente",capacidades:["Comprende relaciones naturales y sociales","Participa en acciones de bien común"],desempeño:"Identifica causas y consecuencias de un problema ambiental y propone acciones concretas.",enfoque:"Enfoque ambiental / Derechos",momentos:[{nombre:"Inicio (10 min)",detalle:"Video sobre problemática ambiental local. ¿Qué vemos? ¿Qué podemos hacer?"},{nombre:"Desarrollo (55 min)",detalle:"Análisis causa-efecto en grupos. Diseño de afiche de campaña."},{nombre:"Cierre (15 min)",detalle:"Votación del mejor slogan. Compromiso individual escrito."}],recursos:["Video corto","Fotografías del entorno","Cartulina y plumones","Ficha de análisis"],evaluacion:"Identifica 2 causas, propone 2 soluciones viables y participa activamente."},
-  "Ciencia y Tecnología":{titulo:"Investigamos la contaminación del agua",situacion:"Los estudiantes reciben muestras de agua de diferentes fuentes locales, diseñan un experimento para identificar indicadores de contaminación y proponen soluciones tecnológicas.",proposito:"Diseña y ejecuta una indagación sobre la calidad del agua usando el método científico.",competencia:"Indaga mediante métodos científicos",capacidades:["Problematiza situaciones","Diseña estrategias de indagación","Analiza datos e información"],desempeño:"Formula una pregunta investigable, recoge datos y comunica conclusiones con evidencia.",enfoque:"Ambiental / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (15 min)",detalle:"Observación de muestras. Hipótesis: ¿Cuál estará más contaminada y por qué?"},{nombre:"Desarrollo (60 min)",detalle:"Experimentación con tiras de pH, filtros caseros, observación con lupa. Registro de datos."},{nombre:"Cierre (15 min)",detalle:"Presentación de conclusiones. Propuesta de solución tecnológica."}],recursos:["Muestras de agua","Tiras de pH","Filtros caseros","Lupas","Fichas de registro"],evaluacion:"Formula hipótesis (✓), registra datos (✓), concluye con evidencia (✓), propone solución viable (✓)."},
-  "Arte y Cultura":{titulo:"Expresamos nuestra identidad a través del arte visual",situacion:"Los estudiantes exploran técnicas plásticas con motivos andinos y crean una obra visual colectiva que representa la identidad cultural de su comunidad.",proposito:"Explora y aplica técnicas plásticas básicas para crear una obra visual con identidad cultural.",competencia:"Aprecia y crea proyectos artísticos",capacidades:["Explora lenguajes del arte","Aplica procesos creativos"],desempeño:"Crea una composición visual usando al menos 2 técnicas plásticas con motivos de su cultura.",enfoque:"Intercultural / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Observación de imágenes de arte andino. ¿Qué ves? ¿Por qué te parece bonito?"},{nombre:"Desarrollo (50 min)",detalle:"Exploración de técnicas: estampado con sellos, pintura dactilar, tizas. Creación libre."},{nombre:"Cierre (20 min)",detalle:"Galería del aula: cada estudiante explica su obra."}],recursos:["Cartulina","Témperas","Sellos de hoja/fruta","Tizas de colores","Imágenes de arte andino"],evaluacion:"Usa 2 técnicas (✓), relaciona obra con identidad cultural (✓), presenta oralmente (✓)."},
-  "Educación Física":{titulo:"Nos movemos juntos — juego cooperativo",situacion:"Los estudiantes superan retos en equipo sin competir individualmente, desarrollando trabajo en equipo y habilidades motrices en un ambiente inclusivo.",proposito:"Desarrolla habilidades motrices y valores de cooperación a través de juegos en equipo.",competencia:"Motricidad autónoma / Vida saludable",capacidades:["Comprende su cuerpo","Interactúa sociomotrizmente"],desempeño:"Participa en juegos cooperativos mostrando coordinación y actitud de apoyo.",enfoque:"Bien común / Inclusivo",momentos:[{nombre:"Inicio (10 min)",detalle:"Calentamiento: 'El abrazo de grupos'. Reglas del juego cooperativo."},{nombre:"Desarrollo (40 min)",detalle:"3 juegos cooperativos: 'La canoa de papel', 'Cadena humana', 'El nudo'."},{nombre:"Cierre (10 min)",detalle:"Vuelta a la calma. ¿Cómo ayudé a mi equipo?"}],recursos:["Sogas","Aros","Conos","Música motivacional"],evaluacion:"Participa activamente (✓), respeta normas (✓), colabora con compañeros (✓)."},
-  "Inglés como Lengua Extranjera":{titulo:"My family and I",situacion:"Los estudiantes llevan fotografías de sus familias al aula, aprenden vocabulario de miembros de la familia y describen a su familia en inglés.",proposito:"Comunica oralmente información sobre su familia usando vocabulario básico en inglés.",competencia:"Se comunica en inglés como lengua extranjera",capacidades:["Obtiene información oral","Organiza ideas para expresión"],desempeño:"Describe 3 miembros de su familia usando adjetivos y la estructura 'This is my ___, He/She is ___'.",enfoque:"Intercultural / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Canción 'The Family Song'. Flashcards y repetición coral."},{nombre:"Desarrollo (50 min)",detalle:"Práctica en pares con fotografías propias. Presentación ante el grupo."},{nombre:"Cierre (10 min)",detalle:"Exit ticket: Escribe 2 oraciones sobre un familiar en inglés."}],recursos:["Flashcards de familia","Fotografías personales","Canción","Ficha de vocabulario"],evaluacion:"Pronuncia correctamente (✓), usa la estructura modelo (✓), describe 3 miembros (✓)."},
+  "Matemática":{titulo:"Resolvemos problemas de la feria escolar",situacion:"Los estudiantes organizan una feria de productos reciclados. Calculan costos, precios y vueltos usando adición y sustracción con números hasta 999 en contexto real.",proposito:"Resuelve problemas de cantidad usando adición y sustracción con estrategias concretas, pictóricas y simbólicas.",competencia:"Resuelve problemas de cantidad",capacidades:["Traduce cantidades a expresiones numéricas","Usa estrategias de estimación y cálculo","Argumenta afirmaciones sobre relaciones numéricas"],desempeño:"Resuelve problemas aditivos de 2 etapas con números hasta 999 usando material concreto y representación pictórica.",enfoque:"Orientación al bien común / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Situación retadora: 'Tenemos S/.500 para comprar materiales. ¿Alcanza para todo?'"},{nombre:"Desarrollo (65 min)",detalle:"Trabajo en grupos: modelado con Base Diez, representación pictórica y resolución simbólica."},{nombre:"Cierre (15 min)",detalle:"Metacognición: ¿Qué estrategia usé? ¿Por qué me funcionó?"}],recursos:["Material Base Diez","Tarjetas de precio","Pizarra y plumones","Hojas de trabajo"],evaluacion:"Resuelve 3 de 4 problemas, explica su procedimiento y verifica su resultado."},
+  "Comunicación":{titulo:"Leemos y comprendemos textos de nuestra comunidad",situacion:"Los estudiantes reciben cartas reales de autoridades locales, las leen, analizan la intención comunicativa y producen una respuesta escrita argumentativa.",proposito:"Lee textos escritos comprensivamente e identifica la intención del autor para producir una respuesta argumentada.",competencia:"Lee y escribe diversos tipos de textos",capacidades:["Obtiene información del texto","Infiere e interpreta","Reflexiona y evalúa"],desempeño:"Identifica la idea principal, intención del autor y escribe una carta de respuesta con argumentos coherentes.",enfoque:"Enfoque de derechos / Intercultural",momentos:[{nombre:"Inicio (10 min)",detalle:"Presentación de la carta real. ¿Quién la escribió? ¿Para qué?"},{nombre:"Desarrollo (60 min)",detalle:"Lectura individual y grupal. Subrayado de ideas clave. Escritura en borradores."},{nombre:"Cierre (20 min)",detalle:"Revisión entre pares con lista de cotejo. Presentación de cartas al grupo."}],recursos:["Cartas modelo de autoridades","Fichas de comprensión","Papel bond","Lista de cotejo"],evaluacion:"Identifica idea principal (✓), intención del autor (✓), escribe carta con estructura completa (✓)."},
+  "Personal Social":{titulo:"Somos ciudadanos que cuidan nuestro ambiente",situacion:"Los estudiantes analizan la situación ambiental de su barrio y proponen una campaña de sensibilización escolar.",proposito:"Analiza problemáticas ambientales locales y propone acciones de ciudadanía activa.",competencia:"Gestiona el ambiente / Convive democráticamente",capacidades:["Comprende relaciones naturales y sociales","Participa en acciones de bien común"],desempeño:"Identifica causas y consecuencias de un problema ambiental y propone acciones concretas.",enfoque:"Enfoque ambiental / Derechos",momentos:[{nombre:"Inicio (10 min)",detalle:"Video sobre problemática ambiental local. ¿Qué vemos? ¿Qué podemos hacer?"},{nombre:"Desarrollo (55 min)",detalle:"Análisis causa-efecto en grupos. Diseño de afiche de campaña."},{nombre:"Cierre (15 min)",detalle:"Votación del mejor slogan. Compromiso individual escrito."}],recursos:["Video corto","Fotografías del entorno","Cartulina y plumones","Ficha de análisis"],evaluacion:"Identifica 2 causas, propone 2 soluciones viables y participa activamente."},
+  "Ciencia y Tecnología":{titulo:"Investigamos la contaminación del agua",situacion:"Los estudiantes reciben muestras de agua de diferentes fuentes locales, diseñan un experimento para identificar indicadores de contaminación y proponen soluciones tecnológicas.",proposito:"Diseña y ejecuta una indagación sobre la calidad del agua usando el método científico.",competencia:"Indaga mediante métodos científicos",capacidades:["Problematiza situaciones","Diseña estrategias de indagación","Analiza datos e información"],desempeño:"Formula una pregunta investigable, recoge datos y comunica conclusiones con evidencia.",enfoque:"Ambiental / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (15 min)",detalle:"Observación de muestras. Hipótesis: ¿Cuál estará más contaminada y por qué?"},{nombre:"Desarrollo (60 min)",detalle:"Experimentación con tiras de pH, filtros caseros, observación con lupa."},{nombre:"Cierre (15 min)",detalle:"Presentación de conclusiones. Propuesta de solución tecnológica."}],recursos:["Muestras de agua","Tiras de pH","Filtros caseros","Lupas","Fichas de registro"],evaluacion:"Formula hipótesis (✓), registra datos (✓), concluye con evidencia (✓), propone solución viable (✓)."},
+  "Arte y Cultura":{titulo:"Expresamos nuestra identidad a través del arte visual",situacion:"Los estudiantes exploran técnicas plásticas con motivos andinos y crean una obra visual colectiva.",proposito:"Explora y aplica técnicas plásticas básicas para crear una obra visual con identidad cultural.",competencia:"Aprecia y crea proyectos artísticos",capacidades:["Explora lenguajes del arte","Aplica procesos creativos"],desempeño:"Crea una composición visual usando al menos 2 técnicas plásticas con motivos de su cultura.",enfoque:"Intercultural / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Observación de imágenes de arte andino."},{nombre:"Desarrollo (50 min)",detalle:"Exploración de técnicas: estampado, pintura dactilar, tizas. Creación libre."},{nombre:"Cierre (20 min)",detalle:"Galería del aula: cada estudiante explica su obra."}],recursos:["Cartulina","Témperas","Sellos de hoja/fruta","Tizas de colores"],evaluacion:"Usa 2 técnicas (✓), relaciona obra con identidad cultural (✓), presenta oralmente (✓)."},
+  "Educación Física":{titulo:"Nos movemos juntos — juego cooperativo",situacion:"Los estudiantes superan retos en equipo sin competir individualmente, desarrollando trabajo en equipo y habilidades motrices.",proposito:"Desarrolla habilidades motrices y valores de cooperación a través de juegos en equipo.",competencia:"Motricidad autónoma / Vida saludable",capacidades:["Comprende su cuerpo","Interactúa sociomotrizmente"],desempeño:"Participa en juegos cooperativos mostrando coordinación y actitud de apoyo.",enfoque:"Bien común / Inclusivo",momentos:[{nombre:"Inicio (10 min)",detalle:"Calentamiento: 'El abrazo de grupos'. Reglas del juego cooperativo."},{nombre:"Desarrollo (40 min)",detalle:"3 juegos cooperativos: 'La canoa de papel', 'Cadena humana', 'El nudo'."},{nombre:"Cierre (10 min)",detalle:"Vuelta a la calma. ¿Cómo ayudé a mi equipo?"}],recursos:["Sogas","Aros","Conos","Música motivacional"],evaluacion:"Participa activamente (✓), respeta normas (✓), colabora con compañeros (✓)."},
+  "Inglés como Lengua Extranjera":{titulo:"My family and I",situacion:"Los estudiantes llevan fotografías de sus familias al aula, aprenden vocabulario de miembros de la familia y las describen en inglés.",proposito:"Comunica oralmente información sobre su familia usando vocabulario básico en inglés.",competencia:"Se comunica en inglés como lengua extranjera",capacidades:["Obtiene información oral","Organiza ideas para expresión"],desempeño:"Describe 3 miembros de su familia usando adjetivos y la estructura 'This is my ___, He/She is ___'.",enfoque:"Intercultural / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Canción 'The Family Song'. Flashcards y repetición coral."},{nombre:"Desarrollo (50 min)",detalle:"Práctica en pares con fotografías propias. Presentación ante el grupo."},{nombre:"Cierre (10 min)",detalle:"Exit ticket: Escribe 2 oraciones sobre un familiar en inglés."}],recursos:["Flashcards de familia","Fotografías personales","Canción","Ficha de vocabulario"],evaluacion:"Pronuncia correctamente (✓), usa la estructura modelo (✓), describe 3 miembros (✓)."},
   "Educación Religiosa":{titulo:"Valores que nos unen: respeto y solidaridad",situacion:"Los estudiantes analizan situaciones de su vida donde el respeto y la solidaridad son fundamentales y elaboran compromisos personales.",proposito:"Reflexiona sobre el respeto y la solidaridad como valores que fortalecen la convivencia.",competencia:"Construye su identidad como persona amada por Dios",capacidades:["Valora manifestaciones religiosas","Actúa coherentemente con su fe"],desempeño:"Identifica situaciones donde practicó estos valores y propone acciones de mejora.",enfoque:"Derechos / Bien común",momentos:[{nombre:"Inicio (10 min)",detalle:"Historia bíblica relacionada al valor. ¿Qué habrías hecho tú?"},{nombre:"Desarrollo (50 min)",detalle:"Análisis de casos reales del aula. Elaboración de compromisos grupales."},{nombre:"Cierre (10 min)",detalle:"Oración de reflexión grupal. Presentación del compromiso de la semana."}],recursos:["Biblia / textos adaptados","Fichas de análisis de casos","Cartulina para compromisos"],evaluacion:"Identifica el valor (✓), argumenta su importancia (✓), propone un compromiso concreto (✓)."},
-  "Desarrollo Personal, Ciudadanía y Cívica":{titulo:"Nuestros derechos y responsabilidades",situacion:"Los estudiantes analizan el reglamento escolar y lo comparan con la Convención de los Derechos del Niño, debatiendo sobre convivencia democrática.",proposito:"Comprende sus derechos y responsabilidades ciudadanas para promover convivencia democrática.",competencia:"Convive democráticamente / Construye su identidad",capacidades:["Interactúa con todas las personas","Participa en acciones de bien común"],desempeño:"Relaciona un derecho de la Convención con una norma del reglamento y argumenta su importancia.",enfoque:"Derechos / Bien común",momentos:[{nombre:"Inicio (10 min)",detalle:"Video de conflicto escolar. ¿Qué derecho se vulneró? ¿Qué debería haber pasado?"},{nombre:"Desarrollo (55 min)",detalle:"Análisis del reglamento y la Convención. Debate. Propuesta de mejora al reglamento."},{nombre:"Cierre (15 min)",detalle:"Votación de propuestas. ¿Soy un ciudadano responsable?"}],recursos:["Convención del Niño adaptada","Reglamento IE","Video disparador","Ficha de debate"],evaluacion:"Relaciona derecho con norma (✓), argumenta (✓), propone mejora viable (✓), participa respetuosamente (✓)."}
+  "Desarrollo Personal, Ciudadanía y Cívica":{titulo:"Nuestros derechos y responsabilidades",situacion:"Los estudiantes analizan el reglamento escolar y lo comparan con la Convención de los Derechos del Niño, debatiendo sobre convivencia democrática.",proposito:"Comprende sus derechos y responsabilidades ciudadanas para promover convivencia democrática.",competencia:"Convive democráticamente / Construye su identidad",capacidades:["Interactúa con todas las personas","Participa en acciones de bien común"],desempeño:"Relaciona un derecho de la Convención con una norma del reglamento y argumenta su importancia.",enfoque:"Derechos / Bien común",momentos:[{nombre:"Inicio (10 min)",detalle:"Video de conflicto escolar. ¿Qué derecho se vulneró? ¿Qué debería haber pasado?"},{nombre:"Desarrollo (55 min)",detalle:"Análisis del reglamento y la Convención. Debate. Propuesta de mejora."},{nombre:"Cierre (15 min)",detalle:"Votación de propuestas. ¿Soy un ciudadano responsable?"}],recursos:["Convención del Niño adaptada","Reglamento IE","Video disparador","Ficha de debate"],evaluacion:"Relaciona derecho con norma (✓), argumenta (✓), propone mejora viable (✓), participa respetuosamente (✓)."}
 };
 function generarIdeaPedagogica(){
   const nivel=document.getElementById('gen-nivel').value;
