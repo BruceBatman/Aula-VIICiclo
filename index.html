@@ -7,8 +7,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
 :root {
---bg-dark: #0d1b2e; --bg-card: #112240; --primary: #4dc8f5; --secondary: #10b981;
---accent: #f59e0b; --text-main: #f0f8ff; --text-muted: #90b8d4;
+--bg-dark: #080c12; --bg-card: #0f1923; --primary: #0bc8b5; --secondary: #0bc8b5;
+--accent: #f59e0b; --text-main: #f0f8ff; --text-muted: #7a9db5;
 --correct: #22c55e; --incorrect: #ef4444; --onpe-green: #1e4d41;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -344,11 +344,28 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
 
       <!-- HERRAMIENTAS -->
       <div id="herramientas" class="herramientas-wrap">
-        <h3 class="section-title"><i class="fa-solid fa-laptop-code" style="color:var(--secondary)"></i> Herramientas Digitales del VII Ciclo</h3>
+        <h3 class="section-title"><i class="fa-solid fa-laptop-code" style="color:var(--primary)"></i> Herramientas Digitales del VII Ciclo</h3>
         <p class="herramientas-desc">Accede a los sistemas interactivos exclusivos desarrollados para optimizar nuestra formación pedagógica y comunicación del VII Ciclo.</p>
-        <button class="btn-launch-tool btn-orange" onclick="abrirHerramienta('simulador')"><i class="fa-solid fa-fire"></i> 1. Pon a prueba tus conocimientos en esta Trivia</button>
-        <button class="btn-launch-tool btn-green" onclick="abrirHerramienta('generador')"><i class="fa-solid fa-wand-magic-sparkles"></i> 2. Generador Automático de Sesiones Dinámicas</button>
-        <button class="btn-launch-tool btn-purple" onclick="abrirHerramienta('buzon')"><i class="fa-solid fa-envelope-open-text"></i> 3. Buzón de Sugerencia Hacia los delegados del ciclo</button>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px;">
+          <div style="background:linear-gradient(135deg,#0bc8b5,#08a090);border-radius:14px;padding:24px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(11,200,181,0.25);">
+            <div style="background:rgba(0,0,0,0.2);border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;"><i class="fa-solid fa-fire" style="color:#fff;"></i></div>
+            <div style="font-size:1.1rem;font-weight:800;color:#fff;line-height:1.3;">Trivia de<br><em>Conocimientos</em></div>
+            <div style="font-size:0.82rem;color:rgba(255,255,255,0.8);line-height:1.5;flex:1;">Pon a prueba tus conocimientos del CNEB con retroalimentación automática y certificación digital.</div>
+            <button onclick="abrirHerramienta('simulador')" style="background:rgba(0,0,0,0.25);border:none;color:#fff;padding:11px;border-radius:8px;font-weight:bold;font-size:0.9rem;cursor:pointer;transition:0.2s;text-align:center;" onmouseover="this.style.background='rgba(0,0,0,0.4)'" onmouseout="this.style.background='rgba(0,0,0,0.25)'">Iniciar Trivia →</button>
+          </div>
+          <div style="background:linear-gradient(135deg,#0bc8b5,#08a090);border-radius:14px;padding:24px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(11,200,181,0.25);">
+            <div style="background:rgba(0,0,0,0.2);border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;"><i class="fa-solid fa-wand-magic-sparkles" style="color:#fff;"></i></div>
+            <div style="font-size:1.1rem;font-weight:800;color:#fff;line-height:1.3;">Generador de<br><em>Sesiones Dinámicas</em></div>
+            <div style="font-size:0.82rem;color:rgba(255,255,255,0.8);line-height:1.5;flex:1;">Construye esquemas pedagógicos rápidos con situaciones significativas y criterios de evaluación.</div>
+            <button onclick="abrirHerramienta('generador')" style="background:rgba(0,0,0,0.25);border:none;color:#fff;padding:11px;border-radius:8px;font-weight:bold;font-size:0.9rem;cursor:pointer;transition:0.2s;text-align:center;" onmouseover="this.style.background='rgba(0,0,0,0.4)'" onmouseout="this.style.background='rgba(0,0,0,0.25)'">Generar Esquema →</button>
+          </div>
+          <div style="background:linear-gradient(135deg,#0bc8b5,#08a090);border-radius:14px;padding:24px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(11,200,181,0.25);">
+            <div style="background:rgba(0,0,0,0.2);border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;"><i class="fa-solid fa-envelope-open-text" style="color:#fff;"></i></div>
+            <div style="font-size:1.1rem;font-weight:800;color:#fff;line-height:1.3;">Buzón de<br><em>Sugerencias</em></div>
+            <div style="font-size:0.82rem;color:rgba(255,255,255,0.8);line-height:1.5;flex:1;">Envía tus sugerencias directamente a los delegados del ciclo de forma anónima o identificada.</div>
+            <button onclick="abrirHerramienta('buzon')" style="background:rgba(0,0,0,0.25);border:none;color:#fff;padding:11px;border-radius:8px;font-weight:bold;font-size:0.9rem;cursor:pointer;transition:0.2s;text-align:center;" onmouseover="this.style.background='rgba(0,0,0,0.4)'" onmouseout="this.style.background='rgba(0,0,0,0.25)'">Abrir Buzón →</button>
+          </div>
+        </div>
       </div>
 
     </main>
