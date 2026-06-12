@@ -7,8 +7,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
 :root {
---bg-dark: #0b1426; --bg-card: #1a2f4a; --primary: #38bdf8; --secondary: #10b981;
---accent: #f59e0b; --text-main: #f8fafc; --text-muted: #94a3b8;
+--bg-dark: #071422; --bg-card: #0e2a45; --primary: #4dc8f5; --secondary: #10b981;
+--accent: #f59e0b; --text-main: #f0f8ff; --text-muted: #90b8d4;
 --correct: #22c55e; --incorrect: #ef4444; --onpe-green: #1e4d41;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -229,20 +229,15 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
 
 <div class="container" id="main-content">
 
-  <!-- MURAL MUNDIAL 2026 -->
-  <div id="inicio" class="mural-section" style="background: linear-gradient(135deg, #0a1628 0%, #0d2137 40%, #0a1628 100%); border: 2px solid #f59e0b; position:relative; overflow:hidden;">
-    <!-- Decoración de fondo estilo mundial -->
-    <div style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.07;background-image:repeating-linear-gradient(45deg,#f59e0b 0,#f59e0b 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
+  <!-- MURAL DÍA DEL PADRE -->
+  <div id="inicio" class="mural-section" style="position:relative;overflow:hidden;background:linear-gradient(160deg,#071e10 0%,#0a2a18 50%,#071e10 100%);border:2px solid #22c55e;">
+    <canvas id="muralCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.35;"></canvas>
+    <svg style="position:absolute;left:-10px;bottom:0;height:88%;opacity:0.13;pointer-events:none;" viewBox="0 0 120 280" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="22" rx="18" ry="20" fill="#fff"/><rect x="44" y="42" width="32" height="70" rx="10" fill="#fff"/><rect x="30" y="46" width="14" height="55" rx="7" fill="#fff" transform="rotate(-18,37,73)"/><rect x="76" y="46" width="14" height="55" rx="7" fill="#fff" transform="rotate(18,83,73)"/><rect x="46" y="108" width="14" height="80" rx="7" fill="#fff" transform="rotate(8,53,148)"/><rect x="62" y="108" width="14" height="80" rx="7" fill="#fff" transform="rotate(-8,69,148)"/><ellipse cx="50" cy="192" rx="14" ry="9" fill="#fff" transform="rotate(15,50,192)"/><ellipse cx="72" cy="190" rx="14" ry="9" fill="#fff" transform="rotate(-10,72,190)"/></svg>
+    <svg style="position:absolute;right:-10px;bottom:0;height:85%;opacity:0.13;pointer-events:none;" viewBox="0 0 120 280" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="22" rx="18" ry="20" fill="#fff"/><rect x="44" y="42" width="32" height="70" rx="10" fill="#fff"/><rect x="20" y="30" width="14" height="60" rx="7" fill="#fff" transform="rotate(-55,27,60)"/><rect x="86" y="30" width="14" height="60" rx="7" fill="#fff" transform="rotate(55,93,60)"/><rect x="46" y="108" width="14" height="80" rx="7" fill="#fff" transform="rotate(5,53,148)"/><rect x="62" y="108" width="14" height="80" rx="7" fill="#fff" transform="rotate(-5,69,148)"/><ellipse cx="50" cy="192" rx="14" ry="9" fill="#fff"/><ellipse cx="72" cy="190" rx="14" ry="9" fill="#fff"/></svg>
+    <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.06;" preserveAspectRatio="none" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="798" height="298" fill="none" stroke="#fff" stroke-width="3"/><line x1="400" y1="1" x2="400" y2="299" stroke="#fff" stroke-width="2"/><circle cx="400" cy="150" r="60" fill="none" stroke="#fff" stroke-width="2"/><circle cx="400" cy="150" r="4" fill="#fff"/><rect x="1" y="80" width="100" height="140" fill="none" stroke="#fff" stroke-width="2"/><rect x="699" y="80" width="100" height="140" fill="none" stroke="#fff" stroke-width="2"/></svg>
     <div class="mural-title" style="position:relative;">
-      <div style="display:inline-block;background:linear-gradient(135deg,#b45309,#f59e0b,#fde68a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:2rem;font-weight:900;letter-spacing:2px;text-shadow:none;">⚽ MUNDIAL 2026 ⚽</div>
-      <h3 style="font-size:1.4rem; color:#93c5fd; font-weight:800; margin-top:4px;">🏆 Mural — Día del Padre & Copa del Mundo</h3>
-      <p style="color:#fbbf24; font-size:0.95rem; margin-top:5px;">¡Unidos como familia y unidos como nación en el torneo más grande del mundo! 🇵🇪💙</p>
-      <div style="display:flex;justify-content:center;gap:14px;margin-top:12px;flex-wrap:wrap;">
-        <span style="background:#1d4ed8;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:bold;">🇺🇸 USA</span>
-        <span style="background:#dc2626;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:bold;">🇨🇦 CANADÁ</span>
-        <span style="background:#16a34a;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:bold;">🇲🇽 MÉXICO</span>
-        <span style="background:#b91c1c;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:bold;">⚽ 48 SELECCIONES</span>
-      </div>
+      <h3>👨‍👧 Mural — Día del Padre</h3>
+      <p>Un espacio especial para celebrar y homenajear a los padres de nuestra comunidad del VII Ciclo 💙</p>
     </div>
     <div class="mural-grid-3">
       <div class="mural-img-box"><img src="imagenpadre1.jpeg" alt="Día del Padre foto 1"></div>
@@ -892,4 +887,82 @@ actualizarAnosGrados();
   <input type="text" name="Mensaje_Sugerencia">
 </form>
 </body>
+<script>
+// Pelotas de fútbol animadas en el mural
+(function(){
+  const canvas = document.getElementById('muralCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let balls = [];
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  function createBall(){
+    return {
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: 14 + Math.random()*18,
+      vx: (Math.random()-0.5)*0.8,
+      vy: (Math.random()-0.5)*0.8,
+      rot: Math.random()*Math.PI*2,
+      vrot: (Math.random()-0.5)*0.04
+    };
+  }
+  function drawBall(b){
+    ctx.save();
+    ctx.translate(b.x, b.y);
+    ctx.rotate(b.rot);
+    // Círculo blanco
+    ctx.beginPath();
+    ctx.arc(0,0,b.r,0,Math.PI*2);
+    ctx.fillStyle='#ffffff';
+    ctx.fill();
+    ctx.strokeStyle='#333';
+    ctx.lineWidth=b.r*0.07;
+    ctx.stroke();
+    // Pentágono central negro
+    ctx.beginPath();
+    for(let i=0;i<5;i++){
+      const a=i*Math.PI*2/5 - Math.PI/2;
+      const px=Math.cos(a)*b.r*0.38, py=Math.sin(a)*b.r*0.38;
+      i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+    }
+    ctx.closePath();
+    ctx.fillStyle='#111';
+    ctx.fill();
+    // 5 hexágonos alrededor
+    for(let i=0;i<5;i++){
+      const a=i*Math.PI*2/5 - Math.PI/2;
+      const hx=Math.cos(a)*b.r*0.72, hy=Math.sin(a)*b.r*0.72;
+      ctx.beginPath();
+      for(let j=0;j<6;j++){
+        const ha=j*Math.PI/3;
+        const px2=hx+Math.cos(ha)*b.r*0.28, py2=hy+Math.sin(ha)*b.r*0.28;
+        j===0?ctx.moveTo(px2,py2):ctx.lineTo(px2,py2);
+      }
+      ctx.closePath();
+      ctx.fillStyle='#111';
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    balls.forEach(b=>{
+      b.x+=b.vx; b.y+=b.vy; b.rot+=b.vrot;
+      if(b.x<-b.r) b.x=canvas.width+b.r;
+      if(b.x>canvas.width+b.r) b.x=-b.r;
+      if(b.y<-b.r) b.y=canvas.height+b.r;
+      if(b.y>canvas.height+b.r) b.y=-b.r;
+      drawBall(b);
+    });
+    requestAnimationFrame(animate);
+  }
+  resize();
+  for(let i=0;i<12;i++) balls.push(createBall());
+  animate();
+  window.addEventListener('resize', ()=>{ resize(); });
+})();
+</script>
 </html>
