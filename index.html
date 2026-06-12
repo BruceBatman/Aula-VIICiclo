@@ -7,7 +7,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
 :root {
---bg-dark: #0f172a; --bg-card: #1e293b; --primary: #0ea5e9; --secondary: #10b981;
+--bg-dark: #0b1426; --bg-card: #1a2f4a; --primary: #38bdf8; --secondary: #10b981;
 --accent: #f59e0b; --text-main: #f8fafc; --text-muted: #94a3b8;
 --correct: #22c55e; --incorrect: #ef4444; --onpe-green: #1e4d41;
 }
@@ -229,16 +229,25 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
 
 <div class="container" id="main-content">
 
-  <!-- MURAL DÍA DEL PADRE -->
-  <div id="inicio" class="mural-section">
-    <div class="mural-title">
-      <h3>👨‍👧 Mural — Día del Padre</h3>
-      <p>Un espacio especial para celebrar y homenajear a los padres de nuestra comunidad del VII Ciclo 💙</p>
+  <!-- MURAL MUNDIAL 2026 -->
+  <div id="inicio" class="mural-section" style="background: linear-gradient(135deg, #0a1628 0%, #0d2137 40%, #0a1628 100%); border: 2px solid #f59e0b; position:relative; overflow:hidden;">
+    <!-- Decoración de fondo estilo mundial -->
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.07;background-image:repeating-linear-gradient(45deg,#f59e0b 0,#f59e0b 1px,transparent 0,transparent 50%);background-size:20px 20px;"></div>
+    <div class="mural-title" style="position:relative;">
+      <div style="display:inline-block;background:linear-gradient(135deg,#b45309,#f59e0b,#fde68a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:2rem;font-weight:900;letter-spacing:2px;text-shadow:none;">⚽ MUNDIAL 2026 ⚽</div>
+      <h3 style="font-size:1.4rem; color:#93c5fd; font-weight:800; margin-top:4px;">🏆 Mural — Día del Padre & Copa del Mundo</h3>
+      <p style="color:#fbbf24; font-size:0.95rem; margin-top:5px;">¡Unidos como familia y unidos como nación en el torneo más grande del mundo! 🇵🇪💙</p>
+      <div style="display:flex;justify-content:center;gap:14px;margin-top:12px;flex-wrap:wrap;">
+        <span style="background:#1d4ed8;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:bold;">🇺🇸 USA</span>
+        <span style="background:#dc2626;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:bold;">🇨🇦 CANADÁ</span>
+        <span style="background:#16a34a;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:bold;">🇲🇽 MÉXICO</span>
+        <span style="background:#b91c1c;color:#fff;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:bold;">⚽ 48 SELECCIONES</span>
+      </div>
     </div>
     <div class="mural-grid-3">
       <div class="mural-img-box"><img src="imagenpadre1.jpeg" alt="Día del Padre foto 1"></div>
-      <div class="mural-img-box"><img src="imagenpadre2.png" alt="Día del Padre foto 2"></div>
       <div class="mural-img-box"><img src="imagenpadre3.jpeg" alt="Día del Padre foto 3"></div>
+      <div class="mural-img-box"><img src="imagenpadre2.png" alt="Día del Padre foto 2"></div>
     </div>
     <div class="mural-video-wrap">
       <div class="mural-video-box">
@@ -299,6 +308,7 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
               <li><span class="birthday-date">07/06:</span>🎂 Ana Cecilia Huaman Herrera</li>
               <li><span class="birthday-date">10/06:</span>🎂 Huari Villalobos Nuria Melissa</li>
               <li><span class="birthday-date">17/06:</span>🎂 Rosales Luyo Janeth Milagros</li>
+              <li><span class="birthday-date">26/06:</span>🎂 López Puma Harold Josué</li>
               <li><span class="birthday-date">28/06:</span>🎂 Aburto Enciso Maricarmen Judith</li>
             </ul>
           </div>
@@ -407,7 +417,7 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
         <div class="fb-card-title"><i class="fa-brands fa-facebook" style="color:#1877f2;font-size:1.3rem;"></i> Nuestra Página de Facebook</div>
         <div class="fb-preview">
           <div class="fb-preview-header">
-            <div class="fb-avatar">📘</div>
+            <div class="fb-avatar" style="background:none;padding:0;overflow:hidden;"><img src="imagenpaginafb.jpg" alt="Página Facebook VII Ciclo" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"></div>
             <div>
               <div class="fb-page-name">VII Ciclo — IESPP Jesús de Nazareth</div>
               <div class="fb-page-sub"><i class="fa-solid fa-earth-americas" style="font-size:0.7rem;"></i> Página del Aula · Pública</div>
@@ -416,10 +426,9 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
           <div class="fb-post-text">
             📚 Espacio oficial del VII Ciclo de Educación Inicial y Primaria del IESPP «Jesús de Nazareth». Aquí compartimos actividades, fotos, novedades y momentos especiales de nuestra comunidad de futuros docentes. ¡Únete y sigue nuestra historia! 🎓💙
           </div>
-          <div class="fb-post-img">📘</div>
-          <div class="fb-stats">
-            <span>👍 Me gusta la página</span>
-            <span>📢 Seguir</span>
+          <div class="fb-post-img" style="background:none;height:auto;border:none;padding:0;"><img src="imagenpaginafb.jpg" alt="Página Facebook VII Ciclo" style="width:100%;border-radius:8px;display:block;"></div>
+          <div class="fb-stats" style="justify-content:center;color:#60a5fa;font-size:0.85rem;">
+            <span>👍 ¡No te olvides de dar like a nuestra página!</span>
           </div>
         </div>
         <a href="https://www.facebook.com/share/1BLAhnjoUq/" target="_blank" rel="noopener noreferrer" class="fb-btn">
