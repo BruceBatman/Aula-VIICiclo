@@ -7,100 +7,181 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 <style>
 :root {
---bg-dark: #080c12; --bg-card: #0f1923; --primary: #0bc8b5; --secondary: #0bc8b5;
---accent: #f59e0b; --text-main: #f0f8ff; --text-muted: #7a9db5;
---correct: #22c55e; --incorrect: #ef4444; --onpe-green: #1e4d41;
+--bg-dark: #0a1628;
+--bg-card: #112240;
+--primary: #38bdf8;
+--secondary: #10b981;
+--accent: #f59e0b;
+--text-main: #f0f9ff;
+--text-muted: #7ec8e3;
+--correct: #22c55e;
+--incorrect: #ef4444;
+--onpe-green: #1e4d41;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; padding-bottom: 60px; }
 
-header { background-color: var(--bg-card); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+header { background-color: var(--bg-card); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #1e4976; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .logo-area { display: flex; align-items: center; gap: 12px; }
-.logo-inst-placeholder { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--primary); background: linear-gradient(135deg,#1e3a8a,#0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #fff; font-weight: bold; flex-shrink: 0; }
+.logo-inst-placeholder { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--primary); background: linear-gradient(135deg,#1e3a8a,#38bdf8); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #fff; font-weight: bold; flex-shrink: 0; }
 .logo-area h1 { font-size: 1.2rem; color: var(--primary); }
-.logo-area span { font-size: 0.85rem; background: #334155; padding: 2px 8px; border-radius: 20px; color: var(--text-main); }
+.logo-area span { font-size: 0.85rem; background: #1e3a5c; padding: 2px 8px; border-radius: 20px; color: var(--text-main); }
 nav { display: flex; gap: 8px; flex-wrap: wrap; }
-nav a { color: #a0cce0; text-decoration: none; font-size: 0.88rem; padding: 8px 14px; border-radius: 8px; transition: all 0.3s cubic-bezier(.2,.8,.3,1); font-weight: 600; letter-spacing: 0.3px; border: 1px solid transparent; position: relative; overflow: hidden; }
-nav a::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(11,200,181,0.15),rgba(11,200,181,0)); opacity:0; transition:opacity 0.3s; border-radius:8px; }
-nav a:hover::before, nav a.active::before { opacity:1; }
-nav a:hover, nav a.active { color: #ffffff !important; background: rgba(11,200,181,0.12) !important; border-color: rgba(11,200,181,0.4); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(11,200,181,0.2), 0 1px 0 rgba(255,255,255,0.1) inset; text-shadow: 0 0 12px rgba(11,200,181,0.6); }
-nav a i { margin-right: 5px; transition: transform 0.3s; }
-nav a:hover i { transform: scale(1.2) rotate(-5deg); }
-nav a.nav-transp { color: #7dd3fc; border: 1px solid rgba(29,78,216,0.5); }
-nav a.nav-transp:hover { background: rgba(29,78,216,0.2) !important; border-color: #3b82f6; box-shadow: 0 4px 16px rgba(59,130,246,0.25); }
+nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; }
+nav a:hover, nav a.active { color: var(--text-main); background-color: #1e3a5c; }
+nav a.nav-transp { color: #7dd3fc; border: 1px solid #1d6ea8; }
+nav a.nav-transp:hover { background: #1d6ea840; color: #bae6fd; }
 
 .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
 .grid-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
 @media (max-width: 900px) { .grid-layout { grid-template-columns: 1fr; } }
-.section-card { background-color: var(--bg-card); border-radius: 12px; padding: 25px; border: 1px solid #334155; margin-bottom: 30px; }
-.section-title { font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+.section-card { background-color: var(--bg-card); border-radius: 12px; padding: 25px; border: 1px solid #1e4976; margin-bottom: 30px; }
+.section-title { font-size: 1.3rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #1e4976; padding-bottom: 10px; }
 .timeline { display: flex; flex-direction: column; gap: 20px; }
 .timeline-item { display: flex; gap: 15px; padding-left: 15px; border-left: 3px solid var(--primary); position: relative; }
 .timeline-item::before { content: ''; position: absolute; left: -8px; top: 5px; width: 13px; height: 13px; background-color: var(--bg-dark); border: 3px solid var(--primary); border-radius: 50%; }
 .timeline-date { font-size: 0.85rem; color: var(--accent); font-weight: bold; }
 
-/* MURAL */
-.mural-section { background: linear-gradient(135deg, #0d1b3e 0%, #0f172a 100%); border: 2px solid #3b82f6; border-radius: 16px; padding: 28px; margin-bottom: 30px; }
-.mural-title { text-align: center; margin-bottom: 22px; }
-.mural-title h3 { font-size: 1.6rem; color: #93c5fd; font-weight: 800; letter-spacing: 1px; }
-.mural-title p { color: #60a5fa; font-size: 0.95rem; margin-top: 5px; }
-/* IMÁGENES: grid de 3 columnas, altura automática para mostrar la imagen completa */
-.mural-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+/* ===== MURAL MUNDIAL 2026 ===== */
+.mural-section {
+  background: linear-gradient(135deg, #071a3e 0%, #0a2a5e 40%, #0d1f4a 100%);
+  border: 2px solid #38bdf8;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+.mural-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 50%, rgba(56,189,248,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 90% 50%, rgba(16,185,129,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+/* Decoración de estadio/campo de fútbol sutil */
+.mural-section::after {
+  content: '⚽';
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 1.8rem;
+  opacity: 0.15;
+}
+.mural-title { text-align: center; margin-bottom: 22px; position: relative; }
+.mural-title h3 { font-size: 1.6rem; color: #7dd3fc; font-weight: 800; letter-spacing: 1px; }
+.mural-title p { color: #38bdf8; font-size: 0.95rem; margin-top: 5px; }
+.mural-badge-mundial {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #1d4ed8, #0369a1);
+  border: 1px solid #38bdf8;
+  color: #bae6fd;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+/* Decoración de banderas del mundial */
+.mural-flags {
+  text-align: center;
+  font-size: 1.3rem;
+  letter-spacing: 4px;
+  margin-bottom: 14px;
+  opacity: 0.7;
+}
+
+/* Fotos: centro + costados */
+.mural-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+  align-items: start;
+}
 @media (max-width: 700px) { .mural-grid-3 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .mural-grid-3 { grid-template-columns: 1fr; } }
-.mural-img-box { border-radius: 10px; overflow: hidden; border: 2px solid #3b82f6; background: #1e1a3a; }
-.mural-img-box img { width: 100%; height: auto; display: block; object-fit: contain; }
+.mural-img-box {
+  border-radius: 10px;
+  overflow: hidden;
+  background: #071a3e;
+}
+.mural-img-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+/* Foto central destacada */
+.mural-img-box.center {
+  border: 3px solid #38bdf8;
+  box-shadow: 0 0 20px rgba(56,189,248,0.3);
+  border-radius: 12px;
+}
+.mural-img-box.side {
+  border: 2px solid #1e4976;
+  opacity: 0.92;
+  margin-top: 10px;
+}
+
 .mural-video-wrap { display: flex; justify-content: center; margin-bottom: 14px; }
-.mural-video-box { border-radius: 12px; overflow: hidden; border: 2px solid #3b82f6; background: #1e1a3a; width: 100%; max-width: 540px; }
+.mural-video-box { border-radius: 12px; overflow: hidden; border: 2px solid #38bdf8; background: #071a3e; width: 100%; max-width: 540px; box-shadow: 0 0 15px rgba(56,189,248,0.2); }
 .mural-video-box video { width: 100%; height: auto; max-height: 300px; object-fit: contain; display: block; }
+
 .mural-reactions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
-.reaction-btn { background: rgba(255,255,255,0.07); border: 1px solid #334155; color: white; padding: 9px 18px; border-radius: 30px; cursor: pointer; font-size: 1.2rem; transition: all 0.2s; display: flex; align-items: center; gap: 7px; }
-.reaction-btn:hover { background: rgba(59,130,246,0.2); border-color: #3b82f6; transform: scale(1.08); }
-.reaction-count { font-size: 0.85rem; color: #93c5fd; font-weight: bold; }
+.reaction-btn { background: rgba(56,189,248,0.08); border: 1px solid #1e4976; color: white; padding: 9px 18px; border-radius: 30px; cursor: pointer; font-size: 1.2rem; transition: all 0.2s; display: flex; align-items: center; gap: 7px; }
+.reaction-btn:hover { background: rgba(56,189,248,0.22); border-color: #38bdf8; transform: scale(1.08); }
+.reaction-count { font-size: 0.85rem; color: #7dd3fc; font-weight: bold; }
 .reaction-burst { position: fixed; pointer-events: none; z-index: 99999; font-size: 1.8rem; animation: burstUp 1.2s forwards; }
 @keyframes burstUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-160px) scale(1.5); opacity: 0; } }
 
 /* CUMPLEANOS */
-.birthday-section-wrap { background: linear-gradient(135deg, #0f172a, #1a0a2e); border: 2px solid var(--accent); border-radius: 16px; padding: 25px; margin-bottom: 30px; }
+.birthday-section-wrap { background: linear-gradient(135deg, #0a1628, #1a0a2e); border: 2px solid var(--accent); border-radius: 16px; padding: 25px; margin-bottom: 30px; }
 .birthday-section-header { text-align: center; margin-bottom: 20px; }
 .birthday-section-header h3 { font-size: 1.5rem; color: #fde68a; font-weight: 800; }
 .birthday-section-header p { color: var(--accent); font-size: 0.9rem; }
 .birthday-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 @media (max-width: 600px) { .birthday-grid { grid-template-columns: 1fr; } }
-.birthday-month-box { background: linear-gradient(135deg, #111827, #1e1a2e); padding: 15px; border-radius: 10px; border: 1px solid #f59e0b44; }
+.birthday-month-box { background: linear-gradient(135deg, #0d1e35, #1e1a2e); padding: 15px; border-radius: 10px; border: 1px solid #f59e0b44; }
 .birthday-month-title { color: var(--accent); font-size: 1rem; font-weight: bold; margin-bottom: 10px; border-bottom: 1px dashed #f59e0b55; padding-bottom: 5px; display: flex; align-items: center; gap: 7px; }
 .birthday-list { list-style: none; }
-.birthday-list li { font-size: 0.88rem; padding: 6px 0; border-bottom: 1px solid rgba(51,65,85,0.3); display: flex; align-items: center; gap: 6px; }
+.birthday-list li { font-size: 0.88rem; padding: 6px 0; border-bottom: 1px solid rgba(30,73,118,0.4); display: flex; align-items: center; gap: 6px; }
 .birthday-list li:last-child { border-bottom: none; }
 .birthday-date { color: var(--primary); font-weight: bold; margin-right: 3px; }
 
 /* HERRAMIENTAS */
-.herramientas-wrap { background: linear-gradient(135deg, #0c1a2e, #1e293b); border: 2px solid var(--primary); border-radius: 16px; padding: 25px; margin-bottom: 30px; }
+.herramientas-wrap { background: linear-gradient(135deg, #071a3e, #112240); border: 2px solid var(--primary); border-radius: 16px; padding: 25px; margin-bottom: 30px; }
 .herramientas-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; border-left: 3px solid var(--primary); padding-left: 12px; }
 .tabs-container { margin-top: 15px; }
-.tab-buttons { display: flex; gap: 10px; margin-bottom: 15px; background: #1e293b; padding: 5px; border-radius: 8px; }
+.tab-buttons { display: flex; gap: 10px; margin-bottom: 15px; background: #112240; padding: 5px; border-radius: 8px; }
 .tab-btn { flex: 1; background: transparent; border: none; color: var(--text-muted); padding: 10px; cursor: pointer; font-weight: bold; border-radius: 6px; transition: 0.3s; }
 .tab-btn.active { background-color: var(--primary); color: #fff; }
 .tab-content { display: none; max-height: 400px; overflow-y: auto; padding-right: 10px; }
 .tab-content.active { display: block; }
 .student-list { list-style: none; }
-.student-list li { padding: 10px 15px; background: #111827; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #4b5563; font-size: 0.95rem; }
-.org-card { background: #111827; padding: 15px; border-radius: 8px; margin-bottom: 12px; border: 1px solid #334155; }
+.student-list li { padding: 10px 15px; background: #0a1628; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #1e4976; font-size: 0.95rem; }
+.org-card { background: #0d1e35; padding: 15px; border-radius: 8px; margin-bottom: 12px; border: 1px solid #1e4976; }
 .org-role { font-size: 0.8rem; text-transform: uppercase; color: var(--primary); font-weight: bold; letter-spacing: 1px; }
 .org-name { font-size: 1.05rem; font-weight: bold; margin-top: 2px; }
 .org-birthday { font-size: 0.85rem; color: var(--accent); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
 
 /* FACEBOOK CARD */
-.fb-card { background: linear-gradient(135deg, #111827, #1a2744); border: 2px solid #1877f2; border-radius: 12px; padding: 20px; margin-bottom: 12px; text-align: center; }
+.fb-card { background: linear-gradient(135deg, #0d1e35, #1a2744); border: 2px solid #1877f2; border-radius: 12px; padding: 20px; margin-bottom: 12px; text-align: center; }
 .fb-card-title { color: #60a5fa; font-size: 1rem; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.fb-preview { background: #1e293b; border-radius: 10px; border: 1px solid #1877f240; padding: 16px; margin-bottom: 14px; text-align: left; }
+.fb-preview { background: #112240; border-radius: 10px; border: 1px solid #1877f240; padding: 14px; margin-bottom: 14px; text-align: left; }
 .fb-preview-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.fb-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg,#1877f2,#0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.fb-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg,#1877f2,#38bdf8); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
 .fb-page-name { font-weight: bold; font-size: 0.95rem; color: #e2e8f0; }
 .fb-page-sub { font-size: 0.75rem; color: #64748b; }
 .fb-post-text { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; margin-bottom: 10px; }
-.fb-post-img { width: 100%; border-radius: 8px; background: linear-gradient(135deg, #1e3a8a22, #0ea5e922); height: 100px; display: flex; align-items: center; justify-content: center; color: #60a5fa; font-size: 2rem; margin-bottom: 10px; border: 1px dashed #334155; }
-.fb-stats { font-size: 0.78rem; color: #64748b; border-top: 1px solid #334155; padding-top: 8px; display: flex; gap: 14px; }
+.fb-preview-img { width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+.fb-preview-img img { width: 100%; height: auto; display: block; border-radius: 8px; }
+.fb-like-note { font-size: 0.82rem; color: #7dd3fc; background: rgba(56,189,248,0.1); border: 1px solid #1e4976; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; text-align: center; }
 .fb-btn { display: inline-flex; align-items: center; gap: 8px; background: #1877f2; color: #fff; text-decoration: none; padding: 11px 22px; border-radius: 8px; font-weight: bold; font-size: 0.95rem; transition: all 0.3s; width: 100%; justify-content: center; }
 .fb-btn:hover { background: #1557b0; transform: scale(1.02); }
 
@@ -113,19 +194,19 @@ nav a.nav-transp:hover { background: rgba(29,78,216,0.2) !important; border-colo
 .btn-purple:hover { transform: scale(1.01); }
 
 /* FULLSCREEN TOOLS */
-.fullscreen-view { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0b0f19; z-index: 9999; overflow-y: auto; padding: 30px; color: #e2e8f0; }
-.view-header { background-color: #111827; border: 1px solid #1e293b; padding: 15px 25px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-.timer-box { background: #1e293b; padding: 8px 15px; border-radius: 6px; font-size: 1.1rem; font-weight: bold; color: var(--accent); border: 1px solid #475569; }
-.question-card { background: #1e293b; padding: 25px; border-radius: 10px; border: 1px solid #334155; margin-bottom: 20px; display: none; }
+.fullscreen-view { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #060e1e; z-index: 9999; overflow-y: auto; padding: 30px; color: #e2e8f0; }
+.view-header { background-color: #0d1e35; border: 1px solid #1e4976; padding: 15px 25px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.timer-box { background: #112240; padding: 8px 15px; border-radius: 6px; font-size: 1.1rem; font-weight: bold; color: var(--accent); border: 1px solid #1e4976; }
+.question-card { background: #112240; padding: 25px; border-radius: 10px; border: 1px solid #1e4976; margin-bottom: 20px; display: none; }
 .question-card.active { display: block; }
 .question-text { font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; color: #fff; }
 .options-list { list-style: none; }
-.options-list li { background: #0f172a; padding: 12px 15px; margin-bottom: 10px; border-radius: 6px; cursor: pointer; border: 1px solid #334155; transition: 0.2s; }
+.options-list li { background: #0a1628; padding: 12px 15px; margin-bottom: 10px; border-radius: 6px; cursor: pointer; border: 1px solid #1e4976; transition: 0.2s; }
 .options-list li:hover { background: #1e3a8a; border-color: var(--primary); }
-.options-list li.selected { background: #0ea5e9; color: #fff; border-color: #fff; }
+.options-list li.selected { background: #0369a1; color: #fff; border-color: #7dd3fc; }
 .trivia-navigation { display: flex; justify-content: space-between; margin-top: 20px; gap: 15px; }
-.btn-nav-trivia { background: #334155; color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-.btn-nav-trivia:hover:not(:disabled) { background: #475569; }
+.btn-nav-trivia { background: #1e3a5c; color: white; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-nav-trivia:hover:not(:disabled) { background: #2a5080; }
 .btn-nav-trivia:disabled { opacity: 0.3; cursor: not-allowed; }
 .btn-finalizar { background: var(--secondary); }
 .btn-finalizar:hover { background: #059669; }
@@ -135,8 +216,8 @@ nav a.nav-transp:hover { background: rgba(29,78,216,0.2) !important; border-colo
 .certificate-box::before { content: ''; position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px; border: 2px solid #ea580c; pointer-events: none; border-radius: 2px; }
 .certificate-box::after { content: '✦'; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 1.5rem; color: #1e4d41; opacity: 0.4; }
 .cert-corner { position: absolute; font-size: 1.8rem; opacity: 0.25; color: #1e4d41; }
-.cert-corner.tl { top: 18px; left: 18px; } .cert-corner.tr { top: 18px; right: 18px; }
-.cert-corner.bl { bottom: 18px; left: 18px; } .cert-corner.br { bottom: 18px; right: 18px; }
+.cert-corner.tl{top:18px;left:18px;}.cert-corner.tr{top:18px;right:18px;}
+.cert-corner.bl{bottom:18px;left:18px;}.cert-corner.br{bottom:18px;right:18px;}
 .cert-institution { font-family: 'Georgia', serif; font-size: 1.35rem; font-weight: bold; color: #1e4d41; text-transform: uppercase; margin-bottom: 3px; margin-top: 20px; letter-spacing: 1px; }
 .cert-sub { font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; color: #475569; font-weight: bold; margin-bottom: 22px; }
 .cert-divider { border: none; height: 2px; background: linear-gradient(90deg, transparent, #ea580c, transparent); margin: 0 60px 22px; }
@@ -152,30 +233,30 @@ nav a.nav-transp:hover { background: rgba(29,78,216,0.2) !important; border-colo
 
 .form-group { margin-bottom: 20px; }
 .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--accent); }
-.select-custom { background: #1e293b; border: 1px solid #475569; color: white; padding: 12px; border-radius: 6px; width: 100%; max-width: 400px; font-size: 1rem; }
-.idea-result-card { background: #1e293b; border: 2px dashed var(--secondary); border-radius: 10px; padding: 25px; margin-top: 25px; display: none; }
-.gen-section { background: #111827; border-radius: 8px; padding: 18px; margin-bottom: 16px; border-left: 4px solid var(--secondary); }
+.select-custom { background: #112240; border: 1px solid #1e4976; color: white; padding: 12px; border-radius: 6px; width: 100%; max-width: 400px; font-size: 1rem; }
+.idea-result-card { background: #112240; border: 2px dashed var(--secondary); border-radius: 10px; padding: 25px; margin-top: 25px; display: none; }
+.gen-section { background: #0d1e35; border-radius: 8px; padding: 18px; margin-bottom: 16px; border-left: 4px solid var(--secondary); }
 .gen-section-title { color: var(--accent); font-weight: bold; font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-.gen-detail { color: #cbd5e1; font-size: 0.92rem; margin-bottom: 6px; line-height: 1.6; }
+.gen-detail { color: #bae6fd; font-size: 0.92rem; margin-bottom: 6px; line-height: 1.6; }
 .gen-detail strong { color: var(--primary); }
-.gen-tag { display: inline-block; background: #0ea5e920; color: var(--primary); border: 1px solid var(--primary); border-radius: 20px; padding: 3px 10px; font-size: 0.8rem; margin: 3px 3px 3px 0; }
+.gen-tag { display: inline-block; background: #38bdf820; color: var(--primary); border: 1px solid var(--primary); border-radius: 20px; padding: 3px 10px; font-size: 0.8rem; margin: 3px 3px 3px 0; }
 .gen-tag-green { background: #10b98120; color: var(--secondary); border-color: var(--secondary); }
 .gen-tag-amber { background: #f59e0b20; color: var(--accent); border-color: var(--accent); }
 .nivel-selects { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px; }
 .nivel-selects .form-group { margin-bottom: 0; }
-.mailbox-card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 30px; max-width: 600px; margin: 0 auto; text-align: center; }
-.textarea-custom { width: 100%; height: 150px; background: #0f172a; border: 1px solid #475569; color: white; padding: 15px; border-radius: 8px; font-size: 1rem; resize: none; margin-top: 15px; margin-bottom: 15px; }
+.mailbox-card { background: #112240; border: 1px solid #1e4976; border-radius: 10px; padding: 30px; max-width: 600px; margin: 0 auto; text-align: center; }
+.textarea-custom { width: 100%; height: 150px; background: #0a1628; border: 1px solid #1e4976; color: white; padding: 15px; border-radius: 8px; font-size: 1rem; resize: none; margin-top: 15px; margin-bottom: 15px; }
 .trivia-especialidad-btns { display: flex; gap: 15px; margin: 15px 0; flex-wrap: wrap; }
-.esp-btn { flex: 1; min-width: 180px; background: #1e293b; border: 2px solid #334155; color: var(--text-muted); padding: 14px; border-radius: 10px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.3s; }
+.esp-btn { flex: 1; min-width: 180px; background: #112240; border: 2px solid #1e4976; color: var(--text-muted); padding: 14px; border-radius: 10px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: 0.3s; }
 .esp-btn.selected-ini { background: linear-gradient(135deg,#ec4899,#a855f7); color: #fff; border-color: #ec4899; }
 .esp-btn.selected-pri { background: linear-gradient(135deg,#047857,#10b981); color: #fff; border-color: #10b981; }
 .esp-required { color: var(--incorrect); font-size: 0.85rem; display: none; margin-top: 5px; }
 
-footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #334155; margin-top: 5px; }
+footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #1e4976; margin-top: 5px; }
 
 /* TRANSPARENCIA */
-#transparencia-pantalla { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0b0f19; z-index: 9999; overflow-y: auto; color: #e2e8f0; }
-.transp-header { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 18px 30px; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+#transparencia-pantalla { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #060e1e; z-index: 9999; overflow-y: auto; color: #e2e8f0; }
+.transp-header { background: linear-gradient(135deg, #0a1628, #112240); padding: 18px 30px; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
 .transp-header h2 { color: var(--primary); font-size: 1.15rem; display: flex; align-items: center; gap: 10px; }
 .transp-body { max-width: 900px; margin: 0 auto; padding: 40px 25px; }
 .transp-hero { text-align: center; margin-bottom: 45px; }
@@ -184,113 +265,40 @@ footer { text-align: center; padding: 20px; color: var(--text-muted); font-size:
 .transp-divider { height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); margin: 38px 0; border: none; }
 .transp-sec-title { font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
 .transp-sec-sub { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 22px; }
-.transp-claridad { background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 25px; margin-bottom: 28px; }
-.badge-no-oficial { display: inline-flex; align-items: center; gap: 8px; background: #0ea5e920; border: 1px solid #0ea5e9; color: #7dd3fc; padding: 5px 15px; border-radius: 20px; font-size: 0.82rem; font-weight: bold; margin-bottom: 14px; }
-.transp-claridad p { color: #cbd5e1; font-size: 0.93rem; line-height: 1.75; margin-bottom: 10px; }
+.transp-claridad { background: #112240; border: 1px solid #1e4976; border-radius: 14px; padding: 25px; margin-bottom: 28px; }
+.badge-no-oficial { display: inline-flex; align-items: center; gap: 8px; background: #38bdf820; border: 1px solid #38bdf8; color: #7dd3fc; padding: 5px 15px; border-radius: 20px; font-size: 0.82rem; font-weight: bold; margin-bottom: 14px; }
+.transp-claridad p { color: #bae6fd; font-size: 0.93rem; line-height: 1.75; margin-bottom: 10px; }
 .transp-claridad strong { color: #7dd3fc; }
-.transp-claridad em { color: var(--text-muted); font-size: 0.82rem; display: block; margin-top: 10px; border-top: 1px dashed #334155; padding-top: 10px; font-style: italic; }
+.transp-claridad em { color: var(--text-muted); font-size: 0.82rem; display: block; margin-top: 10px; border-top: 1px dashed #1e4976; padding-top: 10px; font-style: italic; }
 .compromisos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
 @media (max-width: 600px) { .compromisos-grid { grid-template-columns: 1fr; } }
-.comp-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: border-color 0.3s; }
+.comp-card { background: #112240; border: 1px solid #1e4976; border-radius: 12px; padding: 20px; transition: border-color 0.3s; }
 .comp-card:hover { border-color: var(--primary); }
 .comp-icon { font-size: 1.7rem; margin-bottom: 9px; }
 .comp-title { color: var(--primary); font-weight: bold; font-size: 0.9rem; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.5px; }
 .comp-text { color: #94a3b8; font-size: 0.85rem; line-height: 1.6; }
 .uso-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
 @media (max-width: 600px) { .uso-grid { grid-template-columns: 1fr; } }
-.uso-card { background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 18px; }
+.uso-card { background: #0d1e35; border: 1px solid #1e4976; border-radius: 10px; padding: 18px; }
 .uso-icon { font-size: 1.4rem; margin-bottom: 7px; }
 .uso-title { font-size: 0.88rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; }
 .uso-text { font-size: 0.82rem; color: #64748b; line-height: 1.6; }
-.priv-box { background: linear-gradient(135deg, #0f172a, #1a1035); border: 1px solid #334155; border-radius: 14px; padding: 28px; margin-bottom: 28px; }
+.priv-box { background: linear-gradient(135deg, #0a1628, #1a1035); border: 1px solid #1e4976; border-radius: 14px; padding: 28px; margin-bottom: 28px; }
 .priv-box h3 { font-size: 1.15rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
 .priv-box p.sub { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 18px; }
 .priv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 @media (max-width: 700px) { .priv-grid { grid-template-columns: 1fr 1fr; } }
-.priv-item { background: #1e293b; border-radius: 10px; padding: 15px; text-align: center; border: 1px solid #334155; }
+.priv-item { background: #112240; border-radius: 10px; padding: 15px; text-align: center; border: 1px solid #1e4976; }
 .priv-icon { font-size: 1.5rem; margin-bottom: 7px; display: block; }
 .priv-title { font-size: 0.8rem; font-weight: bold; color: var(--primary); margin-bottom: 4px; }
 .priv-text { font-size: 0.75rem; color: #64748b; line-height: 1.5; }
-
-/* ===== DISEÑO PROFESIONAL + ANIMACIONES ===== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
-* { font-family: 'Inter', 'Segoe UI', sans-serif; }
-
-/* HEADER glassmorphism al scroll */
-header { transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s; border-bottom: 1px solid rgba(11,200,181,0.15); }
-header.scrolled { background: rgba(8,12,18,0.85) !important; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 4px 32px rgba(11,200,181,0.10); border-bottom: 1px solid rgba(11,200,181,0.25); }
-nav a { transition: color 0.25s, background 0.25s; }
-nav a:hover { color: #0bc8b5 !important; background: rgba(11,200,181,0.1) !important; }
-
-/* TEXTOS MÁS VISIBLES */
-body { color: #e8f4f8; }
-.section-title { color: #ffffff; font-weight: 800; border-bottom-color: rgba(11,200,181,0.3); }
-.timeline-item h4 { color: #ffffff; font-size: 1.05rem; }
-p, li, .org-name, .fb-post-text { color: #c8dce8; }
-.text-muted, .herramientas-desc { color: #8ab4c8 !important; }
-
-/* TARJETAS con glow hover */
-.section-card { border: 1px solid rgba(11,200,181,0.12); background: linear-gradient(145deg, #0f1923, #0d1720); transition: transform 0.35s cubic-bezier(.2,.8,.3,1), box-shadow 0.35s, border-color 0.35s; }
-.section-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(11,200,181,0.15), 0 0 0 1px rgba(11,200,181,0.2); border-color: rgba(11,200,181,0.35); }
-.org-card { border: 1px solid rgba(11,200,181,0.1); background: linear-gradient(135deg,#0d1720,#0f1f2e); transition: transform 0.3s, box-shadow 0.3s; }
-.org-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(11,200,181,0.12); }
-
-/* BIRTHDAY con glow ámbar */
-.birthday-section-wrap { border-color: rgba(245,158,11,0.4); background: linear-gradient(135deg,#0d1215,#14100a); }
-.birthday-month-box { transition: transform 0.3s, box-shadow 0.3s; }
-.birthday-month-box:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(245,158,11,0.12); }
-.birthday-list li { color: #d4c8a8; }
-
-/* MURAL borde teal */
-.mural-section { border-color: rgba(11,200,181,0.5) !important; box-shadow: 0 0 40px rgba(11,200,181,0.08); }
-.mural-img-box { border-color: rgba(11,200,181,0.3) !important; transition: transform 0.3s, box-shadow 0.3s; }
-.mural-img-box:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(11,200,181,0.2); }
-.reaction-btn:hover { background: rgba(11,200,181,0.15) !important; border-color: #0bc8b5 !important; box-shadow: 0 0 16px rgba(11,200,181,0.2); }
-
-/* HERRAMIENTAS wrap */
-.herramientas-wrap { border-color: rgba(11,200,181,0.3); background: linear-gradient(135deg,#080c12,#0d1720); }
-
-/* FACEBOOK card */
-.fb-card { border-color: rgba(24,119,242,0.4); transition: box-shadow 0.3s, transform 0.3s; }
-.fb-card:hover { box-shadow: 0 8px 32px rgba(24,119,242,0.2); transform: translateY(-3px); }
-.fb-btn { background: linear-gradient(135deg,#1877f2,#0ea5e9); transition: all 0.3s; }
-.fb-btn:hover { background: linear-gradient(135deg,#0ea5e9,#0bc8b5); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,0.3); }
-
-/* STUDENT LIST */
-.student-list li { background: #0d1720; border-left-color: rgba(11,200,181,0.4); color: #c8dce8; transition: background 0.2s, border-color 0.2s; }
-.student-list li:hover { background: #112030; border-left-color: #0bc8b5; }
-
-/* FOOTER */
-footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
-
-/* FADE-IN AL SCROLL */
-.fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(.2,.8,.3,1), transform 0.7s cubic-bezier(.2,.8,.3,1); }
-.fade-in-up.visible { opacity: 1; transform: translateY(0); }
-.fade-in-up.delay-1 { transition-delay: 0.1s; }
-.fade-in-up.delay-2 { transition-delay: 0.2s; }
-.fade-in-up.delay-3 { transition-delay: 0.3s; }
-
-/* GLOW PULSE en el logo */
-.logo-inst-placeholder { animation: logoPulse 3s ease-in-out infinite; }
-@keyframes logoPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(11,200,181,0); } 50% { box-shadow: 0 0 16px 4px rgba(11,200,181,0.35); } }
-
-/* BOTONES principales */
-.btn-launch-tool { transition: transform 0.25s, box-shadow 0.25s !important; }
-.btn-launch-tool:hover { transform: translateY(-2px) scale(1.01) !important; box-shadow: 0 8px 28px rgba(11,200,181,0.25) !important; }
-
-/* TABS */
-.tab-btn.active { background: linear-gradient(135deg,#0bc8b5,#08a090); color: #fff; }
-.tab-btn:hover:not(.active) { background: rgba(11,200,181,0.1); color: #0bc8b5; }
-
-/* LÍNEA TEAL decorativa en section-title */
-.section-title::after { content:''; display:block; flex:1; height:1px; background:linear-gradient(90deg,rgba(11,200,181,0.3),transparent); margin-left:10px; }
 </style>
 </head>
 <body>
 
 <header id="main-header">
   <div class="logo-area">
-    <div class="logo-inst-placeholder" title="IESPP Jesús de Nazareth">JN</div>
+    <div class="logo-inst-placeholder">JN</div>
     <div>
       <h1><i class="fa-solid fa-graduation-cap"></i> VII CICLO</h1>
       <span>Inicial y Primaria</span>
@@ -306,32 +314,41 @@ footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
 
 <div class="container" id="main-content">
 
-  <!-- MURAL DÍA DEL PADRE -->
-  <div id="inicio" class="mural-section fade-in-up" style="position:relative;overflow:hidden;background:linear-gradient(160deg,#071e10 0%,#0a2a18 50%,#071e10 100%);border:2px solid #22c55e;">
-    <canvas id="muralCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.35;"></canvas>
-    <svg style="position:absolute;left:-10px;bottom:0;height:88%;opacity:0.13;pointer-events:none;" viewBox="0 0 120 280" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="22" rx="18" ry="20" fill="#fff"/><rect x="44" y="42" width="32" height="70" rx="10" fill="#fff"/><rect x="30" y="46" width="14" height="55" rx="7" fill="#fff" transform="rotate(-18,37,73)"/><rect x="76" y="46" width="14" height="55" rx="7" fill="#fff" transform="rotate(18,83,73)"/><rect x="46" y="108" width="14" height="80" rx="7" fill="#fff" transform="rotate(8,53,148)"/><rect x="62" y="108" width="14" height="80" rx="7" fill="#fff" transform="rotate(-8,69,148)"/><ellipse cx="50" cy="192" rx="14" ry="9" fill="#fff" transform="rotate(15,50,192)"/><ellipse cx="72" cy="190" rx="14" ry="9" fill="#fff" transform="rotate(-10,72,190)"/></svg>
-    <svg style="position:absolute;right:-10px;bottom:0;height:85%;opacity:0.13;pointer-events:none;" viewBox="0 0 120 280" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="22" rx="18" ry="20" fill="#fff"/><rect x="44" y="42" width="32" height="70" rx="10" fill="#fff"/><rect x="20" y="30" width="14" height="60" rx="7" fill="#fff" transform="rotate(-55,27,60)"/><rect x="86" y="30" width="14" height="60" rx="7" fill="#fff" transform="rotate(55,93,60)"/><rect x="46" y="108" width="14" height="80" rx="7" fill="#fff" transform="rotate(5,53,148)"/><rect x="62" y="108" width="14" height="80" rx="7" fill="#fff" transform="rotate(-5,69,148)"/><ellipse cx="50" cy="192" rx="14" ry="9" fill="#fff"/><ellipse cx="72" cy="190" rx="14" ry="9" fill="#fff"/></svg>
-    <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0.06;" preserveAspectRatio="none" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="798" height="298" fill="none" stroke="#fff" stroke-width="3"/><line x1="400" y1="1" x2="400" y2="299" stroke="#fff" stroke-width="2"/><circle cx="400" cy="150" r="60" fill="none" stroke="#fff" stroke-width="2"/><circle cx="400" cy="150" r="4" fill="#fff"/><rect x="1" y="80" width="100" height="140" fill="none" stroke="#fff" stroke-width="2"/><rect x="699" y="80" width="100" height="140" fill="none" stroke="#fff" stroke-width="2"/></svg>
-    <div class="mural-title" style="position:relative;">
+  <!-- MURAL DÍA DEL PADRE — TEMÁTICA MUNDIAL 2026 -->
+  <div id="inicio" class="mural-section">
+    <div class="mural-title">
+      <div class="mural-badge-mundial">⚽ FIFA World Cup 2026 · USA · CAN · MEX</div>
       <h3>👨‍👧 Mural — Día del Padre</h3>
       <p>Un espacio especial para celebrar y homenajear a los padres de nuestra comunidad del VII Ciclo 💙</p>
     </div>
-    <div class="mural-grid-3">
-      <div class="mural-img-box"><img src="imagenpadre1.jpeg" alt="Día del Padre foto 1"></div>
-      <div class="mural-img-box"><img src="imagenpadre3.jpeg" alt="Día del Padre foto 3"></div>
-      <div class="mural-img-box"><img src="imagenpadre2.png" alt="Día del Padre foto 2"></div>
+    <div class="mural-flags">🇵🇪 🇧🇷 🇦🇷 🇺🇸 🇲🇽 🇨🇦 🇩🇪 🇫🇷 🇪🇸 🏆</div>
+
+    <!-- Orden: izquierda=padre2, centro=padre3 (destacada), derecha=padre1 -->
+    <!-- Fila 1: padre5 | padre4 (centro) | padre6 -->
+    <div class="mural-grid-3" style="margin-bottom:10px;">
+      <div class="mural-img-box side"><img src="imagenpadre5.jpg" alt="Día del Padre foto 5"></div>
+      <div class="mural-img-box center"><img src="imagenpadre4.jpg" alt="Día del Padre foto 4 - centro"></div>
+      <div class="mural-img-box side"><img src="imagenpadre6.jpg" alt="Día del Padre foto 6"></div>
     </div>
+    <!-- Fila 2: padre2 | padre3 (centro) | padre1 -->
+    <div class="mural-grid-3">
+      <div class="mural-img-box side"><img src="imagenpadre2.png" alt="Día del Padre foto 2"></div>
+      <div class="mural-img-box center"><img src="imagenpadre3.jpeg" alt="Día del Padre foto 3 - centro"></div>
+      <div class="mural-img-box side"><img src="imagenpadre1.jpeg" alt="Día del Padre foto 1"></div>
+    </div>
+
     <div class="mural-video-wrap">
       <div class="mural-video-box">
         <video src="videopadre.mp4" controls></video>
       </div>
     </div>
+
     <div class="mural-reactions">
-      <button class="reaction-btn" onclick="reaccionar(this,'❤️')">❤️ <span class="reaction-count" id="cnt-heart">0</span></button>
-      <button class="reaction-btn" onclick="reaccionar(this,'⭐')">⭐ <span class="reaction-count" id="cnt-star">0</span></button>
-      <button class="reaction-btn" onclick="reaccionar(this,'🎉')">🎉 <span class="reaction-count" id="cnt-party">0</span></button>
-      <button class="reaction-btn" onclick="reaccionar(this,'👨‍👧')">👨‍👧 <span class="reaction-count" id="cnt-padre">0</span></button>
-      <button class="reaction-btn" onclick="reaccionar(this,'🥳')">🥳 <span class="reaction-count" id="cnt-fiesta">0</span></button>
+      <button class="reaction-btn" onclick="reaccionar(this,'heart','❤️')">❤️ <span class="reaction-count" id="cnt-heart">0</span></button>
+      <button class="reaction-btn" onclick="reaccionar(this,'star','⭐')">⭐ <span class="reaction-count" id="cnt-star">0</span></button>
+      <button class="reaction-btn" onclick="reaccionar(this,'party','🎉')">🎉 <span class="reaction-count" id="cnt-party">0</span></button>
+      <button class="reaction-btn" onclick="reaccionar(this,'padre','👨‍👧')">👨‍👧 <span class="reaction-count" id="cnt-padre">0</span></button>
+      <button class="reaction-btn" onclick="reaccionar(this,'fiesta','🥳')">🥳 <span class="reaction-count" id="cnt-fiesta">0</span></button>
     </div>
   </div>
 
@@ -339,7 +356,7 @@ footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
     <main>
 
       <!-- ACTIVIDADES -->
-      <div class="section-card fade-in-up">
+      <div class="section-card">
         <h3 class="section-title"><i class="fa-solid fa-calendar-check" style="color:var(--primary)"></i> Próximas Actividades del Ciclo</h3>
         <div class="timeline">
           <div class="timeline-item">
@@ -367,7 +384,7 @@ footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
       </div>
 
       <!-- CUMPLEAÑOS -->
-      <div class="birthday-section-wrap fade-in-up delay-1">
+      <div class="birthday-section-wrap">
         <div class="birthday-section-header">
           <h3>🎂 Próximos Cumpleaños del Aula 🎂</h3>
           <p>¡Celebremos juntos cada fecha especial de nuestros compañeros! 🎁</p>
@@ -421,28 +438,11 @@ footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
 
       <!-- HERRAMIENTAS -->
       <div id="herramientas" class="herramientas-wrap">
-        <h3 class="section-title"><i class="fa-solid fa-laptop-code" style="color:var(--primary)"></i> Herramientas Digitales del VII Ciclo</h3>
+        <h3 class="section-title"><i class="fa-solid fa-laptop-code" style="color:var(--secondary)"></i> Herramientas Digitales del VII Ciclo</h3>
         <p class="herramientas-desc">Accede a los sistemas interactivos exclusivos desarrollados para optimizar nuestra formación pedagógica y comunicación del VII Ciclo.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px;">
-          <div style="background:linear-gradient(145deg,#0d1f2e,#0a1a26);border:1px solid rgba(11,200,181,0.4);border-radius:14px;padding:24px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(11,200,181,0.1);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px rgba(11,200,181,0.25)';this.style.borderColor='rgba(11,200,181,0.7)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 32px rgba(11,200,181,0.1)';this.style.borderColor='rgba(11,200,181,0.4)'">
-            <div style="background:linear-gradient(135deg,#0bc8b5,#08a090);border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 16px rgba(11,200,181,0.4);"><i class="fa-solid fa-fire" style="color:#fff;"></i></div>
-            <div style="font-size:1.1rem;font-weight:800;color:#ffffff;line-height:1.3;">Trivia de<br><em style="color:#0bc8b5;">Conocimientos</em></div>
-            <div style="font-size:0.85rem;color:#b0ccd8;line-height:1.6;flex:1;">Pon a prueba tus conocimientos del CNEB con retroalimentación automática y certificación digital.</div>
-            <button onclick="abrirHerramienta('simulador')" style="background:linear-gradient(135deg,#0bc8b5,#08a090);border:none;color:#fff;padding:12px;border-radius:8px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:0.25s;text-align:center;box-shadow:0 4px 14px rgba(11,200,181,0.3);" onmouseover="this.style.transform='scale(1.03)';this.style.boxShadow='0 6px 20px rgba(11,200,181,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 14px rgba(11,200,181,0.3)'">Iniciar Trivia →</button>
-          </div>
-          <div style="background:linear-gradient(145deg,#0d1f2e,#0a1a26);border:1px solid rgba(11,200,181,0.4);border-radius:14px;padding:24px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(11,200,181,0.1);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px rgba(11,200,181,0.25)';this.style.borderColor='rgba(11,200,181,0.7)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 32px rgba(11,200,181,0.1)';this.style.borderColor='rgba(11,200,181,0.4)'">
-            <div style="background:linear-gradient(135deg,#0bc8b5,#08a090);border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 16px rgba(11,200,181,0.4);"><i class="fa-solid fa-wand-magic-sparkles" style="color:#fff;"></i></div>
-            <div style="font-size:1.1rem;font-weight:800;color:#ffffff;line-height:1.3;">Generador de<br><em style="color:#0bc8b5;">Sesiones Dinámicas</em></div>
-            <div style="font-size:0.85rem;color:#b0ccd8;line-height:1.6;flex:1;">Construye esquemas pedagógicos rápidos con situaciones significativas y criterios de evaluación.</div>
-            <button onclick="abrirHerramienta('generador')" style="background:linear-gradient(135deg,#0bc8b5,#08a090);border:none;color:#fff;padding:12px;border-radius:8px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:0.25s;text-align:center;box-shadow:0 4px 14px rgba(11,200,181,0.3);" onmouseover="this.style.transform='scale(1.03)';this.style.boxShadow='0 6px 20px rgba(11,200,181,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 14px rgba(11,200,181,0.3)'">Generar Esquema →</button>
-          </div>
-          <div style="background:linear-gradient(145deg,#0d1f2e,#0a1a26);border:1px solid rgba(11,200,181,0.4);border-radius:14px;padding:24px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 8px 32px rgba(11,200,181,0.1);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px rgba(11,200,181,0.25)';this.style.borderColor='rgba(11,200,181,0.7)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 32px rgba(11,200,181,0.1)';this.style.borderColor='rgba(11,200,181,0.4)'">
-            <div style="background:linear-gradient(135deg,#0bc8b5,#08a090);border-radius:10px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 16px rgba(11,200,181,0.4);"><i class="fa-solid fa-envelope-open-text" style="color:#fff;"></i></div>
-            <div style="font-size:1.1rem;font-weight:800;color:#ffffff;line-height:1.3;">Buzón de<br><em style="color:#0bc8b5;">Sugerencias</em></div>
-            <div style="font-size:0.85rem;color:#b0ccd8;line-height:1.6;flex:1;">Envía tus sugerencias directamente a los delegados del ciclo de forma anónima o identificada.</div>
-            <button onclick="abrirHerramienta('buzon')" style="background:linear-gradient(135deg,#0bc8b5,#08a090);border:none;color:#fff;padding:12px;border-radius:8px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:0.25s;text-align:center;box-shadow:0 4px 14px rgba(11,200,181,0.3);" onmouseover="this.style.transform='scale(1.03)';this.style.boxShadow='0 6px 20px rgba(11,200,181,0.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 14px rgba(11,200,181,0.3)'">Abrir Buzón →</button>
-          </div>
-        </div>
+        <button class="btn-launch-tool btn-orange" onclick="abrirHerramienta('simulador')"><i class="fa-solid fa-fire"></i> 1. Pon a prueba tus conocimientos en esta Trivia</button>
+        <button class="btn-launch-tool btn-green" onclick="abrirHerramienta('generador')"><i class="fa-solid fa-wand-magic-sparkles"></i> 2. Generador Automático de Sesiones Dinámicas</button>
+        <button class="btn-launch-tool btn-purple" onclick="abrirHerramienta('buzon')"><i class="fa-solid fa-envelope-open-text"></i> 3. Buzón de Sugerencia Hacia los delegados del ciclo</button>
       </div>
 
     </main>
@@ -462,43 +462,16 @@ footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
           <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> Cumpleaños: 10 de Agosto</div>
         </div>
       </div>
+
       <div class="section-card">
         <h3 class="section-title"><i class="fa-solid fa-users-gear" style="color:var(--primary)"></i> Comité General</h3>
-        <div class="org-card">
-          <div class="org-role">Presidenta</div>
-          <div class="org-name">Flor Valerio Mayta</div>
-          <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 10 de Agosto</div>
-        </div>
-        <div class="org-card">
-          <div class="org-role">Vicepresidente</div>
-          <div class="org-name">Ederson Lozano</div>
-          <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 05 de Junio</div>
-        </div>
-        <div class="org-card">
-          <div class="org-role">Secretaria</div>
-          <div class="org-name">Triana Serrano Arias</div>
-          <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 22 de Julio</div>
-        </div>
-        <div class="org-card">
-          <div class="org-role">Tesorera</div>
-          <div class="org-name">Nuria Huari Villalobos</div>
-          <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 10 de Junio</div>
-        </div>
-        <div class="org-card">
-          <div class="org-role">Coordinadora de Actividades Artísticas</div>
-          <div class="org-name">Geraldie Sánchez Yauri</div>
-          <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 12 de Abril</div>
-        </div>
-        <div class="org-card">
-          <div class="org-role">Vocal 1</div>
-          <div class="org-name">Juana Medina Guerra</div>
-          <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 09 de Mayo</div>
-        </div>
-        <div class="org-card">
-          <div class="org-role">Vocal 2</div>
-          <div class="org-name">Yenifer Garcia Condori</div>
-          <div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 03 de Julio</div>
-        </div>
+        <div class="org-card"><div class="org-role">Presidenta</div><div class="org-name">Flor Valerio Mayta</div><div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 10 de Agosto</div></div>
+        <div class="org-card"><div class="org-role">Vicepresidente</div><div class="org-name">Ederson Lozano</div><div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 05 de Junio</div></div>
+        <div class="org-card"><div class="org-role">Secretaria</div><div class="org-name">Triana Serrano Arias</div><div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 22 de Julio</div></div>
+        <div class="org-card"><div class="org-role">Tesorera</div><div class="org-name">Nuria Huari Villalobos</div><div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 10 de Junio</div></div>
+        <div class="org-card"><div class="org-role">Coordinadora de Actividades Artísticas</div><div class="org-name">Geraldie Sánchez Yauri</div><div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 12 de Abril</div></div>
+        <div class="org-card"><div class="org-role">Vocal 1</div><div class="org-name">Juana Medina Guerra</div><div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 09 de Mayo</div></div>
+        <div class="org-card"><div class="org-role">Vocal 2</div><div class="org-name">Yenifer Garcia Condori</div><div class="org-birthday"><i class="fa-solid fa-cake-candles"></i> 03 de Julio</div></div>
       </div>
 
       <!-- FACEBOOK -->
@@ -506,18 +479,21 @@ footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
         <div class="fb-card-title"><i class="fa-brands fa-facebook" style="color:#1877f2;font-size:1.3rem;"></i> Nuestra Página de Facebook</div>
         <div class="fb-preview">
           <div class="fb-preview-header">
-            <div class="fb-avatar" style="background:none;padding:0;overflow:hidden;"><img src="imagenpaginafb.jpg" alt="Página Facebook VII Ciclo" style="width:42px;height:42px;border-radius:50%;object-fit:cover;"></div>
+            <div class="fb-avatar">📘</div>
             <div>
               <div class="fb-page-name">VII Ciclo — IESPP Jesús de Nazareth</div>
               <div class="fb-page-sub"><i class="fa-solid fa-earth-americas" style="font-size:0.7rem;"></i> Página del Aula · Pública</div>
             </div>
           </div>
           <div class="fb-post-text">
-            📚 Espacio oficial del VII Ciclo de Educación Inicial y Primaria del IESPP «Jesús de Nazareth». Aquí compartimos actividades, fotos, novedades y momentos especiales de nuestra comunidad de futuros docentes. ¡Únete y sigue nuestra historia! 🎓💙
+            📚 Espacio del VII Ciclo de Educación Inicial y Primaria del IESPP «Jesús de Nazareth». Aquí compartimos actividades, fotos y momentos especiales de nuestra comunidad. 🎓💙
           </div>
-          <div class="fb-post-img" style="background:none;height:auto;border:none;padding:0;"><img src="imagenpaginafb.jpg" alt="Página Facebook VII Ciclo" style="width:100%;border-radius:8px;display:block;"></div>
-          <div class="fb-stats" style="justify-content:center;color:#60a5fa;font-size:0.85rem;">
-            <span>👍 ¡No te olvides de dar like a nuestra página!</span>
+          <!-- Imagen de la página de Facebook -->
+          <div class="fb-preview-img">
+            <img src="imagenpaginafb.jpg" alt="Vista previa página Facebook VII Ciclo">
+          </div>
+          <div class="fb-like-note">
+            👍 ¡No te olvides de dar like a nuestra página!
           </div>
         </div>
         <a href="https://www.facebook.com/share/1BLAhnjoUq/" target="_blank" rel="noopener noreferrer" class="fb-btn">
@@ -538,7 +514,7 @@ footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
   <div id="sim-setup" style="max-width:600px;margin:0 auto;">
     <h2 style="margin-bottom:10px;">Control de Conocimientos y Aula 2026</h2>
     <p style="color:var(--text-muted);margin-bottom:20px;">Ingresa tus datos y selecciona tu especialidad. El tiempo límite es de 20 minutos.</p>
-    <input type="text" id="student-name-input" placeholder="Tu Nombre y Apellido completo" autocomplete="off" style="background:#1e293b;border:1px solid #475569;color:white;padding:12px;border-radius:6px;width:100%;margin-bottom:15px;display:block;font-size:1rem;">
+    <input type="text" id="student-name-input" placeholder="Tu Nombre y Apellido completo" autocomplete="off" style="background:#112240;border:1px solid #1e4976;color:white;padding:12px;border-radius:6px;width:100%;margin-bottom:15px;display:block;font-size:1rem;">
     <label style="color:var(--accent);font-weight:bold;display:block;margin-bottom:8px;">Selecciona tu Especialidad: <span style="color:var(--incorrect)">*</span></label>
     <div class="trivia-especialidad-btns">
       <button class="esp-btn" id="btn-ini" onclick="seleccionarEsp('inicial')">🌸 Educación Inicial</button>
@@ -663,101 +639,61 @@ footer { border-top-color: rgba(11,200,181,0.15); color: #6a8fa8; }
 <footer><p>&copy; 2026 VII Ciclo - IESPP «JESÚS DE NAZARETH». Desarrollado por la Delegatura General. · v1.2</p></footer>
 
 <script>
-// ======= CLAVE DE STORAGE PARA REACCIONES =======
+// ===== REACCIONES PERSISTENTES =====
 const STORAGE_KEY = 'vii-ciclo-reacciones-padre-2026';
-
-// Cargar reacciones guardadas o iniciar en 0
 function cargarReacciones() {
-  try {
-    const guardado = localStorage.getItem(STORAGE_KEY);
-    if (guardado) return JSON.parse(guardado);
-  } catch(e) {}
-  return { heart: 0, star: 0, party: 0, padre: 0, fiesta: 0 };
+  try { const g=localStorage.getItem(STORAGE_KEY); if(g) return JSON.parse(g); } catch(e){}
+  return {heart:0,star:0,party:0,padre:0,fiesta:0};
 }
-
-function guardarReacciones(counts) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(counts)); } catch(e) {}
+function guardarReacciones(c) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(c)); } catch(e){}
 }
-
-// Estado global de reacciones (persistente)
 let reactionCounts = cargarReacciones();
-
-// Renderizar contadores al cargar la página
 function renderizarContadores() {
-  const ids = { heart: 'cnt-heart', star: 'cnt-star', party: 'cnt-party', padre: 'cnt-padre', fiesta: 'cnt-fiesta' };
-  for (const [key, elemId] of Object.entries(ids)) {
-    const el = document.getElementById(elemId);
-    if (el) el.textContent = reactionCounts[key] || 0;
-  }
+  const ids={heart:'cnt-heart',star:'cnt-star',party:'cnt-party',padre:'cnt-padre',fiesta:'cnt-fiesta'};
+  for(const [k,id] of Object.entries(ids)){const el=document.getElementById(id);if(el)el.textContent=reactionCounts[k]||0;}
 }
-
-const reactionIds = { '❤️': 'heart', '⭐': 'star', '🎉': 'party', '👨‍👧': 'padre', '🥳': 'fiesta' };
-const burst_emojis = {
-  '❤️': ['❤️','💕','💖','💗'],
-  '⭐': ['⭐','✨','🌟','💫'],
-  '🎉': ['🎉','🎊','🥳','🎈'],
-  '👨‍👧': ['👨‍👧','💙','👔','🎁'],
-  '🥳': ['🥳','🎊','🎁','🎈']
-};
-
-function reaccionar(btn, emoji) {
-  const key = reactionIds[emoji];
+const burst_emojis={heart:['❤️','💕','💖','💗'],star:['⭐','✨','🌟','💫'],party:['🎉','🎊','🥳','🎈'],padre:['👨‍👧','💙','👔','🎁'],fiesta:['🥳','🎊','🎁','🎈']};
+function reaccionar(btn,key,emoji){
   reactionCounts[key]++;
   guardarReacciones(reactionCounts);
-  document.getElementById('cnt-' + key).textContent = reactionCounts[key];
-  const rect = btn.getBoundingClientRect();
-  for (let i = 0; i < 6; i++) {
-    setTimeout(() => {
-      const el = document.createElement('div');
-      el.className = 'reaction-burst';
-      const emojis = burst_emojis[emoji];
-      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      el.style.left = (rect.left + rect.width / 2 + (Math.random() - 0.5) * 80) + 'px';
-      el.style.top = rect.top + 'px';
-      el.style.animationDuration = (0.8 + Math.random() * 0.7) + 's';
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 1500);
-    }, i * 80);
+  document.getElementById('cnt-'+key).textContent=reactionCounts[key];
+  const rect=btn.getBoundingClientRect();
+  const emojis=burst_emojis[key];
+  for(let i=0;i<6;i++){
+    setTimeout(()=>{
+      const el=document.createElement('div');el.className='reaction-burst';
+      el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      el.style.left=(rect.left+rect.width/2+(Math.random()-0.5)*80)+'px';
+      el.style.top=rect.top+'px';
+      el.style.animationDuration=(0.8+Math.random()*0.7)+'s';
+      document.body.appendChild(el);setTimeout(()=>el.remove(),1500);
+    },i*80);
   }
 }
-
-// Inicializar contadores al cargar
 renderizarContadores();
 
-// ======= NAVEGACIÓN =======
-function switchTab(tabId) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+// ===== NAVEGACIÓN =====
+function switchTab(tabId){
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
   event.currentTarget.classList.add('active');
 }
-function abrirHerramienta(tipo) {
-  document.getElementById(tipo + '-pantalla').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-  if (tipo === 'generador') actualizarAnosGrados();
-}
-function cerrarHerramienta(tipo) {
-  document.getElementById(tipo + '-pantalla').style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-function abrirTransparencia() {
-  document.getElementById('transparencia-pantalla').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-function cerrarTransparencia() {
-  document.getElementById('transparencia-pantalla').style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
+function abrirHerramienta(tipo){document.getElementById(tipo+'-pantalla').style.display='block';document.body.style.overflow='hidden';if(tipo==='generador')actualizarAnosGrados();}
+function cerrarHerramienta(tipo){document.getElementById(tipo+'-pantalla').style.display='none';document.body.style.overflow='auto';}
+function abrirTransparencia(){document.getElementById('transparencia-pantalla').style.display='block';document.body.style.overflow='hidden';}
+function cerrarTransparencia(){document.getElementById('transparencia-pantalla').style.display='none';document.body.style.overflow='auto';}
 
-// ======= TRIVIA =======
-let especialidadSeleccionada = "";
-function seleccionarEsp(esp) {
-  especialidadSeleccionada = esp;
-  document.getElementById('btn-ini').className = 'esp-btn' + (esp === 'inicial' ? ' selected-ini' : '');
-  document.getElementById('btn-pri').className = 'esp-btn' + (esp === 'primaria' ? ' selected-pri' : '');
-  document.getElementById('esp-required-msg').style.display = 'none';
+// ===== TRIVIA =====
+let especialidadSeleccionada="",basePreguntas=[],indexPreguntaActual=0,respuestasUsuario={},tiempoRestante=1200,intervaloTiempo=null,nombreEstudiante="";
+function seleccionarEsp(esp){
+  especialidadSeleccionada=esp;
+  document.getElementById('btn-ini').className='esp-btn'+(esp==='inicial'?' selected-ini':'');
+  document.getElementById('btn-pri').className='esp-btn'+(esp==='primaria'?' selected-pri':'');
+  document.getElementById('esp-required-msg').style.display='none';
 }
-const preguntasIni = [
+const preguntasIni=[
   {q:"¿Quién ocupa el cargo de Delegado General del VII Ciclo en el año institucional 2026?",options:["Ederson Lozano Perez","Bruce Junior Simón Vivanco","Flor Evelyn Valerio Mayta","Juan Manuel Sánchez Luyo"],correct:1},
   {q:"¿Quién es la Delegada de Educación Inicial del VII Ciclo 2026?",options:["Nuria Huari Villalobos","Triana Serrano Arias","Flor Valerio Mayta","Geraldine Sánchez Yauri"],correct:2},
   {q:"¿Qué fecha central se estableció para el Gran Compartir por el Día de la Educación Inicial?",options:["Lunes 25 de Mayo","Viernes 22 de Mayo","Miércoles 27 de Mayo","Sábado 30 de Mayo"],correct:2},
@@ -779,7 +715,7 @@ const preguntasIni = [
   {q:"¿Qué cargo tiene Geraldie Sánchez Yauri en el Comité General?",options:["Tesorera","Secretaria","Coordinadora de Actividades Artísticas","Vocal 1"],correct:2},
   {q:"¿Cuál es el mes de cumpleaños de la Presidenta Flor Valerio Mayta?",options:["Junio","Julio","Agosto","Septiembre"],correct:2}
 ];
-const preguntasPri = [
+const preguntasPri=[
   {q:"¿Quién ocupa el cargo de Delegado General del VII Ciclo en el año institucional 2026?",options:["Ederson Lozano Perez","Bruce Junior Simón Vivanco","Flor Evelyn Valerio Mayta","Juan Manuel Sánchez Luyo"],correct:1},
   {q:"¿Qué fecha central se estableció para el Gran Compartir por el Día de la Educación Inicial?",options:["Lunes 25 de Mayo","Viernes 22 de Mayo","Miércoles 27 de Mayo","Sábado 30 de Mayo"],correct:2},
   {q:"¿Quién se desempeña como Tesorera del Comité General del aula?",options:["Nuria Huari Villalobos","Triana Serrano Arias","Geraldine Sanchez","Juana Medina Guerra"],correct:0},
@@ -801,7 +737,6 @@ const preguntasPri = [
   {q:"¿Cuántos grados tiene la Educación Primaria en el Perú?",options:["4 grados","5 grados","6 grados","7 grados"],correct:2},
   {q:"¿Qué cargo tiene Triana Serrano Arias en el Comité General?",options:["Presidenta","Vicepresidenta","Secretaria","Tesorera"],correct:2}
 ];
-let basePreguntas=[],indexPreguntaActual=0,respuestasUsuario={},tiempoRestante=1200,intervaloTiempo=null,nombreEstudiante="";
 function comenzarExamen(){
   const inp=document.getElementById('student-name-input');
   if(!inp.value.trim()){alert("Por favor ingresa tu nombre y apellido.");return;}
@@ -829,8 +764,7 @@ function renderizarPreguntasNavegables(){
     div.className=`question-card ${i===indexPreguntaActual?'active':''}`;
     let opts=p.options.map((o,idx)=>`<li class="${respuestasUsuario[i]===idx?'selected':''}" onclick="seleccionarOpcion(${i},${idx})">${o}</li>`).join('');
     div.innerHTML=`<div style="font-size:0.85rem;color:var(--primary);font-weight:bold;margin-bottom:5px;">PREGUNTA ${i+1} DE ${basePreguntas.length}</div>
-    <div class="question-text">${p.q}</div>
-    <ul class="options-list">${opts}</ul>
+    <div class="question-text">${p.q}</div><ul class="options-list">${opts}</ul>
     <div class="trivia-navigation">
       <button class="btn-nav-trivia" onclick="navegarPregunta(-1)" ${i===0?'disabled':''}>&#8592; Regresar</button>
       ${i===basePreguntas.length-1?`<button class="btn-nav-trivia btn-finalizar" onclick="finalizarTrivia()">Finalizar Trivia &#10003;</button>`:`<button class="btn-nav-trivia" onclick="navegarPregunta(1)">Siguiente &#8594;</button>`}
@@ -856,8 +790,7 @@ function finalizarTrivia(){
   <div class="certificate-box">
     <span class="cert-corner tl">✦</span><span class="cert-corner tr">✦</span><span class="cert-corner bl">✦</span><span class="cert-corner br">✦</span>
     <div class="cert-institution">Instituto de Educación Superior Pedagógico Privado</div>
-    <div class="cert-sub">«JESÚS DE NAZARETH»</div>
-    <hr class="cert-divider">
+    <div class="cert-sub">«JESÚS DE NAZARETH»</div><hr class="cert-divider">
     <div class="cert-title">Certificado de Acreditación</div>
     <div class="cert-awarded">Otorgado con honor a la excelencia a:</div>
     <div class="cert-name">${nombreEstudiante}</div>
@@ -885,15 +818,14 @@ function reiniciarTriviaCompleta(){
   document.getElementById('student-name-input').value="";
 }
 
-// GENERADOR
+// ===== GENERADOR =====
 const anosIni=['1 año (bebés)','2 años','3 años','4 años','5 años'];
 const gradosPri=['1° Grado','2° Grado','3° Grado','4° Grado','5° Grado','6° Grado'];
 const areasIni=["Personal Social","Comunicación","Matemática","Ciencia y Tecnología","Psicomotriz"];
 const areasPri=["Matemática","Comunicación","Personal Social","Ciencia y Tecnología","Arte y Cultura","Educación Física","Inglés como Lengua Extranjera","Educación Religiosa","Desarrollo Personal, Ciudadanía y Cívica"];
 function actualizarAnosGrados(){
   const nivel=document.getElementById('gen-nivel').value;
-  const selAG=document.getElementById('gen-ano-grado');
-  const labelAG=document.getElementById('label-ano-grado');
+  const selAG=document.getElementById('gen-ano-grado'),labelAG=document.getElementById('label-ano-grado');
   selAG.innerHTML="";
   const lista=nivel==='inicial'?anosIni:gradosPri;
   labelAG.innerHTML=nivel==='inicial'?'<i class="fa-solid fa-child"></i> Año / Edad:':'<i class="fa-solid fa-graduation-cap"></i> Grado:';
@@ -907,33 +839,13 @@ function actualizarAreas(){
   areas.forEach(a=>{const o=document.createElement('option');o.value=a;o.textContent=a;sel.appendChild(o);});
   document.getElementById('idea-resultado').style.display='none';
 }
-const sesionesIni={
-  "Personal Social":{titulo:"Me conozco y me valoro",situacion:"Los niños y niñas descubren sus características físicas únicas al observarse en un espejo grande del aula. A través del juego del 'Me veo y me describo', reconocen sus emociones y construyen colectivamente el 'Mural de la identidad'.",proposito:"Construye su identidad reconociendo sus características físicas, emociones y gustos personales.",competencia:"Construye su identidad",capacidades:["Se valora a sí mismo","Autorregula sus emociones"],desempeño:"Describe sus características físicas y emociones usando lenguaje propio de su edad.",enfoque:"Enfoque de derechos / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (20 min)",detalle:"Asamblea inicial: ¿Cómo soy yo? Canción de bienvenida e identificación de emociones con tarjetas."},{nombre:"Desarrollo (30 min)",detalle:"Exploración frente al espejo, dibujo de autorretrato y descripción oral de características."},{nombre:"Cierre (10 min)",detalle:"Presentación del mural colectivo. Metacognición: ¿Qué aprendiste hoy sobre ti mismo?"}],recursos:["Espejo grande","Papel bond A3","Crayones y plumones","Tarjetas de emociones","Canción grabada"],evaluacion:"Lista de cotejo: Menciona al menos 3 características propias. Expresa su emoción con gesto o palabra."},
-  "Comunicación":{titulo:"Contamos y creamos nuestro cuento",situacion:"Las niñas y niños descubren una 'caja misteriosa' con objetos de texturas variadas. A partir de ellos, crean colectivamente un cuento oral, desarrollando su expresión verbal y escucha activa.",proposito:"Expresa oralmente ideas y emociones con claridad, escuchando activamente a sus compañeros.",competencia:"Se comunica oralmente en su lengua materna",capacidades:["Obtiene información del texto oral","Adecúa, organiza y desarrolla ideas de forma coherente"],desempeño:"Narra situaciones del cuento usando conectores temporales básicos (primero, luego, al final).",enfoque:"Enfoque intercultural / Orientación al bien común",momentos:[{nombre:"Inicio (15 min)",detalle:"Exploración sensorial de la caja misteriosa. ¿Qué crees que tiene? ¿Para qué sirve?"},{nombre:"Desarrollo (35 min)",detalle:"Construcción colectiva del cuento. Cada niño aporta una parte. Dibujo de escena favorita."},{nombre:"Cierre (10 min)",detalle:"Narración grupal completa. Evaluación: ¿Cómo participé hoy?"}],recursos:["Caja sorpresa decorada","Objetos variados con texturas","Papel bond y plumones","Silueta de personajes"],evaluacion:"Rúbrica oral: Narra con coherencia, usa al menos 2 conectores y escucha a compañeros."},
-  "Matemática":{titulo:"Ordenamos y clasificamos nuestra tiendita",situacion:"Los niños organizan la 'tiendita del aula' agrupando productos por características (color, forma, tamaño), usando nociones de clasificación, seriación y cuantificación.",proposito:"Agrupa objetos usando criterios propios y compara cantidades en situaciones concretas.",competencia:"Resuelve problemas de cantidad",capacidades:["Traduce cantidades a expresiones numéricas","Comunica su comprensión sobre los números"],desempeño:"Agrupa objetos por color, forma o tamaño y explica verbalmente el criterio usado.",enfoque:"Orientación al bien común",momentos:[{nombre:"Inicio (15 min)",detalle:"Presentación de la tiendita. ¿Cómo podríamos ordenar todo esto mejor?"},{nombre:"Desarrollo (30 min)",detalle:"Clasificación libre y dirigida. Juego de 'el tendero': contar y decir cuántos hay."},{nombre:"Cierre (15 min)",detalle:"Exposición de su sección ordenada. Metacognición: ¿Cómo lo organizaste?"}],recursos:["Productos de tiendita","Etiquetas de colores","Material concreto","Cestas clasificadoras"],evaluacion:"Lista de cotejo: Clasifica por 1 criterio. Menciona cuántos objetos hay en cada grupo."},
-  "Ciencia y Tecnología":{titulo:"Exploramos las plantas de nuestro huerto",situacion:"Las niñas y niños visitan el huerto institucional, observan, tocan y huelen las plantas, formulan hipótesis sobre su crecimiento y registran sus descubrimientos con dibujos.",proposito:"Explora características de los seres vivos usando sus sentidos y registra sus observaciones.",competencia:"Indaga mediante métodos científicos",capacidades:["Problematiza situaciones","Diseña estrategias para hacer indagación"],desempeño:"Observa partes de una planta, formula una hipótesis simple y la registra con dibujo.",enfoque:"Enfoque ambiental",momentos:[{nombre:"Inicio (10 min)",detalle:"¿Qué sé sobre las plantas? Lluvia de ideas. Canción del huerto."},{nombre:"Desarrollo (35 min)",detalle:"Visita guiada al huerto. Exploración sensorial. Dibujo de la planta con sus partes."},{nombre:"Cierre (15 min)",detalle:"Presentación de dibujos. ¿Tenía razón en mi hipótesis? ¿Qué descubrí nuevo?"}],recursos:["Huerto institucional","Lupas","Hojas de registro","Plumones y crayones","Fichas de plantas"],evaluacion:"Menciona al menos 2 partes de la planta y formula una hipótesis oral."},
-  "Psicomotriz":{titulo:"Me muevo, salto y me expreso con mi cuerpo",situacion:"Los niños participan en una sesión de exploración motriz en el patio con circuito de movimientos, desarrollando el esquema corporal, equilibrio y coordinación.",proposito:"Controla su cuerpo en distintas situaciones motrices y expresa emociones a través del movimiento.",competencia:"Se desenvuelve de manera autónoma a través de su motricidad",capacidades:["Comprende su cuerpo","Se expresa corporalmente"],desempeño:"Realiza movimientos de equilibrio, salto y coordinación mostrando control de su cuerpo.",enfoque:"Búsqueda de la excelencia / Enfoque de derechos",momentos:[{nombre:"Inicio (10 min)",detalle:"Calentamiento grupal con la canción 'Mi cuerpo se mueve'. Reconocimiento de partes en movimiento."},{nombre:"Desarrollo (30 min)",detalle:"Circuito: equilibrio en vigas, salto en aros, arrastre en túnel y lanzamiento a diana."},{nombre:"Cierre (10 min)",detalle:"Relajación con música suave. ¿Qué parte de tu cuerpo usaste más hoy?"}],recursos:["Aros de colores","Vigas de equilibrio","Túnel plegable","Pelota blanda","Música grabada"],evaluacion:"Realiza el circuito completo. Expresa con el cuerpo al menos 2 emociones diferentes."}
-};
-const sesionesPri={
-  "Matemática":{titulo:"Resolvemos problemas de la feria escolar",situacion:"Los estudiantes organizan una feria de productos reciclados. Calculan costos, precios y vueltos usando adición y sustracción con números hasta 999 en contexto real.",proposito:"Resuelve problemas de cantidad usando adición y sustracción con estrategias concretas, pictóricas y simbólicas.",competencia:"Resuelve problemas de cantidad",capacidades:["Traduce cantidades a expresiones numéricas","Usa estrategias de estimación y cálculo","Argumenta afirmaciones sobre relaciones numéricas"],desempeño:"Resuelve problemas aditivos de 2 etapas con números hasta 999 usando material concreto y representación pictórica.",enfoque:"Orientación al bien común / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Situación retadora: 'Tenemos S/.500 para comprar materiales. ¿Alcanza para todo?'"},{nombre:"Desarrollo (65 min)",detalle:"Trabajo en grupos: modelado con Base Diez, representación pictórica y resolución simbólica."},{nombre:"Cierre (15 min)",detalle:"Metacognición: ¿Qué estrategia usé? ¿Por qué me funcionó?"}],recursos:["Material Base Diez","Tarjetas de precio","Pizarra y plumones","Hojas de trabajo"],evaluacion:"Resuelve 3 de 4 problemas, explica su procedimiento y verifica su resultado."},
-  "Comunicación":{titulo:"Leemos y comprendemos textos de nuestra comunidad",situacion:"Los estudiantes reciben cartas reales de autoridades locales, las leen, analizan la intención comunicativa y producen una respuesta escrita argumentativa.",proposito:"Lee textos escritos comprensivamente e identifica la intención del autor para producir una respuesta argumentada.",competencia:"Lee y escribe diversos tipos de textos",capacidades:["Obtiene información del texto","Infiere e interpreta","Reflexiona y evalúa"],desempeño:"Identifica la idea principal, intención del autor y escribe una carta de respuesta con argumentos coherentes.",enfoque:"Enfoque de derechos / Intercultural",momentos:[{nombre:"Inicio (10 min)",detalle:"Presentación de la carta real. ¿Quién la escribió? ¿Para qué?"},{nombre:"Desarrollo (60 min)",detalle:"Lectura individual y grupal. Subrayado de ideas clave. Escritura en borradores."},{nombre:"Cierre (20 min)",detalle:"Revisión entre pares con lista de cotejo. Presentación de cartas al grupo."}],recursos:["Cartas modelo de autoridades","Fichas de comprensión","Papel bond","Lista de cotejo"],evaluacion:"Identifica idea principal (✓), intención del autor (✓), escribe carta con estructura completa (✓)."},
-  "Personal Social":{titulo:"Somos ciudadanos que cuidan nuestro ambiente",situacion:"Los estudiantes analizan la situación ambiental de su barrio y proponen una campaña de sensibilización escolar.",proposito:"Analiza problemáticas ambientales locales y propone acciones de ciudadanía activa.",competencia:"Gestiona el ambiente / Convive democráticamente",capacidades:["Comprende relaciones naturales y sociales","Participa en acciones de bien común"],desempeño:"Identifica causas y consecuencias de un problema ambiental y propone acciones concretas.",enfoque:"Enfoque ambiental / Derechos",momentos:[{nombre:"Inicio (10 min)",detalle:"Video sobre problemática ambiental local. ¿Qué vemos? ¿Qué podemos hacer?"},{nombre:"Desarrollo (55 min)",detalle:"Análisis causa-efecto en grupos. Diseño de afiche de campaña."},{nombre:"Cierre (15 min)",detalle:"Votación del mejor slogan. Compromiso individual escrito."}],recursos:["Video corto","Fotografías del entorno","Cartulina y plumones","Ficha de análisis"],evaluacion:"Identifica 2 causas, propone 2 soluciones viables y participa activamente."},
-  "Ciencia y Tecnología":{titulo:"Investigamos la contaminación del agua",situacion:"Los estudiantes reciben muestras de agua de diferentes fuentes locales, diseñan un experimento para identificar indicadores de contaminación y proponen soluciones tecnológicas.",proposito:"Diseña y ejecuta una indagación sobre la calidad del agua usando el método científico.",competencia:"Indaga mediante métodos científicos",capacidades:["Problematiza situaciones","Diseña estrategias de indagación","Analiza datos e información"],desempeño:"Formula una pregunta investigable, recoge datos y comunica conclusiones con evidencia.",enfoque:"Ambiental / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (15 min)",detalle:"Observación de muestras. Hipótesis: ¿Cuál estará más contaminada y por qué?"},{nombre:"Desarrollo (60 min)",detalle:"Experimentación con tiras de pH, filtros caseros, observación con lupa."},{nombre:"Cierre (15 min)",detalle:"Presentación de conclusiones. Propuesta de solución tecnológica."}],recursos:["Muestras de agua","Tiras de pH","Filtros caseros","Lupas","Fichas de registro"],evaluacion:"Formula hipótesis (✓), registra datos (✓), concluye con evidencia (✓), propone solución viable (✓)."},
-  "Arte y Cultura":{titulo:"Expresamos nuestra identidad a través del arte visual",situacion:"Los estudiantes exploran técnicas plásticas con motivos andinos y crean una obra visual colectiva.",proposito:"Explora y aplica técnicas plásticas básicas para crear una obra visual con identidad cultural.",competencia:"Aprecia y crea proyectos artísticos",capacidades:["Explora lenguajes del arte","Aplica procesos creativos"],desempeño:"Crea una composición visual usando al menos 2 técnicas plásticas con motivos de su cultura.",enfoque:"Intercultural / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Observación de imágenes de arte andino."},{nombre:"Desarrollo (50 min)",detalle:"Exploración de técnicas: estampado, pintura dactilar, tizas. Creación libre."},{nombre:"Cierre (20 min)",detalle:"Galería del aula: cada estudiante explica su obra."}],recursos:["Cartulina","Témperas","Sellos de hoja/fruta","Tizas de colores"],evaluacion:"Usa 2 técnicas (✓), relaciona obra con identidad cultural (✓), presenta oralmente (✓)."},
-  "Educación Física":{titulo:"Nos movemos juntos — juego cooperativo",situacion:"Los estudiantes superan retos en equipo sin competir individualmente, desarrollando trabajo en equipo y habilidades motrices.",proposito:"Desarrolla habilidades motrices y valores de cooperación a través de juegos en equipo.",competencia:"Motricidad autónoma / Vida saludable",capacidades:["Comprende su cuerpo","Interactúa sociomotrizmente"],desempeño:"Participa en juegos cooperativos mostrando coordinación y actitud de apoyo.",enfoque:"Bien común / Inclusivo",momentos:[{nombre:"Inicio (10 min)",detalle:"Calentamiento: 'El abrazo de grupos'. Reglas del juego cooperativo."},{nombre:"Desarrollo (40 min)",detalle:"3 juegos cooperativos: 'La canoa de papel', 'Cadena humana', 'El nudo'."},{nombre:"Cierre (10 min)",detalle:"Vuelta a la calma. ¿Cómo ayudé a mi equipo?"}],recursos:["Sogas","Aros","Conos","Música motivacional"],evaluacion:"Participa activamente (✓), respeta normas (✓), colabora con compañeros (✓)."},
-  "Inglés como Lengua Extranjera":{titulo:"My family and I",situacion:"Los estudiantes llevan fotografías de sus familias al aula, aprenden vocabulario de miembros de la familia y las describen en inglés.",proposito:"Comunica oralmente información sobre su familia usando vocabulario básico en inglés.",competencia:"Se comunica en inglés como lengua extranjera",capacidades:["Obtiene información oral","Organiza ideas para expresión"],desempeño:"Describe 3 miembros de su familia usando adjetivos y la estructura 'This is my ___, He/She is ___'.",enfoque:"Intercultural / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Canción 'The Family Song'. Flashcards y repetición coral."},{nombre:"Desarrollo (50 min)",detalle:"Práctica en pares con fotografías propias. Presentación ante el grupo."},{nombre:"Cierre (10 min)",detalle:"Exit ticket: Escribe 2 oraciones sobre un familiar en inglés."}],recursos:["Flashcards de familia","Fotografías personales","Canción","Ficha de vocabulario"],evaluacion:"Pronuncia correctamente (✓), usa la estructura modelo (✓), describe 3 miembros (✓)."},
-  "Educación Religiosa":{titulo:"Valores que nos unen: respeto y solidaridad",situacion:"Los estudiantes analizan situaciones de su vida donde el respeto y la solidaridad son fundamentales y elaboran compromisos personales.",proposito:"Reflexiona sobre el respeto y la solidaridad como valores que fortalecen la convivencia.",competencia:"Construye su identidad como persona amada por Dios",capacidades:["Valora manifestaciones religiosas","Actúa coherentemente con su fe"],desempeño:"Identifica situaciones donde practicó estos valores y propone acciones de mejora.",enfoque:"Derechos / Bien común",momentos:[{nombre:"Inicio (10 min)",detalle:"Historia bíblica relacionada al valor. ¿Qué habrías hecho tú?"},{nombre:"Desarrollo (50 min)",detalle:"Análisis de casos reales del aula. Elaboración de compromisos grupales."},{nombre:"Cierre (10 min)",detalle:"Oración de reflexión grupal. Presentación del compromiso de la semana."}],recursos:["Biblia / textos adaptados","Fichas de análisis de casos","Cartulina para compromisos"],evaluacion:"Identifica el valor (✓), argumenta su importancia (✓), propone un compromiso concreto (✓)."},
-  "Desarrollo Personal, Ciudadanía y Cívica":{titulo:"Nuestros derechos y responsabilidades",situacion:"Los estudiantes analizan el reglamento escolar y lo comparan con la Convención de los Derechos del Niño, debatiendo sobre convivencia democrática.",proposito:"Comprende sus derechos y responsabilidades ciudadanas para promover convivencia democrática.",competencia:"Convive democráticamente / Construye su identidad",capacidades:["Interactúa con todas las personas","Participa en acciones de bien común"],desempeño:"Relaciona un derecho de la Convención con una norma del reglamento y argumenta su importancia.",enfoque:"Derechos / Bien común",momentos:[{nombre:"Inicio (10 min)",detalle:"Video de conflicto escolar. ¿Qué derecho se vulneró? ¿Qué debería haber pasado?"},{nombre:"Desarrollo (55 min)",detalle:"Análisis del reglamento y la Convención. Debate. Propuesta de mejora."},{nombre:"Cierre (15 min)",detalle:"Votación de propuestas. ¿Soy un ciudadano responsable?"}],recursos:["Convención del Niño adaptada","Reglamento IE","Video disparador","Ficha de debate"],evaluacion:"Relaciona derecho con norma (✓), argumenta (✓), propone mejora viable (✓), participa respetuosamente (✓)."}
-};
+const sesionesIni={"Personal Social":{titulo:"Me conozco y me valoro",situacion:"Los niños y niñas descubren sus características físicas únicas al observarse en un espejo grande del aula. A través del juego del 'Me veo y me describo', reconocen sus emociones y construyen colectivamente el 'Mural de la identidad'.",proposito:"Construye su identidad reconociendo sus características físicas, emociones y gustos personales.",competencia:"Construye su identidad",capacidades:["Se valora a sí mismo","Autorregula sus emociones"],desempeño:"Describe sus características físicas y emociones usando lenguaje propio de su edad.",enfoque:"Enfoque de derechos / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (20 min)",detalle:"Asamblea inicial: ¿Cómo soy yo? Canción de bienvenida e identificación de emociones con tarjetas."},{nombre:"Desarrollo (30 min)",detalle:"Exploración frente al espejo, dibujo de autorretrato y descripción oral de características."},{nombre:"Cierre (10 min)",detalle:"Presentación del mural colectivo. Metacognición: ¿Qué aprendiste hoy sobre ti mismo?"}],recursos:["Espejo grande","Papel bond A3","Crayones y plumones","Tarjetas de emociones","Canción grabada"],evaluacion:"Lista de cotejo: Menciona al menos 3 características propias. Expresa su emoción con gesto o palabra."},"Comunicación":{titulo:"Contamos y creamos nuestro cuento",situacion:"Las niñas y niños descubren una 'caja misteriosa' con objetos de texturas variadas. A partir de ellos, crean colectivamente un cuento oral, desarrollando su expresión verbal y escucha activa.",proposito:"Expresa oralmente ideas y emociones con claridad, escuchando activamente a sus compañeros.",competencia:"Se comunica oralmente en su lengua materna",capacidades:["Obtiene información del texto oral","Adecúa, organiza y desarrolla ideas de forma coherente"],desempeño:"Narra situaciones del cuento usando conectores temporales básicos (primero, luego, al final).",enfoque:"Enfoque intercultural / Orientación al bien común",momentos:[{nombre:"Inicio (15 min)",detalle:"Exploración sensorial de la caja misteriosa. ¿Qué crees que tiene? ¿Para qué sirve?"},{nombre:"Desarrollo (35 min)",detalle:"Construcción colectiva del cuento. Cada niño aporta una parte. Dibujo de escena favorita."},{nombre:"Cierre (10 min)",detalle:"Narración grupal completa. Evaluación: ¿Cómo participé hoy?"}],recursos:["Caja sorpresa decorada","Objetos variados con texturas","Papel bond y plumones","Silueta de personajes"],evaluacion:"Rúbrica oral: Narra con coherencia, usa al menos 2 conectores y escucha a compañeros."},"Matemática":{titulo:"Ordenamos y clasificamos nuestra tiendita",situacion:"Los niños organizan la 'tiendita del aula' agrupando productos por características (color, forma, tamaño), usando nociones de clasificación, seriación y cuantificación.",proposito:"Agrupa objetos usando criterios propios y compara cantidades en situaciones concretas.",competencia:"Resuelve problemas de cantidad",capacidades:["Traduce cantidades a expresiones numéricas","Comunica su comprensión sobre los números"],desempeño:"Agrupa objetos por color, forma o tamaño y explica verbalmente el criterio usado.",enfoque:"Orientación al bien común",momentos:[{nombre:"Inicio (15 min)",detalle:"Presentación de la tiendita. ¿Cómo podríamos ordenar todo esto mejor?"},{nombre:"Desarrollo (30 min)",detalle:"Clasificación libre y dirigida. Juego de 'el tendero': contar y decir cuántos hay."},{nombre:"Cierre (15 min)",detalle:"Exposición de su sección ordenada. Metacognición: ¿Cómo lo organizaste?"}],recursos:["Productos de tiendita","Etiquetas de colores","Material concreto","Cestas clasificadoras"],evaluacion:"Lista de cotejo: Clasifica por 1 criterio. Menciona cuántos objetos hay en cada grupo."},"Ciencia y Tecnología":{titulo:"Exploramos las plantas de nuestro huerto",situacion:"Las niñas y niños visitan el huerto institucional, observan, tocan y huelen las plantas, formulan hipótesis sobre su crecimiento y registran sus descubrimientos con dibujos.",proposito:"Explora características de los seres vivos usando sus sentidos y registra sus observaciones.",competencia:"Indaga mediante métodos científicos",capacidades:["Problematiza situaciones","Diseña estrategias para hacer indagación"],desempeño:"Observa partes de una planta, formula una hipótesis simple y la registra con dibujo.",enfoque:"Enfoque ambiental",momentos:[{nombre:"Inicio (10 min)",detalle:"¿Qué sé sobre las plantas? Lluvia de ideas. Canción del huerto."},{nombre:"Desarrollo (35 min)",detalle:"Visita guiada al huerto. Exploración sensorial. Dibujo de la planta con sus partes."},{nombre:"Cierre (15 min)",detalle:"Presentación de dibujos. ¿Tenía razón en mi hipótesis? ¿Qué descubrí nuevo?"}],recursos:["Huerto institucional","Lupas","Hojas de registro","Plumones y crayones","Fichas de plantas"],evaluacion:"Menciona al menos 2 partes de la planta y formula una hipótesis oral."},"Psicomotriz":{titulo:"Me muevo, salto y me expreso con mi cuerpo",situacion:"Los niños participan en una sesión de exploración motriz en el patio con circuito de movimientos, desarrollando el esquema corporal, equilibrio y coordinación.",proposito:"Controla su cuerpo en distintas situaciones motrices y expresa emociones a través del movimiento.",competencia:"Se desenvuelve de manera autónoma a través de su motricidad",capacidades:["Comprende su cuerpo","Se expresa corporalmente"],desempeño:"Realiza movimientos de equilibrio, salto y coordinación mostrando control de su cuerpo.",enfoque:"Búsqueda de la excelencia / Enfoque de derechos",momentos:[{nombre:"Inicio (10 min)",detalle:"Calentamiento grupal con la canción 'Mi cuerpo se mueve'. Reconocimiento de partes en movimiento."},{nombre:"Desarrollo (30 min)",detalle:"Circuito: equilibrio en vigas, salto en aros, arrastre en túnel y lanzamiento a diana."},{nombre:"Cierre (10 min)",detalle:"Relajación con música suave. ¿Qué parte de tu cuerpo usaste más hoy?"}],recursos:["Aros de colores","Vigas de equilibrio","Túnel plegable","Pelota blanda","Música grabada"],evaluacion:"Realiza el circuito completo. Expresa con el cuerpo al menos 2 emociones diferentes."}};
+const sesionesPri={"Matemática":{titulo:"Resolvemos problemas de la feria escolar",situacion:"Los estudiantes organizan una feria de productos reciclados. Calculan costos, precios y vueltos usando adición y sustracción con números hasta 999 en contexto real.",proposito:"Resuelve problemas de cantidad usando adición y sustracción con estrategias concretas, pictóricas y simbólicas.",competencia:"Resuelve problemas de cantidad",capacidades:["Traduce cantidades a expresiones numéricas","Usa estrategias de estimación y cálculo","Argumenta afirmaciones sobre relaciones numéricas"],desempeño:"Resuelve problemas aditivos de 2 etapas con números hasta 999.",enfoque:"Orientación al bien común / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Situación retadora: 'Tenemos S/.500 para comprar materiales. ¿Alcanza para todo?'"},{nombre:"Desarrollo (65 min)",detalle:"Trabajo en grupos: modelado con Base Diez, representación pictórica y resolución simbólica."},{nombre:"Cierre (15 min)",detalle:"Metacognición: ¿Qué estrategia usé? ¿Por qué me funcionó?"}],recursos:["Material Base Diez","Tarjetas de precio","Pizarra y plumones","Hojas de trabajo"],evaluacion:"Resuelve 3 de 4 problemas, explica su procedimiento y verifica su resultado."},"Comunicación":{titulo:"Leemos y comprendemos textos de nuestra comunidad",situacion:"Los estudiantes reciben cartas reales de autoridades locales, las leen, analizan la intención comunicativa y producen una respuesta escrita argumentativa.",proposito:"Lee textos escritos comprensivamente e identifica la intención del autor para producir una respuesta argumentada.",competencia:"Lee y escribe diversos tipos de textos",capacidades:["Obtiene información del texto","Infiere e interpreta","Reflexiona y evalúa"],desempeño:"Identifica la idea principal, intención del autor y escribe una carta de respuesta con argumentos coherentes.",enfoque:"Enfoque de derechos / Intercultural",momentos:[{nombre:"Inicio (10 min)",detalle:"Presentación de la carta real. ¿Quién la escribió? ¿Para qué?"},{nombre:"Desarrollo (60 min)",detalle:"Lectura individual y grupal. Subrayado de ideas clave. Escritura en borradores."},{nombre:"Cierre (20 min)",detalle:"Revisión entre pares con lista de cotejo. Presentación de cartas al grupo."}],recursos:["Cartas modelo de autoridades","Fichas de comprensión","Papel bond","Lista de cotejo"],evaluacion:"Identifica idea principal (✓), intención del autor (✓), escribe carta con estructura completa (✓)."},"Personal Social":{titulo:"Somos ciudadanos que cuidan nuestro ambiente",situacion:"Los estudiantes analizan la situación ambiental de su barrio y proponen una campaña de sensibilización escolar.",proposito:"Analiza problemáticas ambientales locales y propone acciones de ciudadanía activa.",competencia:"Gestiona el ambiente / Convive democráticamente",capacidades:["Comprende relaciones naturales y sociales","Participa en acciones de bien común"],desempeño:"Identifica causas y consecuencias de un problema ambiental y propone acciones concretas.",enfoque:"Enfoque ambiental / Derechos",momentos:[{nombre:"Inicio (10 min)",detalle:"Video sobre problemática ambiental local. ¿Qué vemos? ¿Qué podemos hacer?"},{nombre:"Desarrollo (55 min)",detalle:"Análisis causa-efecto en grupos. Diseño de afiche de campaña."},{nombre:"Cierre (15 min)",detalle:"Votación del mejor slogan. Compromiso individual escrito."}],recursos:["Video corto","Fotografías del entorno","Cartulina y plumones","Ficha de análisis"],evaluacion:"Identifica 2 causas, propone 2 soluciones viables y participa activamente."},"Ciencia y Tecnología":{titulo:"Investigamos la contaminación del agua",situacion:"Los estudiantes reciben muestras de agua de diferentes fuentes locales, diseñan un experimento para identificar indicadores de contaminación y proponen soluciones tecnológicas.",proposito:"Diseña y ejecuta una indagación sobre la calidad del agua usando el método científico.",competencia:"Indaga mediante métodos científicos",capacidades:["Problematiza situaciones","Diseña estrategias de indagación","Analiza datos e información"],desempeño:"Formula una pregunta investigable, recoge datos y comunica conclusiones con evidencia.",enfoque:"Ambiental / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (15 min)",detalle:"Observación de muestras. Hipótesis: ¿Cuál estará más contaminada y por qué?"},{nombre:"Desarrollo (60 min)",detalle:"Experimentación con tiras de pH, filtros caseros, observación con lupa."},{nombre:"Cierre (15 min)",detalle:"Presentación de conclusiones. Propuesta de solución tecnológica."}],recursos:["Muestras de agua","Tiras de pH","Filtros caseros","Lupas","Fichas de registro"],evaluacion:"Formula hipótesis (✓), registra datos (✓), concluye con evidencia (✓), propone solución viable (✓)."},"Arte y Cultura":{titulo:"Expresamos nuestra identidad a través del arte visual",situacion:"Los estudiantes exploran técnicas plásticas con motivos andinos y crean una obra visual colectiva.",proposito:"Explora y aplica técnicas plásticas básicas para crear una obra visual con identidad cultural.",competencia:"Aprecia y crea proyectos artísticos",capacidades:["Explora lenguajes del arte","Aplica procesos creativos"],desempeño:"Crea una composición visual usando al menos 2 técnicas plásticas con motivos de su cultura.",enfoque:"Intercultural / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Observación de imágenes de arte andino."},{nombre:"Desarrollo (50 min)",detalle:"Exploración de técnicas: estampado, pintura dactilar, tizas. Creación libre."},{nombre:"Cierre (20 min)",detalle:"Galería del aula: cada estudiante explica su obra."}],recursos:["Cartulina","Témperas","Sellos de hoja/fruta","Tizas de colores"],evaluacion:"Usa 2 técnicas (✓), relaciona obra con identidad cultural (✓), presenta oralmente (✓)."},"Educación Física":{titulo:"Nos movemos juntos — juego cooperativo",situacion:"Los estudiantes superan retos en equipo sin competir individualmente, desarrollando trabajo en equipo y habilidades motrices.",proposito:"Desarrolla habilidades motrices y valores de cooperación a través de juegos en equipo.",competencia:"Motricidad autónoma / Vida saludable",capacidades:["Comprende su cuerpo","Interactúa sociomotrizmente"],desempeño:"Participa en juegos cooperativos mostrando coordinación y actitud de apoyo.",enfoque:"Bien común / Inclusivo",momentos:[{nombre:"Inicio (10 min)",detalle:"Calentamiento: 'El abrazo de grupos'. Reglas del juego cooperativo."},{nombre:"Desarrollo (40 min)",detalle:"3 juegos cooperativos: 'La canoa de papel', 'Cadena humana', 'El nudo'."},{nombre:"Cierre (10 min)",detalle:"Vuelta a la calma. ¿Cómo ayudé a mi equipo?"}],recursos:["Sogas","Aros","Conos","Música motivacional"],evaluacion:"Participa activamente (✓), respeta normas (✓), colabora con compañeros (✓)."},"Inglés como Lengua Extranjera":{titulo:"My family and I",situacion:"Los estudiantes llevan fotografías de sus familias al aula, aprenden vocabulario de miembros de la familia y las describen en inglés.",proposito:"Comunica oralmente información sobre su familia usando vocabulario básico en inglés.",competencia:"Se comunica en inglés como lengua extranjera",capacidades:["Obtiene información oral","Organiza ideas para expresión"],desempeño:"Describe 3 miembros de su familia usando adjetivos y la estructura 'This is my ___, He/She is ___'.",enfoque:"Intercultural / Búsqueda de la excelencia",momentos:[{nombre:"Inicio (10 min)",detalle:"Canción 'The Family Song'. Flashcards y repetición coral."},{nombre:"Desarrollo (50 min)",detalle:"Práctica en pares con fotografías propias. Presentación ante el grupo."},{nombre:"Cierre (10 min)",detalle:"Exit ticket: Escribe 2 oraciones sobre un familiar en inglés."}],recursos:["Flashcards de familia","Fotografías personales","Canción","Ficha de vocabulario"],evaluacion:"Pronuncia correctamente (✓), usa la estructura modelo (✓), describe 3 miembros (✓)."},"Educación Religiosa":{titulo:"Valores que nos unen: respeto y solidaridad",situacion:"Los estudiantes analizan situaciones de su vida donde el respeto y la solidaridad son fundamentales y elaboran compromisos personales.",proposito:"Reflexiona sobre el respeto y la solidaridad como valores que fortalecen la convivencia.",competencia:"Construye su identidad como persona amada por Dios",capacidades:["Valora manifestaciones religiosas","Actúa coherentemente con su fe"],desempeño:"Identifica situaciones donde practicó estos valores y propone acciones de mejora.",enfoque:"Derechos / Bien común",momentos:[{nombre:"Inicio (10 min)",detalle:"Historia bíblica relacionada al valor. ¿Qué habrías hecho tú?"},{nombre:"Desarrollo (50 min)",detalle:"Análisis de casos reales del aula. Elaboración de compromisos grupales."},{nombre:"Cierre (10 min)",detalle:"Oración de reflexión grupal. Presentación del compromiso de la semana."}],recursos:["Biblia / textos adaptados","Fichas de análisis de casos","Cartulina para compromisos"],evaluacion:"Identifica el valor (✓), argumenta su importancia (✓), propone un compromiso concreto (✓)."},"Desarrollo Personal, Ciudadanía y Cívica":{titulo:"Nuestros derechos y responsabilidades",situacion:"Los estudiantes analizan el reglamento escolar y lo comparan con la Convención de los Derechos del Niño, debatiendo sobre convivencia democrática.",proposito:"Comprende sus derechos y responsabilidades ciudadanas para promover convivencia democrática.",competencia:"Convive democráticamente / Construye su identidad",capacidades:["Interactúa con todas las personas","Participa en acciones de bien común"],desempeño:"Relaciona un derecho de la Convención con una norma del reglamento y argumenta su importancia.",enfoque:"Derechos / Bien común",momentos:[{nombre:"Inicio (10 min)",detalle:"Video de conflicto escolar. ¿Qué derecho se vulneró? ¿Qué debería haber pasado?"},{nombre:"Desarrollo (55 min)",detalle:"Análisis del reglamento y la Convención. Debate. Propuesta de mejora."},{nombre:"Cierre (15 min)",detalle:"Votación de propuestas. ¿Soy un ciudadano responsable?"}],recursos:["Convención del Niño adaptada","Reglamento IE","Video disparador","Ficha de debate"],evaluacion:"Relaciona derecho con norma (✓), argumenta (✓), propone mejora viable (✓), participa respetuosamente (✓)."}};
 function generarIdeaPedagogica(){
-  const nivel=document.getElementById('gen-nivel').value;
-  const ag=document.getElementById('gen-ano-grado').value;
-  const area=document.getElementById('gen-area').value;
-  const res=document.getElementById('idea-resultado');
-  const banco=nivel==='inicial'?sesionesIni:sesionesPri;
-  const s=banco[area];
+  const nivel=document.getElementById('gen-nivel').value,ag=document.getElementById('gen-ano-grado').value,area=document.getElementById('gen-area').value;
+  const res=document.getElementById('idea-resultado'),banco=nivel==='inicial'?sesionesIni:sesionesPri,s=banco[area];
   if(!s){res.style.display='block';res.innerHTML='<p style="color:var(--text-muted)">No se encontró sesión. Selecciona otra área.</p>';return;}
-  const mHtml=s.momentos.map(m=>`<div style="background:#0f172a;border-radius:6px;padding:12px;margin-bottom:8px;border-left:3px solid var(--primary);"><div style="color:var(--primary);font-weight:bold;font-size:0.9rem;margin-bottom:4px;"><i class="fa-solid fa-clock"></i> ${m.nombre}</div><div class="gen-detail">${m.detalle}</div></div>`).join('');
+  const mHtml=s.momentos.map(m=>`<div style="background:#0a1628;border-radius:6px;padding:12px;margin-bottom:8px;border-left:3px solid var(--primary);"><div style="color:var(--primary);font-weight:bold;font-size:0.9rem;margin-bottom:4px;"><i class="fa-solid fa-clock"></i> ${m.nombre}</div><div class="gen-detail">${m.detalle}</div></div>`).join('');
   const cHtml=s.capacidades.map(c=>`<span class="gen-tag">${c}</span>`).join('');
   const rHtml=s.recursos.map(r=>`<span class="gen-tag gen-tag-green">${r}</span>`).join('');
   const nl=nivel==='inicial'?`Educación Inicial — ${ag}`:`Educación Primaria — ${ag}`;
@@ -948,49 +860,32 @@ function generarIdeaPedagogica(){
   <div class="gen-section"><div class="gen-section-title"><i class="fa-solid fa-compass"></i> Enfoque Transversal</div><div class="gen-detail">${s.enfoque}</div></div>`;
 }
 
-// ANIMACIONES PROFESIONALES
-// 1. Header glassmorphism al scroll
-window.addEventListener('scroll', () => {
-  const header = document.getElementById('main-header');
-  if(header) header.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-// 2. Fade-in al hacer scroll (Intersection Observer)
-const fadeEls = document.querySelectorAll('.fade-in-up');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
-fadeEls.forEach(el => observer.observe(el));
-
-// 3. Hacer visibles los que ya están en pantalla al cargar
-setTimeout(() => {
-  document.querySelectorAll('.fade-in-up').forEach(el => {
-    const r = el.getBoundingClientRect();
-    if(r.top < window.innerHeight) el.classList.add('visible');
-  });
-}, 100);
-
-// Pelotas de fútbol animadas en el mural
-(function(){
-  const canvas = document.getElementById('muralCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let balls = [];
-  function resize(){ canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-  function createBall(){ return { x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:14+Math.random()*18, vx:(Math.random()-0.5)*0.8, vy:(Math.random()-0.5)*0.8, rot:Math.random()*Math.PI*2, vrot:(Math.random()-0.5)*0.04 }; }
-  function drawBall(b){
-    ctx.save(); ctx.translate(b.x,b.y); ctx.rotate(b.rot);
-    ctx.beginPath(); ctx.arc(0,0,b.r,0,Math.PI*2); ctx.fillStyle='#ffffff'; ctx.fill(); ctx.strokeStyle='#333'; ctx.lineWidth=b.r*0.07; ctx.stroke();
-    ctx.beginPath();
-    for(let i=0;i<5;i++){ const a=i*Math.PI*2/5-Math.PI/2; const px=Math.cos(a)*b.r*0.38,py=Math.sin(a)*b.r*0.38; i===0?ctx.moveTo(px,py):ctx.lineTo(px,py); }
-    ctx.closePath(); ctx.fillStyle='#111'; ctx.fill();
-    for(let i=0;i<5;i++){ const a=i*Math.PI*2/5-Math.PI/2; const hx=Math.cos(a)*b.r*0.72,hy=Math.sin(a)*b.r*0.72; ctx.beginPath(); for(let j=0;j<6;j++){ const ha=j*Math.PI/3; const px2=hx+Math.cos(ha)*b.r*0.28,py2=hy+Math.sin(ha)*b.r*0.28; j===0?ctx.moveTo(px2,py2):ctx.lineTo(px2,py2); } ctx.closePath(); ctx.fillStyle='#111'; ctx.fill(); }
-    ctx.restore();
-  }
-  function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); balls.forEach(b=>{ b.x+=b.vx; b.y+=b.vy; b.rot+=b.vrot; if(b.x<-b.r) b.x=canvas.width+b.r; if(b.x>canvas.width+b.r) b.x=-b.r; if(b.y<-b.r) b.y=canvas.height+b.r; if(b.y>canvas.height+b.r) b.y=-b.r; drawBall(b); }); requestAnimationFrame(animate); }
-  resize(); for(let i=0;i<12;i++) balls.push(createBall()); animate();
-  window.addEventListener('resize',()=>{ resize(); });
-})();
+// ===== BUZON =====
+function enviarSugerencia(){
+  const texto=document.getElementById('buzon-mensaje').value.trim();
+  if(!texto){alert("Por favor escribe un mensaje antes de enviar.");return;}
+  const fd=new FormData();
+  fd.append('form-name','buzon-sugerencias-2026');
+  fd.append('Nombre_Estudiante',typeof nombreEstudiante!=='undefined'?nombreEstudiante:"Anónimo");
+  fd.append('Mensaje_Sugerencia',texto);
+  fetch('/',{method:'POST',body:fd})
+    .then(()=>{alert("¡Sugerencia recibida por la delegatura! Gracias.");document.getElementById('buzon-mensaje').value="";cerrarHerramienta('buzon');})
+    .catch(()=>{alert("Hubo un problema al enviar. Inténtalo de nuevo.");});
+}
+function enviarDatosNetlify(nombre,esp,puntaje){
+  const fd=new FormData();
+  fd.append('form-name','registro-aula-2026');
+  fd.append('Nombre_Estudiante',nombre);fd.append('Especialidad',esp);fd.append('Puntaje_Final',puntaje);
+  fetch('/',{method:'POST',body:fd}).then(()=>console.log('OK')).catch(e=>console.error(e));
+}
+actualizarAnosGrados();
 </script>
+
+<form name="registro-aula-2026" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none;">
+  <input type="text" name="Nombre_Estudiante"><input type="text" name="Especialidad"><input type="text" name="Puntaje_Final">
+</form>
+<form name="buzon-sugerencias-2026" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none;">
+  <input type="text" name="Nombre_Estudiante"><input type="text" name="Mensaje_Sugerencia">
+</form>
 </body>
 </html>
