@@ -251,7 +251,7 @@ footer{text-align:center;padding:26px 16px 30px;color:var(--muted);font-size:.84
 <header id="main-header">
   <div class="logo-area">
     <div class="logo-inst" title="IESPP Jesús de Nazareth">JN</div>
-    <div><h1>🎄 VIII CICLO</h1><span>Educación Inicial y Primaria</span></div>
+    <div><h1>🎄 HERRAMIENTAS DIGITALES</h1><span>IESPP Jesús de Nazareth · Educación Inicial y Primaria</span></div>
   </div>
   <nav>
     <a href="#inicio"><i class="fa-solid fa-home"></i>Inicio</a>
@@ -265,14 +265,11 @@ footer{text-align:center;padding:26px 16px 30px;color:var(--muted);font-size:.84
 <main class="wrap">
   <section class="hero fade" id="inicio">
     <span class="eyebrow">❄ FELICES FIESTAS · IESPP «JESÚS DE NAZARETH» · 2026</span>
-    <h2>Herramientas Digitales del <em>VIII Ciclo</em></h2>
-    <p>Recursos interactivos para tu formación docente: practica el Examen de Ascenso 2026, arma tu proyecto de tesis, diseña sesiones con enfoque DUA y mucho más.</p>
+    <h2>Herramientas Digitales para el <em>Docente</em></h2>
+    <p>Recursos para docentes, docentes en formación y docentes de los primeros ciclos: ascenso, tesis, sesiones con DUA y más.</p>
   </section>
 
-  <section id="herramientas">
-    <h3 class="sec-title"><i class="fa-solid fa-toolbox"></i> Herramientas Digitales del VIII Ciclo</h3>
-    <div class="tools-grid" id="tools-grid"></div>
-  </section>
+  <section id="herramientas"><div id="tools-grid"></div></section>
 
   <section id="comunidad">
     <h3 class="sec-title"><i class="fa-solid fa-users"></i> Comunidad del Ciclo</h3>
@@ -348,7 +345,7 @@ footer{text-align:center;padding:26px 16px 30px;color:var(--muted);font-size:.84
         <option value="primaria">Educación Primaria</option>
         <option value="ef">Educación Física</option>
       </select></div>
-    <div class="field" style="display:flex;align-items:flex-end"><button class="btn btn-green btn-block" onclick="verIdeasTesis()"><i class="fa-solid fa-lightbulb"></i> Ver ideas de tema</button></div>
+    <div class="field" style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap"><button class="btn btn-green" onclick="verIdeasTesis()"><i class="fa-solid fa-lightbulb"></i> Ideas</button><button class="btn btn-gold" onclick="verTitulos()"><i class="fa-solid fa-shuffle"></i> Títulos</button><button class="btn btn-red" onclick="verEjemplos()"><i class="fa-solid fa-file-lines"></i> Tesis de ejemplo</button></div>
   </div>
   <div class="ideas" id="ts-ideas"></div>
   <div class="prog"><span id="ts-prog" style="width:0"></span></div>
@@ -386,6 +383,26 @@ footer{text-align:center;padding:26px 16px 30px;color:var(--muted);font-size:.84
   <div class="field"><label>Barrera educativa a anticipar</label><select id="dua-barrera" class="select"></select></div>
   <button class="btn btn-green" onclick="generarSesion('dua')"><i class="fa-solid fa-universal-access"></i> Generar sesión con DUA</button>
   <div id="dua-res" class="result-card"></div>
+</div></div>
+
+<div id="ciclos-pantalla" class="fullscreen-view"><div class="fs-in wide">
+  <div class="view-header"><h2 id="cl-titulo"></h2><button class="btn btn-ghost" onclick="cerrarHerramienta('ciclos')">Cerrar</button></div>
+  <div class="intro"><p>Sesión de aprendizaje con el CNEB para los ciclos I a IV, con la estructura de tu modelo. Edítala y descárgala en Word.</p></div>
+  <div class="row">
+    <div class="field"><label>Nivel</label><select id="cl-nivel" class="select" onchange="poblarSel('cl');limitarCl()"><option value="inicial">Educación Inicial (Ciclos I–II)</option><option value="primaria">Primaria 1°–4° (Ciclos III–IV)</option></select></div>
+    <div class="field"><label id="cl-label">Año / Edad</label><select id="cl-ag" class="select"></select></div>
+    <div class="field"><label>Área curricular</label><select id="cl-area" class="select"></select></div>
+  </div>
+  <div class="row">
+    <div class="field"><label>Docente</label><input id="cl-doc" class="input" placeholder="Nombre del docente"></div>
+    <div class="field"><label>I.E.</label><input id="cl-ie" class="input" placeholder="N.° / nombre de la I.E."></div>
+    <div class="field"><label>Fecha</label><input id="cl-fecha" type="date" class="input"></div>
+    <div class="field"><label>Duración (min)</label><input id="cl-dur" class="input" value="90"></div>
+  </div>
+  <div class="field"><label>Título de la sesión (opcional)</label><input id="cl-tema" class="input" placeholder="Si lo dejas vacío se usa uno sugerido"></div>
+  <div class="field" id="cl-barr-w" style="display:none"><label>Barrera educativa a anticipar (DUA)</label><select id="cl-barr" class="select"></select></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-green" onclick="genCiclo()"><i class="fa-solid fa-gears"></i> Generar sesión</button><button class="btn btn-red" id="cl-dl" style="display:none" onclick="descargarCiclo()"><i class="fa-solid fa-file-word"></i> Descargar en Word</button></div>
+  <div id="cl-res" class="result-card"></div>
 </div></div>
 
 <!-- TRIVIA -->
@@ -755,15 +772,67 @@ $('n-ini').textContent=PAD_INI.length+' estudiantes';
 $('n-pri').textContent=PAD_PRI.length+' estudiantes';
 
 /* ================= HERRAMIENTAS (tarjetas) ================= */
-const TOOLS=[
- {id:'examen',ico:'fa-file-circle-check',t:'Examen de Ascenso Docente 2026',d:'Resuelve el cuadernillo A05-EBRP-12 de EBR Primaria: 60 preguntas con respuesta explicada, puntaje por área y constancia.',b:'Resolver examen',badge:'NUEVO 2026',c:''},
- {id:'tesis',ico:'fa-book-open-reader',t:'Asistente de Proyecto de Tesis',d:'Esquema cuantitativo del instituto (Anexo 1) para Inicial, Primaria y Educación Física, con ideas de tema y descarga en Word.',b:'Armar mi proyecto',badge:'NUEVO',c:'g'},
- {id:'dua',ico:'fa-universal-access',t:'Generador de Sesiones con DUA',d:'Sesión completa con los tres principios del Diseño Universal para el Aprendizaje y ajustes según la barrera del entorno.',b:'Generar con DUA',badge:'NUEVO',c:''},
- {id:'generador',ico:'fa-wand-magic-sparkles',t:'Generador de Sesiones Dinámicas',d:'Esquemas pedagógicos rápidos con situaciones significativas y criterios de evaluación en base al CNEB.',b:'Generar esquema',badge:'',c:'g'},
- {id:'trivia',ico:'fa-fire',t:'Trivia para Estudiantes del Ciclo',d:'Juego de 20 preguntas sobre pedagogía, CNEB y nuestra comunidad, con constancia de participación.',b:'Iniciar trivia',badge:'',c:''},
- {id:'buzon',ico:'fa-envelope-open-text',t:'Buzón de Sugerencias',d:'Envía tus sugerencias a los delegados del ciclo de forma anónima o identificada.',b:'Abrir buzón',badge:'',c:'g'}
+const GRUPOS=[
+ {t:'Herramientas para Docentes',ico:'fa-chalkboard-user',it:[
+  {ico:'fa-file-circle-check',t:'Examen de Ascenso 2026 · Inicial',d:'Cuadernillo A01-EBRI-11 (EBR Inicial): 60 preguntas con respuesta explicada, puntaje y constancia.',b:'Resolver examen',badge:'NUEVO',c:'',f:"abrirExamen('inicial')"},
+  {ico:'fa-file-circle-check',t:'Examen de Ascenso 2026 · Primaria',d:'Cuadernillo A05-EBRP-12 (EBR Primaria): 60 preguntas con respuesta explicada, puntaje por área y constancia.',b:'Resolver examen',badge:'2026',c:'g',f:"abrirExamen('primaria')"},
+  {ico:'fa-universal-access',t:'Sesiones con DUA (ciclos altos)',d:'Sesión completa con los tres principios del DUA y ajustes según la barrera del entorno.',b:'Generar con DUA',badge:'',c:'',f:"abrirHerramienta('dua')"},
+  {ico:'fa-wand-magic-sparkles',t:'Generador de Sesiones Dinámicas',d:'Esquemas pedagógicos rápidos con situaciones significativas y criterios de evaluación (CNEB).',b:'Generar esquema',badge:'',c:'g',f:"abrirHerramienta('generador')"}]},
+ {t:'Herramientas para Docentes en Formación',ico:'fa-user-graduate',it:[
+  {ico:'fa-book-open-reader',t:'Asistente de Proyecto de Tesis',d:'Esquema cuantitativo (Anexo 1), títulos ilimitados y tesis completas de ejemplo.',b:'Armar mi proyecto',badge:'NUEVO',c:'',f:"abrirHerramienta('tesis')"},
+  {ico:'fa-fire',t:'Trivia para Estudiantes',d:'Juego de 20 preguntas sobre pedagogía y CNEB, con constancia.',b:'Iniciar trivia',badge:'',c:'g',f:"abrirHerramienta('trivia')"},
+  {ico:'fa-envelope-open-text',t:'Buzón de Sugerencias',d:'Envía sugerencias a los delegados, de forma anónima o identificada.',b:'Abrir buzón',badge:'',c:'',f:"abrirHerramienta('buzon')"}]},
+ {t:'Herramientas para Docentes de los Primeros Ciclos',ico:'fa-child-reaching',it:[
+  {ico:'fa-book',t:'Sesiones · Primeros ciclos',d:'Sesión de aprendizaje CNEB (Ciclos I–IV) con la estructura de tu modelo, descargable en Word.',b:'Crear sesión',badge:'NUEVO',c:'',f:"abrirCiclos(false)"},
+  {ico:'fa-universal-access',t:'Sesiones con DUA · Primeros ciclos',d:'Misma estructura, con tabla DUA (principio, estrategias y barrera atendida).',b:'Crear sesión DUA',badge:'NUEVO',c:'g',f:"abrirCiclos(true)"}]}
 ];
-$('tools-grid').innerHTML=TOOLS.map(t=>`<div class="tool ${t.c} fade">${t.badge?`<span class="badge">${t.badge}</span>`:''}<div class="tool-ico"><i class="fa-solid ${t.ico}"></i></div><h3>${t.t}</h3><p>${t.d}</p><button class="btn ${t.c==='g'?'btn-green':'btn-red'} btn-block" onclick="abrirHerramienta('${t.id}')">${t.b} →</button></div>`).join('');
+$('tools-grid').innerHTML=GRUPOS.map(g=>`<h3 class="sec-title"><i class="fa-solid ${g.ico}"></i> ${g.t}</h3><div class="tools-grid">${g.it.map(t=>`<div class="tool ${t.c} fade">${t.badge?`<span class="badge">${t.badge}</span>`:''}<div class="tool-ico"><i class="fa-solid ${t.ico}"></i></div><h3>${t.t}</h3><p>${t.d}</p><button class="btn ${t.c==='g'?'btn-green':'btn-red'} btn-block" onclick="${t.f}">${t.b} →</button></div>`).join('')}</div>`).join('');
+
+/* ---- Sesiones primeros ciclos ---- */
+let CL_DUA=false,CL_HTML='';
+function limitarCl(){ if($('cl-nivel').value==='primaria'){ [...$('cl-ag').options].slice(4).forEach(o=>o.remove()); } }
+function abrirCiclos(dua){
+  CL_DUA=dua; abrirHerramienta('ciclos');
+  $('cl-titulo').innerHTML=dua?'<i class="fa-solid fa-universal-access"></i> Sesiones con DUA · Primeros ciclos':'<i class="fa-solid fa-book"></i> Sesiones · Primeros ciclos';
+  $('cl-barr-w').style.display=dua?'block':'none'; poblarSel('cl'); limitarCl();
+  if(!$('cl-barr').options.length) $('cl-barr').innerHTML=Object.entries(BARRERAS).map(([k,v])=>`<option value="${k}">${v.n}</option>`).join('');
+  $('cl-dl').style.display='none';
+}
+function cicloDe(n,ag){ return n==='inicial'?(/^(1|2) año/.test(ag)?'I':'II'):(parseInt(ag)<=2?'III':'IV'); }
+function genCiclo(){
+  const nivel=$('cl-nivel').value, ag=$('cl-ag').value, area=$('cl-area').value, res=$('cl-res');
+  const s=(nivel==='inicial'?sesionesIni:sesionesPri)[area]; if(!s) return;
+  const B=CL_DUA?BARRERAS[$('cl-barr').value]:null, ciclo=cicloDe(nivel,ag);
+  const th='background:#4a43b0;color:#fff;padding:6px;font-size:10pt;text-align:left', td='border:1px solid #ccc;padding:6px;vertical-align:top;font-size:10pt', H='color:#4a43b0;font-size:12pt;margin:14pt 0 4pt';
+  const e=esc, L=a=>a.map(x=>'• '+e(x)).join('<br>'), tema=e($('cl-tema').value.trim()||s.titulo);
+  const fecha=$('cl-fecha').value||'', dur=e($('cl-dur').value||'90');
+  let h=`<div style="background:#fff;color:#111;padding:18px;border-radius:8px;font-family:Arial,sans-serif"><h2 style="text-align:center;color:#222">SESIÓN DE APRENDIZAJE</h2>
+  <h3 style="${H}">I. TÍTULO DE LA SESIÓN</h3><p>${tema}</p>
+  <h3 style="${H}">II. DATOS INFORMATIVOS</h3><table width="100%" style="border-collapse:collapse"><tr><td style="${td}"><b>DOCENTE</b></td><td style="${td}">${e($('cl-doc').value)}</td><td style="${td}"><b>I.E.</b></td><td style="${td}">${e($('cl-ie').value)}</td></tr><tr><td style="${td}"><b>ÁREA</b></td><td style="${td}">${e(area)}</td><td style="${td}"><b>NIVEL Y GRADO/EDAD</b></td><td style="${td}">${nivel==='inicial'?'Inicial':'Primaria'} – ${e(ag)} (Ciclo ${ciclo})</td></tr><tr><td style="${td}"><b>FECHA</b></td><td style="${td}">${fecha}</td><td style="${td}"><b>DURACIÓN</b></td><td style="${td}">${dur} minutos</td></tr></table>
+  <h3 style="${H}">III. PROPÓSITOS DE APRENDIZAJE</h3><table width="100%" style="border-collapse:collapse"><tr><th style="${th}">COMPETENCIA / CAPACIDADES</th><th style="${th}">CRITERIOS DE EVALUACIÓN</th><th style="${th}">EVIDENCIA / INSTRUMENTO</th></tr><tr><td style="${td}"><b>${e(s.competencia)}</b><br>${L(s.capacidades)}</td><td style="${td}">${e(s.evaluacion)}</td><td style="${td}">Producción o desempeño observable de la sesión.<br>• ${nivel==='inicial'?'Lista de cotejo':'Escala valorativa'}</td></tr></table>
+  <table width="100%" style="border-collapse:collapse;margin-top:6px"><tr><th style="${th}">DESEMPEÑO</th></tr><tr><td style="${td}">${e(s.desempeño)}</td></tr></table>
+  <table width="100%" style="border-collapse:collapse;margin-top:6px"><tr><th style="${th}">ENFOQUE TRANSVERSAL</th><th style="${th}">ACTITUDES OBSERVABLES</th></tr><tr><td style="${td}">${e(s.enfoque)}</td><td style="${td}">Los estudiantes muestran disposición a participar, cooperar y respetar a sus compañeros durante la sesión.</td></tr></table>
+  <h3 style="${H}">IV. ESTÁNDAR DE APRENDIZAJE (CICLO ${ciclo})</h3><p>Copia aquí el estándar del CNEB de la competencia «${e(s.competencia)}» para el Ciclo ${ciclo}.</p>
+  <h3 style="${H}">V. PROPÓSITO DE LA SESIÓN</h3><p>${e(s.proposito)}</p>
+  <h3 style="${H}">VI. SITUACIÓN SIGNIFICATIVA</h3><p>${e(s.situacion)}</p>`;
+  if(CL_DUA){
+    const rep=DUA_BASE.rep.map(x=>x.replace('{area}',area)).concat(B.rep), acc=DUA_BASE.acc.concat(B.acc), imp=DUA_BASE.imp.concat(B.imp);
+    h+=`<h3 style="${H}">VII. TABLA DUA — DISEÑO UNIVERSAL PARA EL APRENDIZAJE</h3><table width="100%" style="border-collapse:collapse"><tr><th style="${th}">PRINCIPIO</th><th style="${th}">ESTRATEGIAS</th><th style="${th}">BARRERA ATENDIDA</th></tr>
+    <tr><td style="${td}"><b>Múltiples formas de representación</b></td><td style="${td}">${L(rep)}</td><td style="${td}" rowspan="3">${e(B.n)}: ${e(B.barrera)}<br><br><b>Ajuste razonable:</b> ${e(B.ajuste)}</td></tr>
+    <tr><td style="${td}"><b>Múltiples formas de acción y expresión</b></td><td style="${td}">${L(acc)}</td></tr>
+    <tr><td style="${td}"><b>Múltiples formas de implicación</b></td><td style="${td}">${L(imp)}</td></tr></table>`;
+  }
+  const n=CL_DUA?'VIII':'VII';
+  h+=`<h3 style="${H}">${n}. MOMENTOS DE LA SESIÓN</h3><table width="100%" style="border-collapse:collapse"><tr><th style="${th}">MOMENTO</th><th style="${th}">ESTRATEGIAS DIDÁCTICAS</th><th style="${th}">RECURSOS Y MATERIALES</th></tr>`+
+  s.momentos.map((m,i)=>`<tr><td style="${td}"><b>${e(m.nombre)}</b></td><td style="${td}">${i===0?'<b>Motivación:</b> ':''}${e(m.detalle)}${i===0?'<br><b>Saberes previos:</b> preguntas del contexto del niño.<br><b>Conflicto cognitivo:</b> pregunta retadora.<br><b>Propósito:</b> '+e(s.proposito):''}${i===s.momentos.length-1?'<br><b>Metacognición:</b> ¿Qué aprendí? ¿Cómo lo aprendí? ¿Para qué me sirve?':''}</td>${i===0?`<td style="${td}" rowspan="${s.momentos.length}">${L(s.recursos)}</td>`:''}</tr>`).join('')+`</table>
+  <h3 style="${H}">${nivel==='inicial'?'LISTA DE COTEJO':'ESCALA VALORATIVA'}</h3><table width="100%" style="border-collapse:collapse"><tr><th style="${th}">ESTUDIANTES</th>${s.capacidades.map(c=>`<th style="${th}">${e(c)}<br>A · B · C</th>`).join('')}</tr>${[1,2,3,4,5].map(()=>`<tr><td style="${td}">&nbsp;</td>${s.capacidades.map(()=>`<td style="${td}">&nbsp;</td>`).join('')}</tr>`).join('')}</table>
+  <table width="100%" style="margin-top:40px"><tr><td style="text-align:center">__________________<br>DIRECCIÓN</td><td style="text-align:center">__________________<br>DOCENTE DE AULA</td></tr></table></div>`;
+  CL_HTML=h; res.innerHTML=h; res.style.display='block'; $('cl-dl').style.display='inline-flex';
+}
+function descargarCiclo(){
+  const b=new Blob(['\ufeff','<html><head><meta charset="utf-8"></head><body>'+CL_HTML+'</body></html>'],{type:'application/msword'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(b); a.download='Sesion_'+(CL_DUA?'DUA_':'')+'primeros_ciclos.doc'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+}
 
 let _abierta=null;
 function abrirHerramienta(t){
@@ -830,7 +899,7 @@ function imprimirCert(id){
 }
 
 /* ================= EXAMEN DE ASCENSO ================= */
-const AREAS={cyt:'Ciencia y Tecnología',inc:'Inclusión, tutoría y convivencia',ps:'Personal Social y Ciudadanía',mat:'Matemática',com:'Comunicación',ept:'Educación para el Trabajo'};
+const AREAS={cyt:'Ciencia y Tecnología',inc:'Inclusión, tutoría y convivencia',ps:'Personal Social y Ciudadanía',mat:'Matemática',com:'Comunicación',ept:'Educación para el Trabajo',gen:'Educación Inicial'};
 function areaDe(n){
   if([3,5,6,10].includes(n)) return 'inc';
   if(n===35) return 'ept';
@@ -839,21 +908,84 @@ function areaDe(n){
   if([32,33].includes(n)||(n>=36&&n<=48)) return 'com';
   return 'ps';
 }
-const EXQ=EX.map((r,i)=>({n:i+1,x:r[0],q:r[1],o:r[2],c:r[3],e:r[4],a:areaDe(i+1)}));
+const EXI=[
+[`Eliana: «todos los niños tienen derecho a educación de calidad; debemos identificar y atender las demandas de aprendizaje de cada niño». ¿Qué componente de la educación inclusiva?`,['Asequibilidad','Adaptabilidad','Accesibilidad'],1,'Adaptar la educación a las necesidades de cada niño es adaptabilidad.'],
+[`Sara (20 meses) muestra tensión muscular permanente. ¿Qué acción favorece su relajación?`,['Tina con agua tibia y pasar suavemente una esponja de espuma','Pelota grande: sostenerla de las caderas y balancearla','Crema y masaje con presión en extremidades'],0,'El agua tibia y el contacto suave relajan; la presión o el balanceo activan.'],
+[`El docente dice que los recursos deben adaptarse a habilidades y preferencias para que evidencien su aprendizaje de diversas formas. ¿Qué principio DUA?`,['Múltiples formas de compromiso','Múltiples formas de representación','Múltiples formas de acción y expresión'],2,'Evidenciar el aprendizaje de diversas formas = acción y expresión.'],
+[`José (7 meses) llora cuando sus padres se alejan. ¿Qué recomienda el Minedu?`,['Responder hablándole desde donde estén y seguir hablándole al cargarlo y atenderlo','Evitar responder de inmediato para que aprenda a esperar','Cargarlo, alimentarlo, cambiarlo y acunarlo hasta dormir'],0,'Responder con prontitud y con la voz da seguridad.'],
+[`Elena (5 meses) intenta volver a ponerse de costado para seguir viendo a la docente. ¿Qué intervención es pertinente?`,['«¿Me estás buscando? Vi que te pusiste de costado y ahora tratas de volver»','Darle la mano para ayudarla a ponerse de costado','Cambiarse de lado y animarla: «¡Vamos, tú puedes!»'],0,'Se describe y acompaña respetando su movimiento libre, sin posicionarla.'],
+[`Orientaciones a familias sobre normas y límites: ¿cuál es la MENOS pertinente?`,['Definir reglas, explicar el porqué y enseñar con el ejemplo','Conversar qué normas necesitan, anotarlas y explicar el porqué','Escribir reglas, asignar responsabilidades e informar qué pasaría si alguien no cumple'],2,'Centrarse en la consecuencia por incumplir es punitivo.'],
+[`Ramiro (5 años) rompe su hoja al pintar, grita, la arruga y la tira. ¿Acción más pertinente para su autorregulación emocional?`,['«Te entiendo, estás molesto»; ofrecer un abrazo','«Algo te molestó, ¿me cuentas?»; escucharlo y analizar juntos lo ocurrido','Nombrar la causa y ofrecerle otra hoja'],1,'Lo lleva a verbalizar y comprender lo que sintió.'],
+[`Según Piaget, ¿qué etapa se caracteriza por egocentrismo que dificulta asumir otro punto de vista?`,['Sensoriomotora','Preoperacional','Operaciones concretas'],1,'El egocentrismo es propio de la etapa preoperacional.'],
+[`¿Qué afirmación corresponde a la teoría de Vygotsky?`,['Aprenden activamente explorando el entorno','Aprenden por observación, imitación y modelado','Aprenden asistidos por maestros y herramientas sociales, sobre todo por el lenguaje'],2,'Mediación social y lenguaje: Vygotsky (A es Piaget, B es Bandura).'],
+[`Visita a la casa de Teodora: anotan ideas previas, visitan y las comparan con lo encontrado y con libros. ¿Qué aprendizaje se promueve?`,['Asociativo','Significativo','Situado'],1,'Relaciona lo nuevo con saberes previos. (Discutible frente a «situado».)'],
+[`¿Quién explica adecuadamente la resiliencia?`,['Elena: atributo individual, innato e independiente del entorno','Luis: reproducir los modelos de crianza es inevitable','Ana: habilidad para adaptarse y afrontar situaciones adversas, transformándolas en positivo'],2,'La resiliencia es adaptarse y transformar la adversidad.'],
+[`Según el documento TOE de Inicial, ¿qué NO corresponde a la planificación?`,['Planificación específica de aula en la programación diaria','Usar el diagnóstico del PEI para toda la IE','Se puede prescindir de una planificación específica de aula'],2,'La planificación de aula es necesaria.'],
+[`Pedro logra amarrarse los pasadores; la docente le pregunta cómo lo hizo. ¿Qué dimensión de la TOE?`,['Personal','Social','De los aprendizajes'],2,'Reflexiona sobre su proceso: dimensión de los aprendizajes.'],
+[`Planificar tiempos, espacios y actividades diferenciados según necesidades. ¿Qué valor del enfoque inclusivo?`,['Equidad en la enseñanza','Respeto por las diferencias','Conciencia de derechos'],0,'Dar a cada uno lo que necesita es equidad. (Discutible.)'],
+[`¿Qué enfoque del CNEB reconoce a los estudiantes como ciudadanos con deberes que fortalecen la convivencia democrática?`,['Derechos','Intercultural','Orientación al bien común'],2,'Deberes y convivencia democrática: bien común.'],
+[`Miguel (3 años) llora porque se le cayó el plátano. ¿Intervención para su conciencia emocional?`,['«¿Estás triste porque se cayó? Yo también lo estaría. ¿Buscamos otra fruta?»','Ofrecerle una mandarina para que se alegre','«No hay por qué llorar»; limpiar el piso'],0,'Nombra y valida la emoción.'],
+[`Teresa (20 meses) intenta ponerse una media. ¿Qué favorece su autonomía?`,['Dejarla continuar y ofrecer ayuda si no puede','Animarla hasta que lo consiga sola','Guiar sus manos para evitar la frustración'],0,'Respeta su iniciativa con ayuda solo cuando la pide.'],
+[`Diana (22 meses) sube a un banco para alcanzar un juguete. ¿Qué hace la docente?`,['Darle la mano','Mantenerse cerca y decirle que estará ahí si la necesita','Sujetar el banco'],1,'Presencia atenta sin intervenir.'],
+[`Cristina (27 meses) llora en su adaptación. ¿Acción más pertinente?`,['Llevarla de la mano a integrarse al juego de un grupo','Decirle que sabe que extraña a su mamá y volverá pronto; proponer traer un juguete de casa','Explicar que su mamá cocina y esperar a que se calme sola'],1,'Valida la emoción, anticipa el regreso y da un objeto de transición.'],
+[`Aviones de papel: Diego (alas grandes) vs. Martha y Mariela (pequeños). ¿Cómo probar sus ideas?`,['Mismo modelo, mismo tipo de papel y distintos tamaños; elegir quién lanza desde la misma línea','Mismo modelo, distintos tamaños y tipos de papel; cada uno lanza el suyo','Distintos modelos y tamaños del mismo papel'],0,'Solo cambia el tamaño; el resto se controla.'],
+[`Huerto con piedras: los niños recolectaron objetos. ¿Acción para plantear soluciones tecnológicas básicas?`,['La docente da ideas de uso y ellos eligen','Probar los objetos en el terreno y preguntar cuáles son más útiles','Que mencionen cómo usar cada objeto y luego ponerlo en práctica'],2,'Primero proponen (diseño) y luego prueban.'],
+[`«¿Qué habrá pasado para que la abeja no nos picara?» ¿Cuál es el propósito en la indagación?`,['Comparar lo que creían de las abejas con lo observado','Explicar por qué la abeja fue hacia las flores','Identificar cómo comprobar qué atrajo a la abeja'],0,'Contrasta ideas previas con lo observado. (Discutible.)'],
+[`Palta negra por encima y verde debajo: ¿qué capacidad evidencian los niños?`,['Comparan lo que creían con los resultados','Descubren algo que contradice lo esperado','Raspan la palta para saber si está malograda'],2,'Genera datos al raspar para comprobar. (Discutible.)'],
+[`Hormigas: ¿dulce o cualquier cosa? ¿Cómo probar la idea?`,['Colocar cada alimento donde prefieran','Elegir un alimento dulce y otro no, en igual cantidad, uno al lado del otro cerca de las hormigas','Poner primero el dulce y luego el otro'],1,'Misma cantidad y condiciones, a la vez.'],
+[`Rampas y pelotas: «¿Cómo colocar tablas y pelotas para salir de dudas?» ¿Qué capacidad se promueve?`,['Problematiza situaciones','Diseña estrategias para hacer indagación','Analiza datos e información'],1,'Plantea cómo comprobar la idea.'],
+[`Vasos de naranjada de distinta forma. ¿Acción para iniciar en la experimentación?`,['Que sirvan 2 cucharones en recipientes distintos y comprueben si tienen igual cantidad','Que viertan y conversen lo que descubren','Demostrar con agua y preguntar'],0,'Ellos experimentan y comprueban.'],
+[`Linterna y sombras: ¿cómo continuar explorando?`,['Preguntas: ¿qué hará la sombra más grande o pequeña? ¿Y si acercan o alejan la linterna?','¿Qué pasa si mueven la linterna? ¿Cómo hacer que quede detrás del juguete?','Objetos traslúcidos'],0,'Explora la relación entre distancia y tamaño (variables).'],
+[`Diego: «mi sombra es igual a la tuya aunque soy más alto». ¿Acción MENOS pertinente?`,['Pensar cómo comprobar si la altura influye','Pararse en parejas en distintos lugares del patio para ver si todas son iguales','Comparar con compañeros de otra estatura en el mismo momento'],1,'No controla la variable estatura.'],
+[`Torre de latas: probar la idea de Luisa. ¿Acción más adecuada?`,['Construir dos torres con las mismas latas, una con más latas abajo y otra sin eso; comparar','Cada grupo hace su torre con las latas que prefiera','Una torre con latas pequeñas arriba'],0,'Comparación con una sola variable.'],
+[`Pastel de tierra y agua: «¿cómo hicieron para que no se desarme?» ¿Qué capacidad?`,['Evalúa y comunica el proceso y resultado','Diseña estrategias','Genera y registra datos'],0,'Narran el proceso y el resultado.'],
+[`¿En qué situación NO se favorece el desarrollo corporal?`,['Pedro (18 m) en el espejo: la docente le pide señalar partes y felicita','Rocío (8 m): invitada a levantar brazos al vestirla','Carlos (4 m): coge su pie y la docente lo acompaña'],0,'Es una consigna dirigida y evaluativa, no exploración propia.'],
+[`Carmen (8 meses): la pelota desaparece y busca con la mirada a la docente. ¿Qué hace la docente?`,['«No te preocupes, te doy otra pelota»','«¿Dónde estará? Juntas vamos a buscarla»','«Está detrás de la puerta»'],1,'Acompaña la búsqueda (permanencia del objeto).'],
+[`Patricia (24 m) lleva una planta al aula. ¿Intervención para reconocer límites por el bien común?`,['La docente decide y la coloca en el patio','Pedir la planta y explicar que debe estar afuera','Preguntar qué necesita la planta y decidir juntas ponerla en el patio'],2,'Razona con ella y decide en conjunto.'],
+[`«¿Cómo sabrán los papás hacia qué lado caminar?» ¿Qué proceso pedagógico?`,['Metacognición','Conflicto cognitivo','Recojo de saberes previos'],1,'Un vacío en su idea los desafía a resolverlo.'],
+[`Si Lucía es más alta que Juana, ¿qué es Juana respecto a Lucía? ¿Propiedad de la seriación?`,['Reversibilidad','Transitividad','Reciprocidad'],2,'Relación inversa (si A>B entonces B<A): reciprocidad.'],
+[`Puentes de maderas que se derrumban. ¿Acción para apoyar?`,['Construir primero una torre con las maderas que no caen','Comparar maderas que se mantienen en pie con las que no y comentar por qué','Comentarles que algunas se mantienen y otras no'],1,'Compara, observa y razona sobre propiedades.'],
+[`Faltan cajas (tienen 2, necesitan 6). Según el enfoque de resolución de problemas, ¿qué acción?`,['Que indiquen qué pasos seguirán','Que expresen con sus palabras lo que entienden del problema','Que lo resuelvan y comparen resultados'],1,'Primero se comprende el problema.'],
+[`Noción de espacio: ¿actividad más pertinente?`,['«Búsqueda del tesoro»: esconden y buscan, dando la ubicación o posición','«Simón dice» con preguntas sobre ubicación','Pegar figuras en la imagen de un ambiente'],0,'Es una situación problemática con desplazamiento y ubicación reales.'],
+[`Pilar cuenta: «uno, dos, tres, cinco, cuatro». ¿Qué principio del conteo?`,['Cardinalidad','Orden estable','Correspondencia término a término'],1,'No mantiene el orden de la secuencia numérica.'],
+[`Pistas de autos: ¿qué proceso pedagógico evidencia la docente al preguntar si así pueden compararse las filas?`,['Conflicto cognitivo','Metacognición','Andamiaje'],0,'Las piezas separadas contradicen la comparación esperada. (Discutible frente a andamiaje.)'],
+[`Número como nominal en la carrera de autos: ¿qué preguntas?`,['¿Qué carro llegó primero? ¿Y último?','¿Qué número ven en el carro blanco y en el verde?','¿Cuántos carros participaron?'],1,'Nominal: el número identifica.'],
+[`Doris (6 colores con espacios) dice que tiene más que Facundo (6 juntos). ¿Qué fase de la conservación?`,['Ausencia de correspondencia término a término','Correspondencia término a término sin conservación','Conservación no duradera'],1,'Hizo la correspondencia pero no conserva la cantidad.'],
+[`«¿Con qué otro material podrían medir la cama del oso?» ¿Qué proceso pedagógico?`,['Metacognición','Conflicto cognitivo','Transferencia del aprendizaje'],2,'Aplica lo aprendido a una situación nueva.'],
+[`Juan (7 meses) aún no se sienta solo. ¿Qué recomienda la docente?`,['Sentarlo apoyado y apartarse poco a poco','Levantarlo tomándolo de las manos','Colocar juguetes cerca para que pruebe nuevas posturas hasta sentarse solo'],2,'Se respeta su ritmo y se motiva su movimiento libre.'],
+[`Paulo limpia su mesa por primera vez. ¿Qué se registra en el anecdotario?`,['Coge la esponja y limpia la mesa; me mira y sonríe; está feliz','Coge la esponja, se dirige a su mesa, la limpia y la regresa a su sitio; me mira y sonríe','Limpia porque piensa que está sucia'],1,'Hechos objetivos, sin interpretaciones.'],
+[`Desempeño de «Resuelve problemas de forma, movimiento y localización» esperable a los 24 meses aprox.`,['Sortea obstáculos, transporta, empuja, arrastra, encaja, apila…','Sortea obstáculos, transporta, empuja, arrastra, ordena… en interacción con otros','Se organiza y organiza los objetos a partir de la exploración en su entorno inmediato'],0,'Incluye acciones de encajar y apilar propias de esa edad. (Discutible.)'],
+[`Mercedes dice que su tarjeta dice «Mechita». ¿Qué favorece su apropiación del sistema de escritura?`,['Corregirla: dice «Mercedes»','Pedir sus útiles y decir «te llamamos Mechita»','Comparar el sonido final de «Mer-ce-des» y «Me-chi-ta»'],2,'Reflexiona sobre la relación sonido-escritura.'],
+[`Dibujo de Alejandra con los nombres «Raúl» y el suyo escritos. ¿Qué hipótesis de escritura (Ferreiro y Teberosky)?`,['Propiedades de los objetos','Cantidad','Variedad'],2,'Usa distintas letras para escribir cosas distintas. (Discutible: depende de la imagen.)'],
+[`La docente describe: «abriré la bolsa, luego les repartiré una galleta…». ¿Qué busca?`,['Promover el uso del lenguaje al describir sus acciones','Ayudar a describir una secuencia de acciones','Que respondan libremente qué hacer'],1,'Modela cómo describir una secuencia.'],
+[`¿Qué acción favorece el nivel «símbolo» de la función simbólica?`,['Explorar frutas con los sentidos','Reconocer sonidos con ojos vendados','Dramatizar la compra y venta en un mercado'],2,'El juego simbólico usa un objeto para representar otro.'],
+[`Cuento «Kumafary»: ¿qué pregunta busca información explícita?`,['¿Qué decía Buitre a los pobladores al volar sobre la aldea?','¿Por qué Kumafary devolvió el carbón?','¿Qué final distinto le pondrían?'],0,'Está literal en el texto.'],
+[`«Kumafary»: ¿qué pregunta lleva a inferir?`,['¿Qué sucedió justo antes de tener el carbón?','¿Qué elemento de la naturaleza ayudó a Kumafary?','¿Qué piensas sobre que le haya robado el carbón?'],1,'Se infiere (el espíritu de la tierra/el árbol).'],
+[`«Kumafary»: ¿qué pregunta promueve la reflexión sobre el contenido?`,['Si fueses Kumafary, ¿qué le dirías a Buitre?','¿Cuál es el mensaje principal?','¿Cómo se enciende el fuego según Buitre?'],0,'Se ponen en el lugar del personaje y opinan.'],
+[`Poema «La escuela del pantano»: «¿Qué quería lograr la autora?» ¿Propósito de la docente?`,['Que realicen inferencias a partir del texto','Que identifiquen información explícita','Que compartan su opinión sobre el texto'],0,'La intención del autor no está dicha: se infiere.'],
+[`Diálogo con Sofía: ¿propósito principal en «se comunica oralmente»?`,['Que recuerde lo que hizo en el parque','Que detalle sus respuestas cuando dialoga','Que informe sobre el miembro más importante de su familia'],1,'Las repreguntas amplían sus respuestas.'],
+[`Diálogo con Sofía: ¿qué proceso pedagógico promueve?`,['Metacognición','Andamiaje','Conflicto cognitivo'],1,'Apoya con preguntas graduadas lo que aún no hace sola.'],
+[`Docentes de 5 años y acercamiento a la escritura: ¿quién menciona una práctica pertinente?`,['Fabiola: recortar letras y formar su nombre con la tarjeta','Raquel: que escriban libremente y escribir debajo lo que dicten','Graciela: escribir palabras frente a ellos cuando lo pidan'],2,'Ven cómo se escribe (modelado) en una situación real.'],
+[`Escritos de Sandra, Carmen y Álvaro: ¿quién está en el nivel silábico-alfabético?`,['Sandra','Carmen','Álvaro'],1,'Combina sílabas con una letra y sílabas con varias («peado»).'],
+[`Ricardo (18 m) en localidad quechua-castellano, en adaptación. ¿Cómo interactuar?`,['Usar su lengua materna en los momentos de cuidado para dar confianza','Usar quechua y castellano','Responderle siempre en castellano'],0,'Primero seguridad afectiva en su lengua materna.'],
+[`Niños de 24 meses con pelotas, aros y cajas. ¿Cómo recoger información sobre «forma, movimiento y localización»?`,['Observar y registrar, intervenir solo si es necesario y atender trayectorias, posiciones y relaciones espaciales','Intervenir cuando se frustren para mostrarles cómo ubicar','Complejizar el juego'],0,'Observación respetuosa del juego libre.']
+];
+const EXQ_P=EX.map((r,i)=>({n:i+1,x:r[0],q:r[1],o:r[2],c:r[3],e:r[4],a:areaDe(i+1)}));
+const EXQ_I=EXI.map((r,i)=>({n:i+1,x:null,q:r[0],o:r[1],c:r[2],e:r[3],a:'gen'}));
+let EXQ=EXQ_P, exTipo='primaria';
+function abrirExamen(t){ exTipo=t; EXQ=t==='inicial'?EXQ_I:EXQ_P; abrirHerramienta('examen'); }
 let exQs=[],exIdx=0,exAns={},exTimer=null,exSecs=0,exNombre='',exModo='all';
 
 function initExamen(){
   clearInterval(exTimer); exTimer=null;
   $('ex-setup').style.display='block'; $('ex-run').style.display='none'; $('ex-res').style.display='none'; $('ex-timer').style.display='none';
+  $('ex-setup').querySelector('h2').textContent=exTipo==='inicial'?'Cuadernillo A01-EBRI-11 · EBR Inicial':'Cuadernillo A05-EBRP-12 · EBR Primaria';
   const sel=$('ex-area');
-  if(!sel.options.length){
-    sel.innerHTML=`<option value="all">Simulacro completo (60 preguntas)</option>`+Object.entries(AREAS).map(([k,v])=>`<option value="${k}">Solo ${v} (${EXQ.filter(q=>q.a===k).length} preguntas)</option>`).join('');
-    sel.onchange=infoExamen;
-  }
-  infoExamen();
+  sel.innerHTML=`<option value="all">Simulacro completo (${EXQ.length} preguntas)</option>`+(exTipo==='inicial'?'':Object.entries(AREAS).filter(([k])=>k!=='gen').map(([k,v])=>`<option value="${k}">Solo ${v} (${EXQ.filter(q=>q.a===k).length} preguntas)</option>`).join(''));
+  sel.onchange=infoExamen; infoExamen();
 }
 function infoExamen(){
-  const m=$('ex-area').value, n=m==='all'?60:EXQ.filter(q=>q.a===m).length, mins=m==='all'?120:Math.max(5,Math.ceil(n*2));
+  const m=$('ex-area').value, n=m==='all'?EXQ.length:EXQ.filter(q=>q.a===m).length, mins=m==='all'?120:Math.max(5,Math.ceil(n*2));
   $('ex-info').innerHTML=`<i class="fa-solid fa-clock"></i> ${n} preguntas · tiempo sugerido: <strong>${mins} minutos</strong>. Puedes navegar libremente entre preguntas y cambiar tus respuestas antes de finalizar.`;
 }
 function comenzarExamen(){
@@ -890,14 +1022,14 @@ function finalizarExamen(auto){
   const tot=exQs.length; let ok=0; const por={};
   exQs.forEach(q=>{ por[q.a]=por[q.a]||{ok:0,t:0}; por[q.a].t++; if(exAns[q.n]===q.c){ ok++; por[q.a].ok++; } });
   const pct=Math.round(ok/tot*100), cod=codigoCert();
-  enviarDatosNetlify('Examen de Ascenso 2026 (Primaria)',exNombre,'Primaria',`${ok}/${tot} (${pct}%) - ${exModo==='all'?'Completo':AREAS[exModo]}`);
+  enviarDatosNetlify('Examen de Ascenso 2026 ('+exTipo+')',exNombre,exTipo,`${ok}/${tot} (${pct}%) - ${exModo==='all'?'Completo':AREAS[exModo]}`);
   const bars=Object.entries(por).map(([k,v])=>{const p=Math.round(v.ok/v.t*100);return `<div class="ab"><div class="ab-top"><span>${AREAS[k]}</span><span>${v.ok}/${v.t} · ${p}%</span></div><div class="ab-bar"><span style="width:${p}%"></span></div></div>`;}).join('');
   const rev=exQs.map(q=>{ const r=exAns[q.n], bien=r===q.c;
     return `<details><summary><span class="${bien?'ok':'no'}">${bien?'✔':'✘'}</span> Pregunta ${q.n} · ${AREAS[q.a]}</summary><div class="rv">
     ${q.x?`<p style="color:var(--muted);font-size:.82rem">${esc(EX_CTX[q.x]).slice(0,260)}…</p>`:''}<p><b>${esc(q.q)}</b></p>
     <p>Tu respuesta: <b>${r===undefined?'Sin responder':LET[r]+'. '+esc(q.o[r])}</b></p><p>Respuesta correcta: <b>${LET[q.c]}. ${esc(q.o[q.c])}</b></p><p>💡 ${esc(q.e)}</p></div></details>`; }).join('');
   const cert=certHTML({titulo:'Constancia de Participación',nombre:exNombre,
-    cuerpo:`Por haber completado el simulacro del <strong>Examen de Ascenso Docente 2026</strong> (cuadernillo A05-EBRP-12, EBR Primaria${exModo==='all'?'':' · práctica por área: '+AREAS[exModo]}), demostrando compromiso con su formación y desarrollo profesional docente.`,
+    cuerpo:`Por haber completado el simulacro del <strong>Examen de Ascenso Docente 2026</strong> (cuadernillo ${exTipo==='inicial'?'A01-EBRI-11, EBR Inicial':'A05-EBRP-12, EBR Primaria'}${exModo==='all'?'':' · práctica por área: '+AREAS[exModo]}), demostrando compromiso con su formación y desarrollo profesional docente.`,
     meta:[['Puntaje',`${ok} / ${tot}`],['Porcentaje',pct+'%'],['Nivel referencial',nivelRef(pct)]],codigo:cod});
   const R=$('ex-res'); R.style.display='block';
   R.innerHTML=`<div class="score-hero"><h2>¡Examen finalizado!</h2><div class="score-big">${ok} / ${tot}</div><p>${esc(exNombre)}, obtuviste <b style="color:var(--gold)">${pct}%</b> de aciertos · Nivel referencial: <b>${nivelRef(pct)}</b></p></div>
@@ -1107,6 +1239,63 @@ function exportarTesis(){
   h+='</body></html>';
   const blob=new Blob(['\ufeff',h],{type:'application/msword'}), a=document.createElement('a');
   a.href=URL.createObjectURL(blob); a.download='Proyecto_de_Tesis_'+tsState.esp+'.doc'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+}
+
+const GEN={
+ inicial:{x:['el juego libre en los sectores','los cuentos infantiles','el apego seguro','la psicomotricidad gruesa','el material concreto','las asambleas de aula','las canciones infantiles','el dibujo y la expresión gráfica','la participación de las familias','el huerto escolar','los juegos tradicionales','la lectura de imágenes'],
+  y:['el desarrollo del lenguaje oral','la autonomía','la regulación emocional','las nociones de cantidad','la socialización','la creatividad','la atención','el vocabulario','la motricidad fina','las habilidades sociales','la conciencia fonológica'],
+  p:['niños de 3 años','niños de 4 años','infantes de 5 años','niños de 5 años de la I.E. N.° [__]','estudiantes de inicial del distrito de [__]']},
+ primaria:{x:['las estrategias de comprensión lectora','el material concreto','la retroalimentación formativa','los juegos cooperativos','el aprendizaje basado en proyectos','los recursos digitales','la indagación científica','la gamificación','el aprendizaje cooperativo','la lectura diaria','los organizadores gráficos','la tutoría'],
+  y:['el logro en comprensión lectora','la resolución de problemas','la convivencia escolar','la motivación','el rendimiento en Matemática','la producción de textos','el pensamiento crítico','el hábito lector','la autoestima','las competencias en Ciencia y Tecnología'],
+  p:['estudiantes de 2.° grado','estudiantes de 3.° grado','estudiantes de 4.° grado','estudiantes de 5.° grado','estudiantes de 6.° grado','estudiantes de la I.E. N.° [__]']},
+ ef:{x:['los juegos cooperativos','el programa de actividad física','las habilidades motrices básicas','los hábitos de vida saludable','la iniciación deportiva','los juegos tradicionales','la expresión corporal','las pausas activas','los circuitos motores'],
+  y:['la convivencia escolar','la condición física','la coordinación motriz','el índice de masa corporal','la motivación hacia la Educación Física','la participación en clase','las habilidades sociales','la autoestima','la resistencia aeróbica'],
+  p:['estudiantes de primaria','estudiantes de 3.° y 4.° grado','estudiantes de 5.° y 6.° grado','niños de 6 a 8 años','estudiantes de la I.E. N.° [__]']}
+};
+const _r=a=>a[Math.floor(Math.random()*a.length)], _c=s=>s[0].toUpperCase()+s.slice(1);
+let tsTitulos=[];
+function nuevoTitulo(e){ const g=GEN[e],x=_r(g.x),y=_r(g.y),p=_r(g.p),f=Math.floor(Math.random()*4);
+  return _c([`${x} y ${y} en ${p}`,`Relación entre ${x} y ${y} en ${p}`,`Efecto de ${x} en ${y} de ${p}`,`${x} y su influencia en ${y} en ${p}`][f])+', [lugar], 2026'; }
+function verTitulos(){
+  const e=tsState.esp, b=$('ts-ideas'), t=GEN[e]; tsTitulos=Array.from({length:15},()=>nuevoTitulo(e));
+  b.innerHTML=`<h4>🎲 Títulos (${(t.x.length*t.y.length*t.p.length*4).toLocaleString('es-PE')} combinaciones posibles)</h4><p style="font-size:.84rem;color:var(--muted)">Toca un título para ponerlo en tu borrador. Valídalo con tu asesor.</p><ul>${tsTitulos.map((x,i)=>`<li style="cursor:pointer" onclick="usarTitulo(${i})">${esc(x)}</li>`).join('')}</ul><button class="btn btn-ghost" onclick="verTitulos()">🔄 Generar otros 15</button>`;
+  b.style.display='block';
+}
+function usarTitulo(i){ tsState.vals.t11=tsTitulos[i]; guardarTesis(); tsState.sec=0; renderTesis(); alert('Título agregado al apartado 1.1'); }
+const EJ={
+ inicial:{e:'inicial',x:'apego seguro',y:'desarrollo del lenguaje oral',pob:'infantes de 5 años',ie:'I.E. N.° 136 «Santísima María Auxiliadora», Parcona – Ica, 2024',area:'Desarrollo infantil y lenguaje',N:106,dx:['vínculo afectivo con la figura de apego','seguridad emocional','respuesta a las necesidades del niño'],dy:['fonología','vocabulario','comprensión y expresión'],ins:'ficha de observación'},
+ primaria:{e:'primaria',x:'la retroalimentación formativa',y:'el rendimiento en Matemática',pob:'estudiantes de 5.° grado',ie:'I.E. N.° [__], distrito de [__], 2026',area:'Evaluación formativa y aprendizaje de la Matemática',N:90,dx:['retroalimentación por descubrimiento','retroalimentación elemental','oportunidad y claridad del mensaje'],dy:['resuelve problemas de cantidad','resuelve problemas de regularidad','resuelve problemas de gestión de datos'],ins:'cuestionario y prueba escrita'},
+ ef:{e:'ef',x:'los juegos cooperativos',y:'la convivencia escolar',pob:'estudiantes de 5.° y 6.° grado de primaria',ie:'I.E. N.° [__], distrito de [__], 2026',area:'Juegos cooperativos y convivencia',N:80,dx:['participación en el juego','ayuda mutua','cumplimiento de reglas'],dy:['respeto','solidaridad','resolución de conflictos'],ins:'cuestionario'}
+};
+function ejTesis(p){
+  const T=`${_c(p.x)} y ${p.y} en ${p.pob} de la ${p.ie}`, X=p.x, Y=p.y, n=Math.round(p.N*0.8), ant=(t)=>`[Apellido, año]. «Título de la ${t}». Objetivo: […]. Metodología: […]. Resultados: […]. Conclusión: […]. (Reemplaza por una fuente real y verificable.)`;
+  return {t11:T,t12:'Básica, de enfoque cuantitativo.',t13:p.area+'.',t14:p.ie+'.',t15:'[Apellidos y nombres del tesista]. Especialidad: '+ESP_LBL[p.e]+'.',
+  t21:`En el ámbito educativo se reconoce la importancia de ${X} para ${Y}. Sin embargo, en ${p.pob} de la ${p.ie} se observan dificultades en ${Y} [incluir datos o evidencias de tu IE: actas, registros, observaciones]. Entre las causas probables se encuentran la falta de estrategias sostenidas y el poco acompañamiento familiar o docente. De continuar esta situación, se afectará el desarrollo integral y el logro de las competencias esperadas. Por ello, se plantea determinar cómo se relacionan ambas variables.`,
+  t22:`Problema general: ¿De qué manera ${X} se relaciona con ${Y} en ${p.pob} de la ${p.ie}?\nProblemas específicos: ¿Cómo se relaciona ${X} con ${p.dy[0]}?, ¿con ${p.dy[1]}?, ¿con ${p.dy[2]}?`,
+  t23:`Teórica: aporta evidencia sobre la relación entre ${X} y ${Y}. Práctica: sus resultados orientarán a los docentes en la toma de decisiones. Metodológica: se utilizan instrumentos válidos y confiables que otros investigadores podrán replicar. Social: beneficia a los estudiantes y a sus familias.`,
+  t24:'Acceso limitado a la muestra, tiempo disponible para aplicar los instrumentos y posibilidad de generalizar los resultados solo a poblaciones similares.',
+  t251:`Determinar cómo ${X} se relaciona con ${Y} en ${p.pob} de la ${p.ie}.`,
+  t252:`1. Establecer la relación entre ${X} y ${p.dy[0]}.\n2. Establecer la relación entre ${X} y ${p.dy[1]}.\n3. Establecer la relación entre ${X} y ${p.dy[2]}.`,
+  a1:ant('investigación internacional 1'),a2:ant('investigación internacional 2'),a3:ant('investigación internacional 3'),n1:ant('tesis nacional 1'),n2:ant('tesis nacional 2'),n3:ant('tesis nacional 3'),
+  t27:`Desarrolla aquí las teorías que sustentan cada variable con citas en APA: para ${X} (autores y modelos reconocidos) y para ${Y} (teorías del desarrollo y del aprendizaje, por ejemplo Vygotsky o Piaget, según corresponda). Incluye además el enfoque del CNEB.`,
+  t28:`Definiciones de: ${X} (dimensiones: ${p.dx.join('; ')}) y ${Y} (dimensiones: ${p.dy.join('; ')}).`,
+  t31:`H1: ${_c(X)} se relaciona significativamente con ${Y} en ${p.pob} de la ${p.ie}.\nH0: ${_c(X)} no se relaciona con ${Y} en ${p.pob} de la ${p.ie}.\nHipótesis específicas: una por cada dimensión de ${Y}.`,
+  t321:`${_c(X)}: [definición de un autor, año]. ${_c(Y)}: [definición de un autor, año].`,
+  t322:`${_c(X)} se medirá en las dimensiones ${p.dx.join(', ')}. ${_c(Y)} se medirá en las dimensiones ${p.dy.join(', ')}, con ítems en escala ordinal (nunca, a veces, siempre) y baremos por niveles (inicio, proceso, logro).`,
+  t33:'Correlacional.',t34:'No experimental, transversal. Esquema: M con observaciones Ox y Oy, y r como relación entre ambas.',
+  t35:`Población: ${p.N} ${p.pob} de la ${p.ie}. Muestra: ${n}, mediante muestreo [probabilístico/no probabilístico]. Criterios de inclusión: matriculados y con asistencia regular. Exclusión: inasistencia durante la aplicación.`,
+  t36:'Hipotético-deductivo.',
+  t37:`Técnica: observación/encuesta. Instrumento: ${p.ins}, validado por juicio de expertos y con confiabilidad (alfa de Cronbach o KR-20) en una prueba piloto.`,
+  t38:'Estadística descriptiva (tablas y gráficos) e inferencial con SPSS o Excel. Se verifica la normalidad (Shapiro-Wilk o Kolmogorov-Smirnov) y se aplica el coeficiente Rho de Spearman o r de Pearson, con nivel de significancia de 0,05.',
+  t4:'Escribe en orden alfabético y en formato APA 7.ª edición solo las fuentes realmente citadas.'};
+}
+function verEjemplos(){
+  const b=$('ts-ideas'); b.innerHTML=`<h4>📄 Tesis de ejemplo (esquema completo)</h4><p style="font-size:.84rem;color:var(--muted)">El ejemplo de Inicial sigue la línea de la tesis «Apego seguro y desarrollo del lenguaje oral en infantes de 5 años» (UNICA, 2024). Al cargarlo se reemplaza tu borrador y los antecedentes son marcadores que debes sustituir por fuentes reales.</p><ul>`+Object.keys(EJ).map(k=>`<li style="cursor:pointer" onclick="cargarEjemplo('${k}')"><b>${ESP_LBL[k]}:</b> ${esc(_c(EJ[k].x)+' y '+EJ[k].y+' en '+EJ[k].pob)} → cargar</li>`).join('')+'</ul>';
+  b.style.display='block';
+}
+function cargarEjemplo(k){
+  if(!confirm('Esto reemplazará tu borrador actual con el ejemplo. ¿Continuar?')) return;
+  tsState={esp:k,vals:ejTesis(EJ[k]),sec:0}; guardarTesis(); $('ts-esp').value=k; renderTesis(); $('tesis-pantalla').scrollTop=0;
 }
 
 /* ================= DECORACIÓN NAVIDEÑA ================= */
